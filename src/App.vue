@@ -1,4 +1,12 @@
 <template>
+  <div class="wrapper">
+    <div class="position">
+      <span class="iconfont position__icon">&#xe60e;</span>
+      北京理工大学国防科技园2号楼10层北京理工大学国防科技园2号楼10层
+      <span class="iconfont position__notive">&#xe628;</span>
+    </div>
+  </div>
+
   <div class="docker">
     <div class="docker__item docker__item--active">
       <span class="iconfont">&#xe6e2;</span
@@ -20,6 +28,37 @@
 </template>
 
 <style lang="scss">
+@import './style/vrirables.scss';
+@import './style/mixins.scss';
+.wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0.5rem;
+  padding: 0 0.18rem;
+}
+// 顶部内容
+.position {
+  position: relative;
+  padding: 0.16rem 0.24rem 0.16rem 0;
+  line-height: 0.22rem;
+  font-size: 0.16rem;
+  color: $content-fontcolor;
+  @include ellipsis;
+  .position__icon {
+    position: relative;
+    top: 0.02rem;
+    font-size: 0.2rem;
+  }
+  .position__notive {
+    position: absolute;
+    top: 0.17rem;
+    right: 0;
+    font-size: 0.2rem;
+  }
+}
+// 底部选项卡
 .docker {
   display: flex;
   box-sizing: border-box;
@@ -29,7 +68,8 @@
   bottom: 0;
   width: 100%;
   height: 0.49rem;
-  background: yellow;
+  color: $content-fontcolor;
+  background: #ffffff;
 }
 .docker__item {
   flex: 1;
@@ -41,10 +81,9 @@
   }
   &__title {
     display: block;
-    // font-size: 20px;
+    font-size: 0.2rem;
     // transform: scale(.5,.5);
     // transform-origin: center top;
-    font-size: 0.2rem;
     transform: scale(0.5);
     transform-origin: top;
   }
