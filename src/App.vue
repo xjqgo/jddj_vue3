@@ -9,9 +9,57 @@
       <span class="iconfont search__icon">&#xe60c;</span>
       山姆会员商店优惠商品
     </div>
+
     <div class="banner">
-      <img class="banner__img" src="http://www.dell-lee.com/imgs/vue3/banner.jpg" />
+      <img
+        class="banner__img"
+        src="http://www.dell-lee.com/imgs/vue3/banner.jpg"
+      />
     </div>
+
+    <div class="icons">
+      <div class="icons__item">
+        <img src="http://www.dell-lee.com/imgs/vue3/超市.png" />
+        <p>超市便利</p>
+      </div>
+      <div class="icons__item">
+        <img src="http://www.dell-lee.com/imgs/vue3/菜市场.png" />
+        <p>菜市场</p>
+      </div>
+      <div class="icons__item">
+        <img src="http://www.dell-lee.com/imgs/vue3/水果店.png" />
+        <p>水果店</p>
+      </div>
+      <div class="icons__item">
+        <img src="http://www.dell-lee.com/imgs/vue3/鲜花.png" />
+        <p>鲜花绿植</p>
+      </div>
+      <div class="icons__item">
+        <img src="http://www.dell-lee.com/imgs/vue3/医药健康.png" />
+        <p>医药健康</p>
+      </div>
+      <div class="icons__item">
+        <img src="http://www.dell-lee.com/imgs/vue3/家居.png" />
+        <p>家居时尚</p>
+      </div>
+      <div class="icons__item">
+        <img src="http://www.dell-lee.com/imgs/vue3/蛋糕.png" />
+        <p>烘培蛋糕</p>
+      </div>
+      <div class="icons__item">
+        <img src="http://www.dell-lee.com/imgs/vue3/签到.png" />
+        <p>签到</p>
+      </div>
+      <div class="icons__item">
+        <img src="http://www.dell-lee.com/imgs/vue3/大牌免运.png" />
+        <p>大牌免运</p>
+      </div>
+      <div class="icons__item">
+        <img src="http://www.dell-lee.com/imgs/vue3/红包.png" />
+        <p>红包套餐</p>
+      </div>
+    </div>
+    <div class="gap"></div>
   </div>
   <div class="docker">
     <div class="docker__item docker__item--active">
@@ -75,14 +123,38 @@
     padding: 0 0.05rem 0 0.16rem;
   }
 }
-.banner{
+.banner {
   // 图片防抖动
   height: 0;
   overflow: hidden;
   padding-bottom: 25.4%;
-  &__img{
+  &__img {
     width: 100%;
   }
+}
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: .16rem;
+  &__item {
+    width: 20%;
+    img {
+      width: 0.4rem;
+      height: 0.4rem;
+      display: block;
+      margin: 0 auto;
+    }
+    p {
+      margin: 0.06rem 0 0.16rem 0;
+      text-align: center;
+      color: $content-fontcolor;
+    }
+  }
+}
+.gap{
+  height: 0.1rem;
+  background: $content-bgColor;
+  margin: 0 -0.18rem;
 }
 // 底部选项卡
 .docker {
@@ -95,7 +167,7 @@
   width: 100%;
   height: 0.49rem;
   color: $content-fontcolor;
-  background: #ffffff;
+  border-top: 0.01rem solid $content-bgColor;
 }
 .docker__item {
   flex: 1;
