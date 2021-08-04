@@ -7,7 +7,7 @@
     </div>
     <div class="search">
       <span class="iconfont search__icon">&#xe60c;</span>
-      山姆会员商店优惠商品
+      <input type="text" placeholder="山姆会员商店优惠商品" />
     </div>
 
     <div class="banner">
@@ -122,6 +122,17 @@
   &__icon {
     padding: 0 0.05rem 0 0.16rem;
   }
+  input {
+    width: 83%;
+    border: 0;
+    outline: none; // 去除选中状态边框
+    background: inherit;
+    color: inherit;
+  }
+  input::-webkit-input-placeholder {
+    //占位符颜色
+    color: inherit;
+  }
 }
 .banner {
   // 图片防抖动
@@ -135,7 +146,7 @@
 .icons {
   display: flex;
   flex-wrap: wrap;
-  margin-top: .16rem;
+  margin-top: 0.16rem;
   &__item {
     width: 20%;
     img {
@@ -151,7 +162,7 @@
     }
   }
 }
-.gap{
+.gap {
   height: 0.1rem;
   background: $content-bgColor;
   margin: 0 -0.18rem;
