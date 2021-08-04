@@ -1,9 +1,4 @@
 <template>
-<<<<<<< HEAD
-<!-- 提交测试1 -->
-=======
-<!-- 提交测试 -->
->>>>>>> origin/master
   <div class="wrapper">
     <div class="position">
       <span class="iconfont position__icon">&#xe60e;</span>
