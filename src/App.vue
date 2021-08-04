@@ -8,9 +8,11 @@
     <div class="search">
       <span class="iconfont search__icon">&#xe60c;</span>
       山姆会员商店优惠商品
-      </div>
+    </div>
+    <div class="banner">
+      <img class="banner__img" src="http://www.dell-lee.com/imgs/vue3/banner.jpg" />
+    </div>
   </div>
-
   <div class="docker">
     <div class="docker__item docker__item--active">
       <span class="iconfont">&#xe6e2;</span
@@ -32,8 +34,8 @@
 </template>
 
 <style lang="scss">
-@import './style/vrirables.scss';
-@import './style/mixins.scss';
+@import "./style/vrirables.scss";
+@import "./style/mixins.scss";
 .wrapper {
   position: absolute;
   left: 0;
@@ -63,14 +65,23 @@
   }
 }
 
-.search{
+.search {
   line-height: 0.32rem;
-  background: #F5F5F5;
+  background: #f5f5f5;
   border-radius: 16px;
-  color: #B7B7B7;
+  color: #b7b7b7;
   font-size: 0.14rem;
-  &__icon{
-    padding: 0 .05rem 0 .16rem ;
+  &__icon {
+    padding: 0 0.05rem 0 0.16rem;
+  }
+}
+.banner{
+  // 图片防抖动
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 25.4%;
+  &__img{
+    width: 100%;
   }
 }
 // 底部选项卡
