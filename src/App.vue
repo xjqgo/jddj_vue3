@@ -60,6 +60,89 @@
       </div>
     </div>
     <div class="gap"></div>
+    <div class="goods">
+      <h3>附近店铺</h3>
+      <div class="items">
+        <div class="item">
+          <img src="http://www.dell-lee.com/imgs/vue3/near.png" />
+          <div class="item__info">
+            <div class="item__title">沃尔玛</div>
+            <div class="tab">
+              <span>月售1万+</span>
+              <span>起送¥0</span>
+              <span>基础运费¥5</span>
+            </div>
+            <p>VIP尊享满89元减4元运费券（每月3张）</p>
+            <div class="item__gap"></div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://www.dell-lee.com/imgs/vue3/near.png" />
+          <div class="item__info">
+            <div class="item__title">沃尔玛</div>
+            <div class="tab">
+              <span>月售1万+</span>
+              <span>起送¥0</span>
+              <span>基础运费¥5</span>
+            </div>
+            <p>VIP尊享满89元减4元运费券（每月3张）</p>
+            <div class="item__gap"></div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://www.dell-lee.com/imgs/vue3/near.png" />
+          <div class="item__info">
+            <div class="item__title">沃尔玛</div>
+            <div class="tab">
+              <span>月售1万+</span>
+              <span>起送¥0</span>
+              <span>基础运费¥5</span>
+            </div>
+            <p>VIP尊享满89元减4元运费券（每月3张）</p>
+            <div class="item__gap"></div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://www.dell-lee.com/imgs/vue3/near.png" />
+          <div class="item__info">
+            <div class="item__title">沃尔玛</div>
+            <div class="tab">
+              <span>月售1万+</span>
+              <span>起送¥0</span>
+              <span>基础运费¥5</span>
+            </div>
+            <p>VIP尊享满89元减4元运费券（每月3张）</p>
+            <div class="item__gap"></div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://www.dell-lee.com/imgs/vue3/near.png" />
+          <div class="item__info">
+            <div class="item__title">沃尔玛</div>
+            <div class="tab">
+              <span>月售1万+</span>
+              <span>起送¥0</span>
+              <span>基础运费¥5</span>
+            </div>
+            <p>VIP尊享满89元减4元运费券（每月3张）</p>
+            <div class="item__gap"></div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="http://www.dell-lee.com/imgs/vue3/near.png" />
+          <div class="item__info">
+            <div class="item__title">沃尔玛</div>
+            <div class="tab">
+              <span>月售1万+</span>
+              <span>起送¥0</span>
+              <span>基础运费¥5</span>
+            </div>
+            <p>VIP尊享满89元减4元运费券（每月3张）</p>
+            <div class="item__gap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="docker">
     <div class="docker__item docker__item--active">
@@ -86,11 +169,12 @@
 @import "./style/mixins.scss";
 .wrapper {
   position: absolute;
+  overflow-y: auto; //解决底部选项卡错误
   left: 0;
   top: 0;
   right: 0;
   bottom: 0.5rem;
-  padding: 0 0.18rem;
+  padding: 0 .18rem .25rem  .18rem;
 }
 // 顶部内容
 .position {
@@ -153,7 +237,7 @@
       width: 0.4rem;
       height: 0.4rem;
       display: block;
-      margin: 0 auto;
+      margin: 0 auto; //水平居中
     }
     p {
       margin: 0.06rem 0 0.16rem 0;
@@ -162,10 +246,49 @@
     }
   }
 }
+//分割
 .gap {
   height: 0.1rem;
   background: $content-bgColor;
   margin: 0 -0.18rem;
+}
+.goods {
+  h3 {
+    font-size: 0.18rem;
+    margin-bottom: 0.14rem;
+    color: #333333;
+  }
+  .item {
+    display: flex;
+    font-size: 0.13rem;
+    img {
+      height: 0.56rem;
+      width: 0.56rem;
+      margin: 0 0.16rem 0 0;
+    }
+    .item__info{
+      width: 100%;
+    }
+    .item__title {
+      font-size: 0.2rem;
+      color: #333333;
+    }
+    .tab {
+      margin: 0.08rem 0;
+      span {
+        margin-right: 0.16rem;
+      }
+    }
+    p {
+      margin: 0;
+      color: #e93b3b;
+    }
+    .item__gap{
+      height: .01rem;
+      background: #F1F1F1;
+      margin: 0.12rem 0;
+    }
+  }
 }
 // 底部选项卡
 .docker {
@@ -177,6 +300,7 @@
   bottom: 0;
   width: 100%;
   height: 0.49rem;
+  // background: #FFFFFF;
   color: $content-fontcolor;
   border-top: 0.01rem solid $content-bgColor;
 }
