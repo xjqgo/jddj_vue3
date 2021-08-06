@@ -2,81 +2,14 @@
     <div class="goods">
       <h3>附近店铺</h3>
       <div class="items">
-        <div class="item">
-          <img src="http://www.dell-lee.com/imgs/vue3/near.png" />
+        <div class="item" v-for="item in list" :key="item.id">
+          <img :src="item.img" />
           <div class="item__info">
-            <div class="item__title">沃尔玛</div>
+            <div class="item__title">{{item.title}}</div>
             <div class="tab">
-              <span>月售1万+</span>
-              <span>起送¥0</span>
-              <span>基础运费¥5</span>
+              <span v-for="item in item.tags" :key="item">{{item}}</span>
             </div>
-            <p>VIP尊享满89元减4元运费券（每月3张）</p>
-            <div class="item__gap"></div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="http://www.dell-lee.com/imgs/vue3/near.png" />
-          <div class="item__info">
-            <div class="item__title">沃尔玛</div>
-            <div class="tab">
-              <span>月售1万+</span>
-              <span>起送¥0</span>
-              <span>基础运费¥5</span>
-            </div>
-            <p>VIP尊享满89元减4元运费券（每月3张）</p>
-            <div class="item__gap"></div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="http://www.dell-lee.com/imgs/vue3/near.png" />
-          <div class="item__info">
-            <div class="item__title">沃尔玛</div>
-            <div class="tab">
-              <span>月售1万+</span>
-              <span>起送¥0</span>
-              <span>基础运费¥5</span>
-            </div>
-            <p>VIP尊享满89元减4元运费券（每月3张）</p>
-            <div class="item__gap"></div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="http://www.dell-lee.com/imgs/vue3/near.png" />
-          <div class="item__info">
-            <div class="item__title">沃尔玛</div>
-            <div class="tab">
-              <span>月售1万+</span>
-              <span>起送¥0</span>
-              <span>基础运费¥5</span>
-            </div>
-            <p>VIP尊享满89元减4元运费券（每月3张）</p>
-            <div class="item__gap"></div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="http://www.dell-lee.com/imgs/vue3/near.png" />
-          <div class="item__info">
-            <div class="item__title">沃尔玛</div>
-            <div class="tab">
-              <span>月售1万+</span>
-              <span>起送¥0</span>
-              <span>基础运费¥5</span>
-            </div>
-            <p>VIP尊享满89元减4元运费券（每月3张）</p>
-            <div class="item__gap"></div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="http://www.dell-lee.com/imgs/vue3/near.png" />
-          <div class="item__info">
-            <div class="item__title">沃尔玛</div>
-            <div class="tab">
-              <span>月售1万+</span>
-              <span>起送¥0</span>
-              <span>基础运费¥5</span>
-            </div>
-            <p>VIP尊享满89元减4元运费券（每月3张）</p>
+            <p>{{item.decs}}</p>
             <div class="item__gap"></div>
           </div>
         </div>
@@ -86,7 +19,18 @@
 
 <script>
 export default {
-  name: 'Goods'
+  name: 'Goods',
+  setup () {
+    const list = [
+      { id: 1, img: 'http://www.dell-lee.com/imgs/vue3/near.png', title: '沃尔玛', tags: ['月售1万+', '起送¥0', '基础运费¥'], decs: 'VIP尊享满89元减4元运费券（每月3张）' },
+      { id: 2, img: 'http://www.dell-lee.com/imgs/vue3/near.png', title: '沃尔玛l7', tags: ['月售1万+', '起送¥5', '基础运费¥'], decs: 'VIP尊享满89元减4元运费券（每月3张）' },
+      { id: 3, img: 'http://www.dell-lee.com/imgs/vue3/near.png', title: '沃尔玛l1', tags: ['月售1万+', '起送¥2', '基础运费¥'], decs: 'VIP尊享满89元减1元运费券（每月3张）' }
+    ]
+
+    return {
+      list
+    }
+  }
 }
 </script>
 

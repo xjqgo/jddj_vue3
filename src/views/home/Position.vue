@@ -16,46 +16,11 @@
     />
   </div>
 
+  <!-- 使用键盘1键左边`${}`差值表达式才能生效 -->
   <div class="icons">
-    <div class="icons__item">
-      <img src="http://www.dell-lee.com/imgs/vue3/超市.png" />
-      <p>超市便利</p>
-    </div>
-    <div class="icons__item">
-      <img src="http://www.dell-lee.com/imgs/vue3/菜市场.png" />
-      <p>菜市场</p>
-    </div>
-    <div class="icons__item">
-      <img src="http://www.dell-lee.com/imgs/vue3/水果店.png" />
-      <p>水果店</p>
-    </div>
-    <div class="icons__item">
-      <img src="http://www.dell-lee.com/imgs/vue3/鲜花.png" />
-      <p>鲜花绿植</p>
-    </div>
-    <div class="icons__item">
-      <img src="http://www.dell-lee.com/imgs/vue3/医药健康.png" />
-      <p>医药健康</p>
-    </div>
-    <div class="icons__item">
-      <img src="http://www.dell-lee.com/imgs/vue3/家居.png" />
-      <p>家居时尚</p>
-    </div>
-    <div class="icons__item">
-      <img src="http://www.dell-lee.com/imgs/vue3/蛋糕.png" />
-      <p>烘培蛋糕</p>
-    </div>
-    <div class="icons__item">
-      <img src="http://www.dell-lee.com/imgs/vue3/签到.png" />
-      <p>签到</p>
-    </div>
-    <div class="icons__item">
-      <img src="http://www.dell-lee.com/imgs/vue3/大牌免运.png" />
-      <p>大牌免运</p>
-    </div>
-    <div class="icons__item">
-      <img src="http://www.dell-lee.com/imgs/vue3/红包.png" />
-      <p>红包套餐</p>
+    <div class="icons__item" v-for="item in list" :key="item.title">
+      <img :src="`http://www.dell-lee.com/imgs/vue3/${item.imgName}.png`" />
+      <p>{{item.title}}</p>
     </div>
   </div>
   <div class="gap"></div>
@@ -63,7 +28,25 @@
 
 <script>
 export default {
-  name: 'Position'
+  name: 'Position',
+  setup () {
+    const list = [
+      { title: '超市便利', imgName: '超市' },
+      { title: '菜市场', imgName: '菜市场' },
+      { title: '水果店', imgName: '水果店' },
+      { title: '鲜花绿植', imgName: '鲜花' },
+      { title: '医药健康', imgName: '医药健康' },
+      { title: '家居时尚', imgName: '家居' },
+      { title: '烘培蛋糕', imgName: '蛋糕' },
+      { title: '签到', imgName: '签到' },
+      { title: '大牌免运', imgName: '大牌免运' },
+      { title: '红包套餐', imgName: '红包' }
+    ]
+
+    return {
+      list
+    }
+  }
 }
 </script>
 
