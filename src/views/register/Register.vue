@@ -10,8 +10,11 @@
     <div class="wrapper__input">
       <input class="wrapper__input__content" placeholder="请输入密码" type="password" />
     </div>
-    <button @click="handledLogin">登陆</button>
-    <div class="wrapper__tags"><span @click="handledRegister">注册用户</span><span class="jiange">|</span><span>忘记密码</span></div>
+    <div class="wrapper__input">
+      <input class="wrapper__input__content" placeholder="确认密码" type="password" />
+    </div>
+    <button @click="handledRegister">注册</button>
+    <div class="wrapper__tags"><span @click="handledToLogin">已有账号去登陆</span></div>
   </div>
 </template>
 
@@ -24,18 +27,16 @@ export default {
   setup () {
     const router = useRouter()
 
-    const handledLogin = () => {
-      localStorage.isLogin = true
-      router.push({ name: 'Home' })
-    }
-
     const handledRegister = () => {
-      router.push({ name: 'Register' })
+      alert('后期开发')
+    }
+    const handledToLogin = () => {
+      router.push({ name: 'Login' })
     }
 
     return {
-      handledLogin,
-      handledRegister
+      handledRegister,
+      handledToLogin
     }
   }
 }

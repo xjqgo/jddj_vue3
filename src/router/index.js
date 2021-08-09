@@ -1,12 +1,23 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/home/Home'
 import Login from '../views/login/Login'
+import Register from '../views/register/Register'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register,
+    beforeEnter: (to, from, next) => {
+      console.log('beforeEnter', to, from)
+      const { isLogin } = localStorage
+      isLogin ? next({ name: 'Home' }) : next()
+    }
   },
   {
     path: '/login',
@@ -26,14 +37,16 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  // history: createWebHashHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
 router.beforeEach((to, from, next) => {
   console.log('beforeEach', to, from)
   const { isLogin } = localStorage
-  isLogin || to.name === 'Login' ? next() : next({ name: 'Login' })
+  const isLoginRegister = (to.name === 'Login' || to.name === 'Register')
+  isLogin || isLoginRegister ? next() : next({ name: 'Login' })
 })
 
 export default router
