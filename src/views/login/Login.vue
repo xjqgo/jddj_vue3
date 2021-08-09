@@ -10,14 +10,28 @@
     <div class="wrapper__input">
       <input class="wrapper__input__content" placeholder="请输入密码" type="password" />
     </div>
-    <button>登陆</button>
+    <button @click="handledLogin">登陆</button>
     <div class="wrapper__tags"><span>注册用户</span><span class="jiange">|</span><span>忘记密码</span></div>
   </div>
 </template>
 
 <script>
+// import * as info from 'vue-router'
+import { useRouter } from 'vue-router'
+console.log(11, useRouter)
 export default {
-  name: 'Login'
+  name: 'Login',
+  setup () {
+    const router = useRouter()
+    function handledLogin () {
+      localStorage.isLogin = true
+      router.push({ name: 'Home' })
+    }
+
+    return {
+      handledLogin
+    }
+  }
 }
 </script>
 
@@ -30,6 +44,7 @@ export default {
   right: 0;
   transform: translateY(-50%);
   padding: 0 0.4rem;
+  overflow: visible;
   &__img {
     width: 0.66rem;
     height: 0.66rem;
