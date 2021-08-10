@@ -12,6 +12,7 @@
     </div>
     <button @click="handledLogin">登陆</button>
     <div class="wrapper__tags"><span @click="handledRegister">注册用户</span><span class="jiange">|</span><span>忘记密码</span></div>
+  <Toast v-show="data.showToast" :msg="data.msg" />
   </div>
 </template>
 
@@ -20,14 +21,28 @@
 import { useRouter } from 'vue-router'
 import { reactive } from 'vue'
 import { post } from '../../util/request'
+import Toast from '../../components/Toast.vue'
+
 export default {
   name: 'Login',
+  components:{Toast},
   setup () {
     const router = useRouter()
     const data = reactive({
       username: '',
-      password: ''
+      password: '',
+      showToast:false,
+      msg:''
     })
+
+    const toast=(msg)=>{      
+      data.showToast=true
+      data.msg=msg
+      setTimeout(() => {
+        data.showToast=false
+        data.msg=''
+      }, 2000);
+    }
 
     const handledLogin = async () => {
       console.log(post)
@@ -38,10 +53,12 @@ export default {
         })
         console.log('返回结果', result)
         if (result.data.errno === 0) {
-          alert('登陆成功')
-        } else alert('登陆失败')
+          toast('登陆成功')
+        } else {
+          toast('登陆失败')
+        }
       } catch (e) {
-        alert('请求失败')
+        toast('请求失败')
       }
     }
 
