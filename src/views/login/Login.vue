@@ -18,10 +18,8 @@
 <script>
 // import * as info from 'vue-router'
 import { useRouter } from 'vue-router'
-import axios from 'axios'
 import { reactive } from 'vue'
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-console.log(11, useRouter)
+import { post } from '../../util/request'
 export default {
   name: 'Login',
   setup () {
@@ -31,17 +29,20 @@ export default {
       password: ''
     })
 
-    const handledLogin = () => {
-      axios.post('https://www.fastmock.site/mock/ae8e9031947a302fed5f92425995aa19/jd/api/user/login', {
-        username: data.username,
-        password: data.password
-      })
-        .then(function (response) {
-          console.log('成功', response)
+    const handledLogin = async () => {
+      console.log(post)
+      try {
+        const result = await post('/api/user/login', {
+          username: data.username,
+          password: data.password
         })
-        .catch(function (error) {
-          console.log('失败', error)
-        })
+        console.log('返回结果', result)
+        if (result.data.errno === 0) {
+          alert('登陆成功')
+        } else alert('登陆失败')
+      } catch (e) {
+        alert('请求失败')
+      }
     }
 
     const handledRegister = () => {
