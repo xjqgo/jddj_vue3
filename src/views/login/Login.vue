@@ -12,37 +12,44 @@
     </div>
     <button @click="handledLogin">登陆</button>
     <div class="wrapper__tags"><span @click="handledRegister">注册用户</span><span class="jiange">|</span><span>忘记密码</span></div>
-  <Toast v-show="data.showToast" :msg="data.msg" />
+  <Toast v-show="toastData.showToast" :msg="toastData.msg" />
   </div>
 </template>
 
 <script>
+import { reactive } from 'vue'
 // import * as info from 'vue-router'
 import { useRouter } from 'vue-router'
-import { reactive } from 'vue'
 import { post } from '../../util/request'
 import Toast from '../../components/Toast.vue'
+
+const showToastEffect=()=>{
+  const toastData = reactive({
+    showToast:false,
+    msg:'11'
+  })
+  const showToast=(msg)=>{      
+    toastData.showToast=true
+    toastData.msg=msg
+    setTimeout(() => {
+      toastData.showToast=false
+      toastData.msg='1'
+    }, 2000);
+  }
+
+  return {toastData,showToast}
+}
 
 export default {
   name: 'Login',
   components:{Toast},
   setup () {
     const router = useRouter()
+    const {toastData,showToast}=showToastEffect()
     const data = reactive({
       username: '',
       password: '',
-      showToast:false,
-      msg:''
     })
-
-    const toast=(msg)=>{      
-      data.showToast=true
-      data.msg=msg
-      setTimeout(() => {
-        data.showToast=false
-        data.msg=''
-      }, 2000);
-    }
 
     const handledLogin = async () => {
       console.log(post)
@@ -53,12 +60,12 @@ export default {
         })
         console.log('返回结果', result)
         if (result.data.errno === 0) {
-          toast('登陆成功')
+          showToast('登陆成功')
         } else {
-          toast('登陆失败')
+          showToast('登陆失败')
         }
       } catch (e) {
-        toast('请求失败')
+        showToast('请求失败')
       }
     }
 
@@ -69,7 +76,8 @@ export default {
     return {
       handledLogin,
       handledRegister,
-      data
+      data,
+      toastData
     }
   }
 }
