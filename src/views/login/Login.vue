@@ -32,6 +32,8 @@ const useLoginEffect = (showToast) => {
   })
 
   const handledLogin = async () => {
+    if (data.username == '' || data.password == '') return showToast('用户名或密码不能为空');
+    
     try {
       const result = await post('/api/user/login', {
         username: data.username,

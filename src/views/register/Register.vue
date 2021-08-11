@@ -11,7 +11,7 @@
       <input class="wrapper__input__content" v-model="data.password" autocomplete="new-password" placeholder="请输入密码" type="password" />
     </div>
     <div class="wrapper__input">
-      <input class="wrapper__input__content" v-model="data.password" autocomplete="new-password" placeholder="确认密码" type="password" />
+      <input class="wrapper__input__content" v-model="data.passwords" autocomplete="new-password" placeholder="确认密码" type="password" />
     </div>
     <button @click="handledRegister">注册</button>
     <div class="wrapper__tags"><span @click="handledToLogin">已有账号去注册</span></div>
@@ -31,9 +31,12 @@ const useRegisterEffect = (showToast) => {
     const data = reactive({
       username: '',
       password: '',
+      passwords: '',
     })
 
     const handledRegister = async () => {
+    if (data.username == '' || data.password == '') return showToast('用户名或密码不能为空');
+    if (data.password != data.passwords) return showToast('密码不一致');
       try {
         const result = await post('/api/user/register', {
           username: data.username,
