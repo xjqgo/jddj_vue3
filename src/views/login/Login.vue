@@ -5,82 +5,95 @@
       src="http://www.dell-lee.com/imgs/vue3/user.png"
     />
     <div class="wrapper__input">
-      <input class="wrapper__input__content" v-model="data.username" placeholder="请输入用户名" />
+      <input
+        class="wrapper__input__content"
+        v-model="data.username"
+        placeholder="请输入用户名"
+      />
     </div>
     <div class="wrapper__input">
-      <input class="wrapper__input__content" v-model="data.password" autocomplete="new-password" placeholder="请输入密码" type="password" />
+      <input
+        class="wrapper__input__content"
+        v-model="data.password"
+        autocomplete="new-password"
+        placeholder="请输入密码"
+        type="password"
+      />
     </div>
     <button @click="handledLogin">登陆</button>
-    <div class="wrapper__tags"><span @click="handledRegister">注册用户</span><span class="jiange">|</span><span>忘记密码</span></div>
-  <Toast v-show="toastData.showToast" :msg="toastData.msg" />
+    <div class="wrapper__tags">
+      <span @click="handledRegister">注册用户</span><span class="jiange">|</span
+      ><span>忘记密码</span>
+    </div>
+    <Toast v-show="toastData.showToast" :msg="toastData.msg" />
   </div>
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive } from "vue";
 // import * as info from 'vue-router'
-import { useRouter } from 'vue-router'
-import { post } from '../../util/request'
-import Toast,{showToastEffect} from '../../components/Toast.vue'
-
+import { useRouter } from "vue-router";
+import { post } from "../../util/request";
+import Toast, { showToastEffect } from "../../components/Toast.vue";
 
 // 处理注册逻辑
 const useLoginEffect = (showToast) => {
   const data = reactive({
-    username: '',
-    password: '',
-  })
+    username: "",
+    password: "",
+  });
 
   const handledLogin = async () => {
-    if (data.username == '' || data.password == '') return showToast('用户名或密码不能为空');
-    
+    if (data.username == "" || data.password == "")
+      return showToast("用户名或密码不能为空");
+
     try {
-      const result = await post('/api/user/login', {
+      const result = await post("/api/user/login", {
         username: data.username,
-        password: data.password
-      })
-      console.log('返回结果', result)
+        password: data.password,
+      });
+      console.log("返回结果", result);
       if (result.data.errno === 0) {
-        showToast('登陆成功')
+        showToast("登陆成功");
       } else {
-        showToast('登陆失败')
+        showToast("登陆失败");
       }
     } catch (e) {
-      showToast('请求失败')
+      showToast("请求失败");
     }
-  }
+  };
 
   return {
     handledLogin,
-    data
-  }
-}
+    data,
+  };
+};
 
 // 处理注册连接跳转
 const useRegisterEffect = () => {
-  const router = useRouter()
+  const router = useRouter();
   const handledRegister = () => {
-    router.push({ name: 'Register' })
-  }
-  return {handledRegister}
-}
+    router.push({ name: "Register" });
+  };
+  return { handledRegister };
+};
 
 export default {
-  name: 'Login',
-  components:{Toast},
-  setup () {
-    const {toastData,showToast}=showToastEffect()
-    const {handledLogin,data} = useLoginEffect(showToast)
-    const {handledRegister}=useRegisterEffect()
+  name: "Login",
+  components: { Toast },
+  setup() {
+    const { toastData, showToast } = showToastEffect();
+    const { handledLogin, data } = useLoginEffect(showToast);
+    const { handledRegister } = useRegisterEffect();
 
     return {
       handledLogin,
       handledRegister,
       data,
-      toastData
-    }
-  }
-}
+      toastData,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -104,42 +117,42 @@ export default {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 6px;
     border-radius: 6px;
-    height: .48rem;
+    height: 0.48rem;
     margin-bottom: 0.16rem;
     padding: 0 0.16rem;
     font-size: 0.16rem;
     letter-spacing: 0;
-    &__content{
-        // box-sizing: border-box;
-        width: 100%;
-        border: none;
-        outline: none;
-        background: none;
-        line-height: .48rem;
-        padding: 0;
-        color: $content-loginFontColor;
+    &__content {
+      // box-sizing: border-box;
+      width: 100%;
+      border: none;
+      outline: none;
+      background: none;
+      line-height: 0.48rem;
+      padding: 0;
+      color: $content-loginFontColor;
     }
-    ::placeholder{
-        color: $content-loginFontColor;
+    ::placeholder {
+      color: $content-loginFontColor;
     }
   }
-  button{
+  button {
     width: 100%;
     height: 0.48rem;
     margin: 0.16rem 0;
     padding: 0;
-    background: #0091FF;
+    background: #0091ff;
     color: #fff;
     font-size: 0.16rem;
-    box-shadow: 0 4px 8px 0 rgba(0,145,255,0.32);
+    box-shadow: 0 4px 8px 0 rgba(0, 145, 255, 0.32);
     border-radius: 4px;
     border: none;
   }
-  &__tags{
+  &__tags {
     text-align: center;
     color: $content-loginFontColor;
     font-size: 00.16rem;
-    .jiange{
+    .jiange {
       margin: 0 0.12rem;
     }
   }
