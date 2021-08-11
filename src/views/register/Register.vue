@@ -5,30 +5,52 @@
       src="http://www.dell-lee.com/imgs/vue3/user.png"
     />
     <div class="wrapper__input">
-      <input class="wrapper__input__content" placeholder="请输入用户名" />
+      <input class="wrapper__input__content" v-model="data.username" placeholder="请输入用户名" />
     </div>
     <div class="wrapper__input">
-      <input class="wrapper__input__content" placeholder="请输入密码" type="password" />
+      <input class="wrapper__input__content" v-model="data.password" autocomplete="new-password" placeholder="请输入密码" type="password" />
     </div>
     <div class="wrapper__input">
-      <input class="wrapper__input__content" placeholder="确认密码" type="password" />
+      <input class="wrapper__input__content" v-model="data.password" autocomplete="new-password" placeholder="确认密码" type="password" />
     </div>
     <button @click="handledRegister">注册</button>
-    <div class="wrapper__tags"><span @click="handledToLogin">已有账号去登陆</span></div>
+    <div class="wrapper__tags"><span @click="handledToLogin">已有账号去注册</span></div>
+    <Toast v-show="toastData.showToast" :msg="toastData.msg" />
   </div>
 </template>
 
 <script>
-// import * as info from 'vue-router'
+import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { post } from '../../util/request'
+import Toast,{showToastEffect} from '../../components/Toast.vue'
 console.log(11, useRouter)
 export default {
   name: 'Login',
+  components:{Toast},
   setup () {
     const router = useRouter()
+    const {toastData,showToast}=showToastEffect()
+    const data = reactive({
+      username: '',
+      password: '',
+    })
 
-    const handledRegister = () => {
-      alert('后期开发')
+    const handledRegister = async () => {
+      try {
+        const result = await post('/api/user/register', {
+          username: data.username,
+          password: data.password
+        })
+        console.log('返回结果', result)
+        if (result.data.errno === 0) {
+          showToast('注册成功')
+        } else {
+          showToast('注册失败')
+        }
+      } catch (e) {
+        showToast('请求失败')
+      }
     }
     const handledToLogin = () => {
       router.push({ name: 'Login' })
@@ -36,7 +58,9 @@ export default {
 
     return {
       handledRegister,
-      handledToLogin
+      handledToLogin,
+      data,
+      toastData
     }
   }
 }

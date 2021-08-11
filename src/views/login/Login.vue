@@ -8,7 +8,7 @@
       <input class="wrapper__input__content" v-model="data.username" placeholder="请输入用户名" />
     </div>
     <div class="wrapper__input">
-      <input class="wrapper__input__content" v-model="data.password" placeholder="请输入密码" type="password" />
+      <input class="wrapper__input__content" v-model="data.password" autocomplete="new-password" placeholder="请输入密码" type="password" />
     </div>
     <button @click="handledLogin">登陆</button>
     <div class="wrapper__tags"><span @click="handledRegister">注册用户</span><span class="jiange">|</span><span>忘记密码</span></div>
@@ -35,7 +35,6 @@ export default {
     })
 
     const handledLogin = async () => {
-      console.log(post)
       try {
         const result = await post('/api/user/login', {
           username: data.username,
