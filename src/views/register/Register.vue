@@ -24,13 +24,10 @@ import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { post } from '../../util/request'
 import Toast,{showToastEffect} from '../../components/Toast.vue'
-console.log(11, useRouter)
-export default {
-  name: 'Login',
-  components:{Toast},
-  setup () {
-    const router = useRouter()
-    const {toastData,showToast}=showToastEffect()
+
+
+// 处理注册相关逻辑
+const useRegisterEffect = (showToast) => {
     const data = reactive({
       username: '',
       password: '',
@@ -52,10 +49,27 @@ export default {
         showToast('请求失败')
       }
     }
-    const handledToLogin = () => {
-      router.push({ name: 'Login' })
-    }
+    return {data,handledRegister}
+}
 
+
+// 处理登陆链接跳转
+const useLoginEffect = () => {
+  const router = useRouter()
+  const handledToLogin = () => {
+    router.push({ name: 'Login' })
+  }
+  return {handledToLogin}
+}
+
+console.log(11, useRouter)
+export default {
+  name: 'Login',
+  components:{Toast},
+  setup () {
+    const {toastData,showToast}=showToastEffect()
+    const {data,handledRegister}=useRegisterEffect(showToast)
+    const {handledToLogin}=useLoginEffect()
     return {
       handledRegister,
       handledToLogin,

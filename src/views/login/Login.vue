@@ -23,37 +23,53 @@ import { useRouter } from 'vue-router'
 import { post } from '../../util/request'
 import Toast,{showToastEffect} from '../../components/Toast.vue'
 
+
+// 处理注册逻辑
+const useLoginEffect = (showToast) => {
+  const data = reactive({
+    username: '',
+    password: '',
+  })
+
+  const handledLogin = async () => {
+    try {
+      const result = await post('/api/user/login', {
+        username: data.username,
+        password: data.password
+      })
+      console.log('返回结果', result)
+      if (result.data.errno === 0) {
+        showToast('登陆成功')
+      } else {
+        showToast('登陆失败')
+      }
+    } catch (e) {
+      showToast('请求失败')
+    }
+  }
+
+  return {
+    handledLogin,
+    data
+  }
+}
+
+// 处理注册连接跳转
+const useRegisterEffect = () => {
+  const router = useRouter()
+  const handledRegister = () => {
+    router.push({ name: 'Register' })
+  }
+  return {handledRegister}
+}
+
 export default {
   name: 'Login',
   components:{Toast},
   setup () {
-    const router = useRouter()
     const {toastData,showToast}=showToastEffect()
-    const data = reactive({
-      username: '',
-      password: '',
-    })
-
-    const handledLogin = async () => {
-      try {
-        const result = await post('/api/user/login', {
-          username: data.username,
-          password: data.password
-        })
-        console.log('返回结果', result)
-        if (result.data.errno === 0) {
-          showToast('登陆成功')
-        } else {
-          showToast('登陆失败')
-        }
-      } catch (e) {
-        showToast('请求失败')
-      }
-    }
-
-    const handledRegister = () => {
-      router.push({ name: 'Register' })
-    }
+    const {handledLogin,data} = useLoginEffect(showToast)
+    const {handledRegister}=useRegisterEffect()
 
     return {
       handledLogin,
