@@ -21,24 +21,7 @@ import { reactive } from 'vue'
 // import * as info from 'vue-router'
 import { useRouter } from 'vue-router'
 import { post } from '../../util/request'
-import Toast from '../../components/Toast.vue'
-
-const showToastEffect=()=>{
-  const toastData = reactive({
-    showToast:false,
-    msg:'11'
-  })
-  const showToast=(msg)=>{      
-    toastData.showToast=true
-    toastData.msg=msg
-    setTimeout(() => {
-      toastData.showToast=false
-      toastData.msg='1'
-    }, 2000);
-  }
-
-  return {toastData,showToast}
-}
+import Toast,{showToastEffect} from '../../components/Toast.vue'
 
 export default {
   name: 'Login',
