@@ -1,18 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/home/Home'
-import Login from '../views/login/Login'
-import Register from '../views/register/Register'
+// import Home from '../views/home/Home'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import(/* webpackChunkName: "home" */ '../views/home/Home'),
+  },
+  {
+    path: '/shop',
+    name: 'Shop',
+    component: () => import(/* webpackChunkName: "home" */ '../views/shop/Shop'),
   },
   {
     path: '/register',
     name: 'Register',
-    component: Register,
+    component: () => import(/* webpackChunkName: "register" */ '../views/register/Register'),
     beforeEnter: (to, from, next) => {
       console.log('beforeEnter', to, from)
       const { isLogin } = localStorage
@@ -22,18 +25,13 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login,
+    component: () => import(/* webpackChunkName: "login" */ '../views/login/Login'),
     beforeEnter: (to, from, next) => {
       console.log('beforeEnter', to, from)
       const { isLogin } = localStorage
       isLogin ? next({ name: 'Home' }) : next()
     }
   }
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
 ]
 
 const router = createRouter({
