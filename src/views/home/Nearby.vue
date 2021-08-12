@@ -1,5 +1,5 @@
 <template>
-  <div class="shop">
+  <div class="nearby">
     <h3>附近店铺</h3>
     <div class="items">
       <div class="item" v-for="item in list" :key="item._id">
@@ -36,7 +36,7 @@ const shopListEffect = () => {
 };
 
 export default {
-  name: "Shop",
+  name: "Nearby",
   setup() {
     const { list, getShop } = shopListEffect();
     getShop();
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.shop {
+.nearby {
   h3 {
     font-size: 0.18rem;
     margin-bottom: 0.14rem;

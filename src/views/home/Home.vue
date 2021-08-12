@@ -1,18 +1,18 @@
 <template>
   <div class="wrapper">
     <Position />
-    <Shop />
+    <Nearby />
   </div>
     <Docker />
 </template>
 
 <script>
 import Position from './Position'
-import Shop from './Shop'
+import Nearby from './Nearby'
 import Docker from './Docker'
 export default {
   name: 'Home',
-  components: { Position, Docker, Shop }
+  components: { Position, Docker, Nearby }
 }
 </script>
 
