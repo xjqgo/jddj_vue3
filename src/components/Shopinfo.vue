@@ -9,7 +9,7 @@
             <span>基础运费:{{ item.expressPrice }}</span>
           </div>
           <p>{{ item.slogan }}</p>
-          <div class="item__gap"></div>
+          <div v-if="!hidegap" class="item__gap"></div>
         </div>
       </div>
 </template>
@@ -17,7 +17,7 @@
 <script>
 export default {
     name:'Shopinfo' ,
-    props:['item']   
+    props:['item','hidegap']   
 }
 </script>
 
