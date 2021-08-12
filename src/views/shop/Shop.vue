@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="search">
-      <div class="search__back iconfont">&#xe64c;</div>
+      <div @click="toBack" class="search__back iconfont">&#xe64c;</div>
 
       <div class="search__content">
         <div class="search__content__icon iconfont">&#xe60c;</div>
@@ -13,11 +13,13 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
 import Shopinfo from "../../components/Shopinfo.vue";
 export default {
   name: "Shop",
   components: { Shopinfo },
   setup() {
+    const route = useRouter();
     const item = {
       expressLimit: 0,
       expressPrice: 5,
@@ -27,7 +29,10 @@ export default {
       slogan: "VIP尊享满89元减4元运费券",
       _id: "1",
     };
-    return { item };
+    const toBack = () => {
+      route.back();
+    };
+    return { item, toBack };
   },
 };
 </script>
