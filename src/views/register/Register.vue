@@ -61,7 +61,7 @@ const useRegisterEffect = (showToast) => {
         password: data.password,
       });
       console.log("返回结果", result);
-      if (result.data.errno === 0) {
+      if (result.errno === 0) {
         showToast("注册成功");
       } else {
         showToast("注册失败");

@@ -38,6 +38,7 @@ import Toast, { showToastEffect } from "../../components/Toast.vue";
 
 // 处理注册逻辑
 const useLoginEffect = (showToast) => {
+  const router = useRouter();
   const data = reactive({
     username: "",
     password: "",
@@ -53,8 +54,10 @@ const useLoginEffect = (showToast) => {
         password: data.password,
       });
       console.log("返回结果", result);
-      if (result.data.errno === 0) {
+      if (result.errno === 0) {
         showToast("登陆成功");
+        localStorage.isLogin = true;
+        router.push({ name: "Home" });
       } else {
         showToast("登陆失败");
       }
