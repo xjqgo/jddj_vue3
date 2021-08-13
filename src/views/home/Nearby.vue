@@ -2,7 +2,7 @@
   <div class="nearby">
     <h3>附近店铺</h3>
     <div class="items">
-      <router-link to="/shop" v-for="item in list" :key="item._id" >
+      <router-link :to="`/shop/${item._id}`" v-for="item in list" :key="item._id" >
       <Shopinfo :item="item" />
       </router-link>
     </div>

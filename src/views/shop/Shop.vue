@@ -8,36 +8,55 @@
         <input placeholder="请输入商品名称搜索" />
       </div>
     </div>
-    <Shopinfo :item="item" :hidegap="true" />
+    <Shopinfo :item="item" :hidegap="true" v-show="item.imgUrl" />
   </div>
 </template>
 
 <script>
-import { useRouter } from "vue-router";
+import { ref } from "@vue/reactivity";
+import { useRoute, useRouter } from "vue-router";
 import Shopinfo from "../../components/Shopinfo.vue";
+import { get } from "../../util/request";
+
+// 取店铺信息
+const useShopInfoEffect = () => {
+  const route = useRoute();
+  let item = ref({});
+  const getShop = async () => {
+    const result = await get(`/api/shop/${route.params.id}`);
+    console.log("返回结果", result);
+    if (result?.errno === 0 && result?.data) {
+      console.log(21);
+      item.value = result.data;
+    }
+  };
+
+  return { getShop, item };
+};
+
+// 路由返回
+const toBackEffect = () => {
+  const router = useRouter();
+  const toBack = () => {
+    router.back();
+  };
+
+  return toBack;
+};
 export default {
   name: "Shop",
   components: { Shopinfo },
   setup() {
-    const route = useRouter();
-    const item = {
-      expressLimit: 0,
-      expressPrice: 5,
-      imgUrl: "http://www.dell-lee.com/imgs/vue3/near.png",
-      name: "沃尔玛",
-      sales: 10000,
-      slogan: "VIP尊享满89元减4元运费券",
-      _id: "1",
-    };
-    const toBack = () => {
-      route.back();
-    };
+    const { getShop, item } = useShopInfoEffect();
+    const toBack = toBackEffect();
+    getShop();
     return { item, toBack };
   },
 };
 </script>
 
 <style lang="scss" scoped>
+$content-inputcolor: #333;
 .wrapper {
   margin-left: 0.18rem;
 }
@@ -69,11 +88,11 @@ export default {
       line-height: 0.32rem;
       width: 100%;
       padding-right: 0.2rem;
-      color: #333333;
+      color: $content-inputcolor;
     }
     ::placeholder {
       font-size: 14px;
-      color: #333333;
+      color: $content-inputcolor;
     }
   }
 }
