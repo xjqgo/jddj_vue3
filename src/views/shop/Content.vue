@@ -15,7 +15,7 @@
           src="	http://www.dell-lee.com/imgs/vue3/near.png"
         />
         <div class="content__right__info">
-          <h4 class="title">番茄250g/份</h4>
+          <h4 class="title">番茄250g/份番茄250g/份番茄250g/份</h4>
           <div class="sales">月售10件</div>
           <div class="jgjs">
             <div class="price">
@@ -196,6 +196,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./style/vrirables.scss";
+@import "./style/mixins.scss";
 .content {
   position: absolute;
   display: flex;
@@ -211,13 +213,13 @@ export default {
       line-height: 0.4rem;
       text-align: center;
       font-size: 0.14rem;
-      color: #333;
+      color: $content-fontcolor;
       &--active {
         line-height: 0.4rem;
         text-align: center;
         font-size: 0.14rem;
-        color: #333;
-        background: #ffffff;
+        color: $content-fontcolor;
+        background: $bgColor-white;
         border-radius: 2px;
       }
     }
@@ -235,13 +237,15 @@ export default {
     }
     &__info {
       flex: 1;
+      overflow: hidden;
       padding-bottom: 0.12rem;
       border-bottom: 1px solid #f1f1f1;
-        margin-right: 0.18rem;
+      margin-right: 0.18rem;
       margin-bottom: 0.12rem;
       .title {
         margin: 0;
         font-size: 00.14rem;
+        @include ellipsis;
       }
       .sales {
         margin: 0.06rem 0;
@@ -252,10 +256,11 @@ export default {
         display: flex;
         justify-content: space-between; /* 横向中间自动空间 */
         // align-content: space-between;  /* 竖向中间自动空间 */
-        .jianshu{
+        .jianshu {
           margin: 0 0.1rem;
         }
-        .minus,.add{
+        .minus,
+        .add {
           display: inline-block;
           font-size: 0.2rem;
           text-align: center;
@@ -265,10 +270,10 @@ export default {
           border-radius: 50%;
           border: 1px solid #000;
         }
-        .add{
-          color: #fff;
-          background: #0091FF;
-          border: 1px solid #0091FF;
+        .add {
+          color: $textColor-white;
+          background: #0091ff;
+          border: 1px solid #0091ff;
         }
       }
       .price {
@@ -281,7 +286,7 @@ export default {
           font-size: 0.14rem;
         }
         .yuanjia {
-          color: #999;
+          color: $light-fontcolor;
           text-decoration: line-through;
           margin-left: 00.06rem;
           line-height: 0.2rem;

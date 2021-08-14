@@ -146,7 +146,7 @@ export default {
     margin: 0.16rem 0;
     padding: 0;
     background: #0091ff;
-    color: #fff;
+    color: $textColor-white;
     font-size: 0.16rem;
     box-shadow: 0 4px 8px 0 rgba(0, 145, 255, 0.32);
     border-radius: 4px;

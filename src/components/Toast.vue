@@ -26,6 +26,7 @@ export const showToastEffect=()=>{
 </script>
 
 <style lang="scss" scoped>
+@import "./style/vrirables.scss";
 .toast{
     position: fixed;
     top: 50%;
@@ -33,6 +34,6 @@ export const showToastEffect=()=>{
     transform: translate(-50%,-50%);
     padding: 0.1rem;
     background: rgba(0, 0, 0, .35);
-    color: #FFF;
+    color: $textColor-white;
 }
 </style>

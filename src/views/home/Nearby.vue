@@ -40,11 +40,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./style/vrirables.scss";
 .nearby {
   h3 {
     font-size: 0.18rem;
     margin-bottom: 0.14rem;
-    color: #333333;
+    color: $content-fontcolor;
   }
   a{
     text-decoration: none;

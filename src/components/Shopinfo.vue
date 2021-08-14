@@ -22,6 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./style/vrirables.scss";
 .item {
   display: flex;
   font-size: 0.13rem;
@@ -39,7 +40,7 @@ export default {
   }
   &__title {
     font-size: 0.2rem;
-    color: #333333;
+    color: $content-fontcolor;
   }
   .tab {
     margin: 0.08rem 0;

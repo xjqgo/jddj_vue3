@@ -1,3 +1,4 @@
+// @include ellipsis;
 @mixin ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
