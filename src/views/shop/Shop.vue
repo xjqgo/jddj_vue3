@@ -9,6 +9,7 @@
       </div>
     </div>
     <Shopinfo :item="item" :hidegap="true" v-show="item.imgUrl" />
+    <Content />
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import { ref } from "@vue/reactivity";
 import { useRoute, useRouter } from "vue-router";
 import Shopinfo from "../../components/Shopinfo.vue";
 import { get } from "../../util/request";
+import Content from './Content.vue';
 
 // 取店铺信息
 const useShopInfoEffect = () => {
@@ -45,7 +47,7 @@ const toBackEffect = () => {
 };
 export default {
   name: "Shop",
-  components: { Shopinfo },
+  components: { Shopinfo, Content },
   setup() {
     const { getShop, item } = useShopInfoEffect();
     const toBack = toBackEffect();
