@@ -14,20 +14,19 @@
       </div>
     </div>
     <div class="content__right">
-      
       <div class="item" v-for="item in contentLiat" :key="item._id">
         <img
           class="content__right__img"
           src="	http://www.dell-lee.com/imgs/vue3/near.png"
         />
         <div class="content__right__info">
-          <h4 class="title">{{item.name}}</h4>
-          <div class="sales">月售{{item.sales}}件</div>
+          <h4 class="title">{{ item.name }}</h4>
+          <div class="sales">月售{{ item.sales }}件</div>
           <div class="jgjs">
             <div class="price">
               <span class="yuan">￥</span>
-              <span class="xianjia">{{item.price}}</span>
-              <span class="yuanjia">￥{{item.oldPrice}}</span>
+              <span class="xianjia">{{ item.price }}</span>
+              <span class="yuanjia">￥{{ item.oldPrice }}</span>
             </div>
             <div class="number">
               <span class="minus">-</span>
@@ -44,38 +43,57 @@
 <script>
 import { ref } from "@vue/reactivity";
 import { get } from "../../util/request";
-import { useRoute } from 'vue-router';
+import { useRoute } from "vue-router";
+import { watchEffect } from "@vue/runtime-core";
+
+// tab相关处理
+const tabEffect = () => {
+  const tabList = [
+    { name: "全部商品", tab: "all" },
+    { name: "秒杀", tab: "seckill" },
+    { name: "新鲜水果", tab: "fruit" },
+  ];
+
+  const currentTab = ref(tabList[0].tab);
+  const tabClick = (tab) => {
+    // getContent(tab);
+    currentTab.value = tab;
+  };
+
+  return { tabList, tabClick, currentTab };
+};
+
+// 商品列表相关操作
+const shopListEffect = (currentTab) => {
+  const contentLiat = ref([]);
+  const route = useRoute();
+  const getContent = async () => {
+    const result = await get(`/api/shop/${route.params.id}/products`, {
+      tab:currentTab.value
+    });
+    console.log(result);
+    if (result?.errno === 0) {
+      contentLiat.value = result.data;
+    }
+  };
+
+  watchEffect(() => {
+    getContent();
+  });
+
+  return { contentLiat };
+};
+
 export default {
   setup() {
-    const tabList = [
-      { name: "全部商品", tab: "all" },
-      { name: "秒杀", tab: "seckill" },
-      { name: "新鲜水果", tab: "fruit" },
-    ];
+    const { tabList, tabClick, currentTab } = tabEffect();
+    const { contentLiat } = shopListEffect(currentTab);
 
-    // tab点击
-    const currentTab = ref("all");
-    const tabClick = (tab) => {
-        getContent(tab)
-      currentTab.value=tab
-    };
-
-    const contentLiat=ref([1,2,3])
-    // 
-    const route=useRoute()
-    const getContent = async (tab) => {
-      // const result = await get(`/api/shop/${route.params.id}/products?tab=${tab}`);
-      const result = await get(`/api/shop/${route.params.id}/products`,{tab});
-      console.log(result);
-      if (result?.errno===0) {
-        contentLiat.value=result.data;
-      }
-    }
-    getContent(currentTab.value)
-
-    return { 
-      tabList, tabClick, currentTab, 
-      contentLiat
+    return {
+      tabList,
+      tabClick,
+      currentTab,
+      contentLiat,
     };
   },
 };
