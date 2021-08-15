@@ -1,12 +1,17 @@
 <template>
   <div class="content">
     <div class="content__left">
-      <div class="content__left__item--active">全部商品</div>
-      <div class="content__left__item">秒杀</div>
-      <div class="content__left__item">新鲜水果</div>
-      <div class="content__left__item">休闲食品</div>
-      <div class="content__left__item">时令蔬菜</div>
-      <div class="content__left__item">肉蛋家禽</div>
+      <div
+        :class="{
+          content__left__item: true,
+          'content__left__item--active': item.tab === currentTab,
+        }"
+        v-for="item in tabList"
+        :key="item.tab"
+        @click="tabClick(item.tab)"
+      >
+        {{ item.name }}
+      </div>
     </div>
     <div class="content__right">
       <div class="item">
@@ -190,8 +195,23 @@
 </template>
 
 <script>
+import { ref } from "@vue/reactivity";
 export default {
-  setup() {},
+  setup() {
+    const tabList = [
+      { name: "全部商品", tab: "all" },
+      { name: "秒杀", tab: "seckill" },
+      { name: "新鲜水果", tab: "fruit" },
+    ];
+
+    // tab点击
+    const currentTab = ref("all");
+    const tabClick = (tab) => {
+      currentTab.value=tab
+    };
+
+    return { tabList, tabClick, currentTab };
+  },
 };
 </script>
 
