@@ -63,7 +63,7 @@ const tabEffect = () => {
   return { tabList, tabClick, currentTab };
 };
 
-// 商品列表相关操作
+// 商品列表相关
 const shopListEffect = (currentTab) => {
   const contentLiat = ref([]);
   const route = useRoute();
