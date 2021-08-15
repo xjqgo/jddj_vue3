@@ -14,173 +14,20 @@
       </div>
     </div>
     <div class="content__right">
-      <div class="item">
+      
+      <div class="item" v-for="item in contentLiat" :key="item._id">
         <img
           class="content__right__img"
           src="	http://www.dell-lee.com/imgs/vue3/near.png"
         />
         <div class="content__right__info">
-          <h4 class="title">番茄250g/份番茄250g/份番茄250g/份</h4>
-          <div class="sales">月售10件</div>
+          <h4 class="title">{{item.name}}</h4>
+          <div class="sales">月售{{item.sales}}件</div>
           <div class="jgjs">
             <div class="price">
               <span class="yuan">￥</span>
-              <span class="xianjia">33.6</span>
-              <span class="yuanjia">￥36.8</span>
-            </div>
-            <div class="number">
-              <span class="minus">-</span>
-              <span class="jianshu">0</span>
-              <span class="add">+</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img
-          class="content__right__img"
-          src="	http://www.dell-lee.com/imgs/vue3/near.png"
-        />
-        <div class="content__right__info">
-          <h4 class="title">番茄250g/份</h4>
-          <div class="sales">月售10件</div>
-          <div class="jgjs">
-            <div class="price">
-              <span class="yuan">￥</span>
-              <span class="xianjia">33.6</span>
-              <span class="yuanjia">￥36.8</span>
-            </div>
-            <div class="number">
-              <span class="minus">-</span>
-              <span class="jianshu">0</span>
-              <span class="add">+</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img
-          class="content__right__img"
-          src="	http://www.dell-lee.com/imgs/vue3/near.png"
-        />
-        <div class="content__right__info">
-          <h4 class="title">番茄250g/份</h4>
-          <div class="sales">月售10件</div>
-          <div class="jgjs">
-            <div class="price">
-              <span class="yuan">￥</span>
-              <span class="xianjia">33.6</span>
-              <span class="yuanjia">￥36.8</span>
-            </div>
-            <div class="number">
-              <span class="minus">-</span>
-              <span class="jianshu">0</span>
-              <span class="add">+</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img
-          class="content__right__img"
-          src="	http://www.dell-lee.com/imgs/vue3/near.png"
-        />
-        <div class="content__right__info">
-          <h4 class="title">番茄250g/份</h4>
-          <div class="sales">月售10件</div>
-          <div class="jgjs">
-            <div class="price">
-              <span class="yuan">￥</span>
-              <span class="xianjia">33.6</span>
-              <span class="yuanjia">￥36.8</span>
-            </div>
-            <div class="number">
-              <span class="minus">-</span>
-              <span class="jianshu">0</span>
-              <span class="add">+</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img
-          class="content__right__img"
-          src="	http://www.dell-lee.com/imgs/vue3/near.png"
-        />
-        <div class="content__right__info">
-          <h4 class="title">番茄250g/份</h4>
-          <div class="sales">月售10件</div>
-          <div class="jgjs">
-            <div class="price">
-              <span class="yuan">￥</span>
-              <span class="xianjia">33.6</span>
-              <span class="yuanjia">￥36.8</span>
-            </div>
-            <div class="number">
-              <span class="minus">-</span>
-              <span class="jianshu">0</span>
-              <span class="add">+</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img
-          class="content__right__img"
-          src="	http://www.dell-lee.com/imgs/vue3/near.png"
-        />
-        <div class="content__right__info">
-          <h4 class="title">番茄250g/份</h4>
-          <div class="sales">月售10件</div>
-          <div class="jgjs">
-            <div class="price">
-              <span class="yuan">￥</span>
-              <span class="xianjia">33.6</span>
-              <span class="yuanjia">￥36.8</span>
-            </div>
-            <div class="number">
-              <span class="minus">-</span>
-              <span class="jianshu">0</span>
-              <span class="add">+</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img
-          class="content__right__img"
-          src="	http://www.dell-lee.com/imgs/vue3/near.png"
-        />
-        <div class="content__right__info">
-          <h4 class="title">番茄250g/份</h4>
-          <div class="sales">月售10件</div>
-          <div class="jgjs">
-            <div class="price">
-              <span class="yuan">￥</span>
-              <span class="xianjia">33.6</span>
-              <span class="yuanjia">￥36.8</span>
-            </div>
-            <div class="number">
-              <span class="minus">-</span>
-              <span class="jianshu">0</span>
-              <span class="add">+</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img
-          class="content__right__img"
-          src="	http://www.dell-lee.com/imgs/vue3/near.png"
-        />
-        <div class="content__right__info">
-          <h4 class="title">番茄250g/份</h4>
-          <div class="sales">月售10件</div>
-          <div class="jgjs">
-            <div class="price">
-              <span class="yuan">￥</span>
-              <span class="xianjia">33.6</span>
-              <span class="yuanjia">￥36.8</span>
+              <span class="xianjia">{{item.price}}</span>
+              <span class="yuanjia">￥{{item.oldPrice}}</span>
             </div>
             <div class="number">
               <span class="minus">-</span>
@@ -196,6 +43,8 @@
 
 <script>
 import { ref } from "@vue/reactivity";
+import { get } from "../../util/request";
+import { useRoute } from 'vue-router';
 export default {
   setup() {
     const tabList = [
@@ -207,10 +56,27 @@ export default {
     // tab点击
     const currentTab = ref("all");
     const tabClick = (tab) => {
+        getContent(tab)
       currentTab.value=tab
     };
 
-    return { tabList, tabClick, currentTab };
+    const contentLiat=ref([1,2,3])
+    // 
+    const route=useRoute()
+    const getContent = async (tab) => {
+      // const result = await get(`/api/shop/${route.params.id}/products?tab=${tab}`);
+      const result = await get(`/api/shop/${route.params.id}/products`,{tab});
+      console.log(result);
+      if (result?.errno===0) {
+        contentLiat.value=result.data;
+      }
+    }
+    getContent(currentTab.value)
+
+    return { 
+      tabList, tabClick, currentTab, 
+      contentLiat
+    };
   },
 };
 </script>
