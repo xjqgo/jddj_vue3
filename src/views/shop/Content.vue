@@ -17,7 +17,7 @@
       <div class="item" v-for="item in contentLiat" :key="item._id">
         <img
           class="content__right__img"
-          src="	http://www.dell-lee.com/imgs/vue3/near.png"
+          :src="item.imgUrl"
         />
         <div class="content__right__info">
           <h4 class="title">{{ item.name }}</h4>
