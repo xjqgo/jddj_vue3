@@ -181,7 +181,7 @@ export default {
         }
       }
       .price {
-        color: #e93b3b;
+        color: $textColor-lightRed;
         span {
           display: inline-block;
         }
