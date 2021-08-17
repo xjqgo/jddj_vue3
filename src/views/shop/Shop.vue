@@ -30,7 +30,6 @@ const useShopInfoEffect = () => {
     const result = await get(`/api/shop/${route.params.id}`);
     console.log("返回结果", result);
     if (result?.errno === 0 && result?.data) {
-      console.log(21);
       item.value = result.data;
     }
   };
