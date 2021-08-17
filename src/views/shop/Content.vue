@@ -26,11 +26,11 @@
               <span class="yuanjia">￥{{ item.oldPrice }}</span>
             </div>
             <div class="number">
-              <span class="minus">-</span>
+              <span class="minus" @click="changeCartItem(shopId,item,-1)">-</span>
               <span class="jianshu">{{
                 cartList[shopId]?.[item._id]?.count ?? 0
               }}</span>
-              <span class="add" @click="add(shopId,item)">+</span>
+              <span class="changeCartItem" @click="changeCartItem(shopId,item,1)">+</span>
             </div>
           </div>
         </div>
@@ -86,12 +86,11 @@ const useCartEffect = () => {
   const store = useStore();
   const { cartList } = toRefs(store.state);
 
-  const add = (shopId,goodsObj) => {
-    store.commit('setCartList',{shopId,goodsObj})
+  const changeCartItem = (shopId,goodsObj,num) => {
+    store.commit('setCartList',{shopId,goodsObj,num})
   };
-  const minus = () => {};
 
-  return { cartList, add, minus };
+  return { cartList, changeCartItem };
 };
 
 export default {
@@ -100,15 +99,14 @@ export default {
     const shopId = route.params.id;
     const { tabList, tabClick, currentTab } = tabEffect();
     const { contentLiat } = shopListEffect(currentTab, shopId);
-    const { cartList, add, minus } = useCartEffect();
+    const { cartList, changeCartItem } = useCartEffect();
     return {
       tabList,
       tabClick,
       currentTab,
       contentLiat,
       cartList,
-      add,
-      minus,
+      changeCartItem,
       shopId,
     };
   },
@@ -158,7 +156,7 @@ export default {
     &__info {
       flex: 1;
       overflow: hidden;
-      padding-bottom: 0.12rem;
+      pchangeCartIteming-bottom: 0.12rem;
       border-bottom: 1px solid #f1f1f1;
       margin-right: 0.18rem;
       margin-bottom: 0.12rem;
@@ -180,7 +178,7 @@ export default {
           margin: 0 0.1rem;
         }
         .minus,
-        .add {
+        .changeCartItem {
           display: inline-block;
           font-size: 0.2rem;
           text-align: center;
@@ -190,7 +188,7 @@ export default {
           border-radius: 50%;
           border: 1px solid #000;
         }
-        .add {
+        .changeCartItem {
           color: $textColor-white;
           background: #0091ff;
           border: 1px solid #0091ff;

@@ -18,7 +18,7 @@ export default createStore({
   },
   mutations: {
     setCartList(state, playLoad) {
-      const { shopId, goodsObj } = playLoad
+      const { shopId, goodsObj,num } = playLoad
       const goodsId=goodsObj._id
       let shopInfo=state.cartList[shopId]
       let product = state.cartList[shopId]?.[goodsId]
@@ -27,7 +27,8 @@ export default createStore({
         product = goodsObj
         product.count=0
       }
-      product.count++
+      if (product.count === 0 && num<1) return
+      product.count += num
       shopInfo[goodsId] = product
       state.cartList[shopId] = shopInfo
     }
