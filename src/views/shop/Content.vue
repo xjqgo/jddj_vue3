@@ -26,11 +26,20 @@
               <span class="yuanjia">￥{{ item.oldPrice }}</span>
             </div>
             <div class="number">
-              <span class="minus" @click="changeCartItem(shopId,item,-1)">-</span>
-              <span class="jianshu">{{
-                cartList[shopId]?.[item._id]?.count ?? 0
-              }}</span>
-              <span class="changeCartItem" @click="changeCartItem(shopId,item,1)">+</span>
+              <!-- 件数为0不显示 -->
+              <span v-show="cartList[shopId]?.[item._id]?.count">
+                <span class="minus" @click="changeCartItem(shopId, item, -1)"
+                  >-</span
+                >
+                <span class="jianshu">{{
+                  cartList[shopId]?.[item._id]?.count ?? 0
+                }}</span>
+              </span>
+              <span
+                class="changeCartItem"
+                @click="changeCartItem(shopId, item, 1)"
+                >+</span
+              >
             </div>
           </div>
         </div>
@@ -86,8 +95,8 @@ const useCartEffect = () => {
   const store = useStore();
   const { cartList } = toRefs(store.state);
 
-  const changeCartItem = (shopId,goodsObj,num) => {
-    store.commit('setCartList',{shopId,goodsObj,num})
+  const changeCartItem = (shopId, goodsObj, num) => {
+    store.commit("setCartList", { shopId, goodsObj, num });
   };
 
   return { cartList, changeCartItem };
@@ -156,7 +165,7 @@ export default {
     &__info {
       flex: 1;
       overflow: hidden;
-      pchangeCartIteming-bottom: 0.12rem;
+      pchangecartiteming-bottom: 0.12rem;
       border-bottom: 1px solid #f1f1f1;
       margin-right: 0.18rem;
       margin-bottom: 0.12rem;
