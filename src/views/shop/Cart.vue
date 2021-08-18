@@ -45,6 +45,7 @@ import { toRefs } from "@vue/reactivity";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { computed } from "@vue/runtime-core";
+import { useCartEffect } from "./useCartEffect";
 
 // 商品列表相关
 // const shopListEffect = () => {
@@ -54,7 +55,7 @@ import { computed } from "@vue/runtime-core";
 
 //   return { contentLiat };
 // };
-const useCartEffect = () => {
+const useCartEffects = () => {
   const route = useRoute();
   const store = useStore();
   const shopId = route.params.id;
@@ -86,16 +87,14 @@ const useCartEffect = () => {
     return cartList.value[shopId] || {};
   });
 
-  const changeCartItem = (shopId, goodsObj, num) => {
-    store.commit("setCartList", { shopId, goodsObj, num });
-  };
-  return { total, price, contentLiat,changeCartItem,shopId };
+  return { total, price, contentLiat,shopId };
 };
 
 export default {
   name: "Cart",
   setup() {
-    const { total, price, contentLiat,changeCartItem,shopId  } = useCartEffect();
+    const { total, price,shopId,contentLiat  } = useCartEffects();
+    const {  changeCartItem  } = useCartEffect();
     return { total, price, contentLiat,changeCartItem,shopId  };
   },
 };

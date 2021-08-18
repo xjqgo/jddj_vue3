@@ -49,11 +49,11 @@
 </template>
 
 <script>
-import { ref, toRefs } from "@vue/reactivity";
+import { ref } from "@vue/reactivity";
 import { get } from "../../util/request";
 import { useRoute } from "vue-router";
-import { useStore } from "vuex";
 import { watchEffect } from "@vue/runtime-core";
+import { useCartEffect } from "./useCartEffect";
 
 // tab相关处理
 const tabEffect = () => {
@@ -90,17 +90,6 @@ const shopListEffect = (currentTab, id) => {
   return { contentLiat };
 };
 
-// 购物车相关操作
-const useCartEffect = () => {
-  const store = useStore();
-  const { cartList } = toRefs(store.state);
-
-  const changeCartItem = (shopId, goodsObj, num) => {
-    store.commit("setCartList", { shopId, goodsObj, num });
-  };
-
-  return { cartList, changeCartItem };
-};
 
 export default {
   setup() {
@@ -108,7 +97,7 @@ export default {
     const shopId = route.params.id;
     const { tabList, tabClick, currentTab } = tabEffect();
     const { contentLiat } = shopListEffect(currentTab, shopId);
-    const { cartList, changeCartItem } = useCartEffect();
+    const { changeCartItem,cartList} = useCartEffect();
     return {
       tabList,
       tabClick,
