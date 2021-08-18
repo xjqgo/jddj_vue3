@@ -14,6 +14,7 @@ export default createStore({
           count: 1
         }
       }
+
     }
   },
   mutations: {
@@ -22,15 +23,22 @@ export default createStore({
       const goodsId=goodsObj._id
       let shopInfo=state.cartList[shopId]
       let product = state.cartList[shopId]?.[goodsId]
-      if(!shopInfo)shopInfo=[]
+      if(!shopInfo)shopInfo={}
       if (!product) {
         product = goodsObj
         product.count=0
       }
-      if (product.count === 0 && num<1) return
+      console.log(num);
       product.count += num
+      if (product.count === 0) {
+        delete state.cartList[shopId]?.[goodsId];
+        console.log('del', state.cartList[shopId]);
+        return
+      }
+      if (product.count === 0 && num<1) return
       shopInfo[goodsId] = product
       state.cartList[shopId] = shopInfo
+      console.log('qq',state.cartList[shopId]);
     }
   },
   actions: {

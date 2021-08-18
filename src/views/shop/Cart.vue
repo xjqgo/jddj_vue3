@@ -1,7 +1,36 @@
 <template>
   <div class="cart">
-    <div>
-      <img src="http://www.dell-lee.com/imgs/vue3/basket.png" />
+    <div class="cart__products">
+      <div class="item" v-for="item in contentLiat" :key="item._id">
+        <img class="cart__products__img" :src="item.imgUrl" />
+        <div class="cart__products__info">
+          <h4 class="title">{{ item.name }}</h4>
+          <div class="jgjs">
+            <div class="price">
+              <span class="yuan">￥</span>
+              <span class="xianjia">{{ item.price }}</span>
+              <span class="yuanjia">￥{{ item.oldPrice }}</span>
+            </div>
+            <div class="number">
+              <span>
+                <span class="minus" @click="changeCartItem(shopId, item, -1)"
+                  >-</span
+                >
+                <span class="jianshu">{{ item.count }}</span>
+              </span>
+              <span
+                class="changeCartItem"
+                @click="changeCartItem(shopId, item, 1)"
+                >+</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 结算 -->
+    <div class="cart__settlement">
+      <img class="cart__img" src="http://www.dell-lee.com/imgs/vue3/basket.png" />
       <div class="cart__icon">{{ total }}</div>
       <!-- <span class="cart__text">购物车是空的</span> -->
       <span class="cart__text">合计：</span>
@@ -17,6 +46,14 @@ import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { computed } from "@vue/runtime-core";
 
+// 商品列表相关
+// const shopListEffect = () => {
+//   const contentLiat = computed(() => {
+
+//   })
+
+//   return { contentLiat };
+// };
 const useCartEffect = () => {
   const route = useRoute();
   const store = useStore();
@@ -33,7 +70,7 @@ const useCartEffect = () => {
     }
     return count;
   });
-  
+
   const price = computed(() => {
     let count = 0;
     const productList = cartList.value[shopId];
@@ -45,20 +82,28 @@ const useCartEffect = () => {
     return count.toFixed(2);
   });
 
-  return { total, price };
+  const contentLiat = computed(() => {
+    return cartList.value[shopId] || {};
+  });
+
+  const changeCartItem = (shopId, goodsObj, num) => {
+    store.commit("setCartList", { shopId, goodsObj, num });
+  };
+  return { total, price, contentLiat,changeCartItem,shopId };
 };
 
 export default {
   name: "Cart",
   setup() {
-    const { total, price } = useCartEffect();
-    return { total, price };
+    const { total, price, contentLiat,changeCartItem,shopId  } = useCartEffect();
+    return { total, price, contentLiat,changeCartItem,shopId  };
   },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "./style/vrirables.scss";
+@import "./style/mixins.scss";
 .cart {
   display: flex;
   position: relative;
@@ -70,7 +115,84 @@ export default {
   bottom: 0;
   height: 0.49rem;
   border-top: 0.01rem solid #f1f1f1;
-  img {
+  &__products {
+    min-height: 1rem;
+    width: 100%;
+    background: blanchedalmond;
+    position: absolute;
+    bottom: 0.5rem;
+    .item {
+      display: flex;
+    }
+    &__img {
+      width: 0.48rem;
+      height: 0.48rem;
+      margin: 0 0.16rem 0.12rem 0.16rem;
+    }
+    &__info {
+      flex: 1;
+      overflow: hidden;
+      pchangecartiteming-bottom: 0.12rem;
+      border-bottom: 1px solid #f1f1f1;
+      margin-right: 0.18rem;
+      margin-bottom: 0.12rem;
+      .title {
+        margin: 0;
+        font-size: 00.14rem;
+        @include ellipsis;
+      }
+      .sales {
+        margin: 0.06rem 0;
+        line-height: 0.16rem;
+        font-size: 0.12rem;
+      }
+      .jgjs {
+        display: flex;
+        justify-content: space-between; /* 横向中间自动空间 */
+        // align-content: space-between;  /* 竖向中间自动空间 */
+        margin-top: 00.06rem;
+        .jianshu {
+          margin: 0 0.1rem;
+        }
+        .minus,
+        .changeCartItem {
+          display: inline-block;
+          font-size: 0.2rem;
+          text-align: center;
+          line-height: 0.16rem;
+          height: 0.2rem;
+          width: 0.2rem;
+          border-radius: 50%;
+          border: 1px solid #000;
+        }
+        .changeCartItem {
+          color: $textColor-white;
+          background: #0091ff;
+          border: 1px solid #0091ff;
+        }
+      }
+      .price {
+        color: $textColor-lightRed;
+        span {
+          display: inline-block;
+        }
+        .xianjia {
+          line-height: 0.2rem;
+          font-size: 0.14rem;
+        }
+        .yuanjia {
+          color: $light-fontcolor;
+          text-decoration: line-through;
+          margin-left: 00.06rem;
+          line-height: 0.2rem;
+          font-size: 0.12rem;
+          position: relative;
+          top: -0.01rem;
+        }
+      }
+    }
+  }
+  .cart__img {
     width: 0.28rem;
     height: 0.26rem;
     margin: 0 0.32rem 0 0.24rem;
