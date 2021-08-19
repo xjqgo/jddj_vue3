@@ -2,7 +2,11 @@
   <div class="cart">
     <div class="cart__products">
       <div class="item" v-for="item in contentLiat" :key="item._id">
-      <span class="cart__products__check iconfont" @click="item.check=!item.check">{{item.check===true?'&#xe70f;':'&#xe66c;'}}</span>
+        <span
+          class="cart__products__check iconfont"
+          @click="item.check = !item.check"
+          >{{ item.check === true ? "&#xe70f;" : "&#xe66c;" }}</span
+        >
         <img class="cart__products__img" :src="item.imgUrl" />
         <div class="cart__products__info">
           <h4 class="title">{{ item.name }}</h4>
@@ -82,7 +86,8 @@ const useCartEffects = () => {
     const productList = cartList.value[shopId];
     for (const key in productList) {
       if (Object.hasOwnProperty.call(productList, key)) {
-        count += productList[key].count * productList[key].price;
+        if (productList[key].check)
+          count += productList[key].count * productList[key].price;
       }
     }
     return count.toFixed(2);
@@ -98,7 +103,8 @@ const useCartEffects = () => {
 export default {
   name: "Cart",
   setup() {
-    const { total, price, shopId, contentLiat, changeCartItem } = useCartEffects();
+    const { total, price, shopId, contentLiat, changeCartItem } =
+      useCartEffects();
     return { total, price, contentLiat, changeCartItem, shopId };
   },
 };
@@ -128,9 +134,9 @@ export default {
       display: flex;
     }
     &__check {
-      font-size: .19rem;
-      color: #0091FF;
-      margin: .16rem 0 0 .18rem;
+      font-size: 0.19rem;
+      color: #0091ff;
+      margin: 0.16rem 0 0 0.18rem;
     }
     &__img {
       width: 0.48rem;
