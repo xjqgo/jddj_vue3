@@ -2,6 +2,7 @@
   <div class="cart">
     <div class="cart__products">
       <div class="item" v-for="item in contentLiat" :key="item._id">
+      <span class="cart__products__check iconfont" @click="item.check=!item.check">{{item.check===true?'&#xe70f;':'&#xe66c;'}}</span>
         <img class="cart__products__img" :src="item.imgUrl" />
         <div class="cart__products__info">
           <h4 class="title">{{ item.name }}</h4>
@@ -126,6 +127,11 @@ export default {
     .item {
       display: flex;
     }
+    &__check {
+      font-size: .19rem;
+      color: #0091FF;
+      margin: .16rem 0 0 .18rem;
+    }
     &__img {
       width: 0.48rem;
       height: 0.48rem;
@@ -134,7 +140,6 @@ export default {
     &__info {
       flex: 1;
       overflow: hidden;
-      pchangecartiteming-bottom: 0.12rem;
       border-bottom: 1px solid #f1f1f1;
       margin-right: 0.18rem;
       margin-bottom: 0.12rem;

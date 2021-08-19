@@ -11,7 +11,8 @@ export default createStore({
           price: 33.6,
           sales: 10,
           _id: "1",
-          count: 1
+          count: 1,
+          check:true
         }
       }
 
@@ -35,7 +36,7 @@ export default createStore({
         console.log('del', state.cartList[shopId]);
         return
       }
-      if (product.count === 0 && num<1) return
+      else if (num>=1) product.check=true
       shopInfo[goodsId] = product
       state.cartList[shopId] = shopInfo
       console.log('qq',state.cartList[shopId]);
