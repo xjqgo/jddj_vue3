@@ -30,7 +30,10 @@
     </div>
     <!-- 结算 -->
     <div class="cart__settlement">
-      <img class="cart__img" src="http://www.dell-lee.com/imgs/vue3/basket.png" />
+      <img
+        class="cart__img"
+        src="http://www.dell-lee.com/imgs/vue3/basket.png"
+      />
       <div class="cart__icon">{{ total }}</div>
       <!-- <span class="cart__text">购物车是空的</span> -->
       <span class="cart__text">合计：</span>
@@ -60,6 +63,7 @@ const useCartEffects = () => {
   const store = useStore();
   const shopId = route.params.id;
   const { cartList } = toRefs(store.state);
+  const { changeCartItem } = useCartEffect();
 
   const total = computed(() => {
     let count = 0;
@@ -87,15 +91,14 @@ const useCartEffects = () => {
     return cartList.value[shopId] || {};
   });
 
-  return { total, price, contentLiat,shopId };
+  return { total, price, contentLiat, changeCartItem, shopId };
 };
 
 export default {
   name: "Cart",
   setup() {
-    const { total, price,shopId,contentLiat  } = useCartEffects();
-    const {  changeCartItem  } = useCartEffect();
-    return { total, price, contentLiat,changeCartItem,shopId  };
+    const { total, price, shopId, contentLiat, changeCartItem } = useCartEffects();
+    return { total, price, contentLiat, changeCartItem, shopId };
   },
 };
 </script>
