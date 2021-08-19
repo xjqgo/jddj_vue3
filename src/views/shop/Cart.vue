@@ -1,6 +1,13 @@
 <template>
   <div class="cart">
     <div class="cart__products">
+    <div class="cart__allop">
+      <div class="cart__all-check">
+        <span class="iconfont">{{  true ? "&#xe70f;" : "&#xe66c;" }}</span>
+        <span>全选</span>
+      </div>
+      <div class="cart__clear">清空购物车</div>
+    </div>
       <div class="item" v-for="item in contentLiat" :key="item._id">
         <span
           class="cart__products__check iconfont"
@@ -242,6 +249,28 @@ export default {
     color: $textColor-white;
     text-align: center;
     font-size: 0.14rem;
+  }
+}
+
+//购物车全选/清空
+.cart__allop{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .14rem;
+  padding: 0.18rem;
+  margin-bottom: 0.16rem;
+  border-bottom:1px solid #F1F1F1;
+  .cart__all-check{
+    display: flex;
+    align-items: center;
+  }
+  .iconfont{
+    font-size: .19rem;
+    position: relative;
+    top: 00.01rem;
+    margin-right: 0.08rem;
+    color: #0091F1;
   }
 }
 </style>
