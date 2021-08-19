@@ -154,7 +154,6 @@ export default {
     &__info {
       flex: 1;
       overflow: hidden;
-      pchangecartiteming-bottom: 0.12rem;
       border-bottom: 1px solid #f1f1f1;
       margin-right: 0.18rem;
       margin-bottom: 0.12rem;

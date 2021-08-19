@@ -1,14 +1,16 @@
 <template>
   <div class="wrapper">
-    <div class="search">
-      <div @click="toBack" class="search__back iconfont">&#xe64c;</div>
+    <div class="handed">
+      <div class="search">
+        <div @click="toBack" class="search__back iconfont">&#xe64c;</div>
 
-      <div class="search__content">
-        <div class="search__content__icon iconfont">&#xe60c;</div>
-        <input placeholder="请输入商品名称搜索" />
+        <div class="search__content">
+          <div class="search__content__icon iconfont">&#xe60c;</div>
+          <input placeholder="请输入商品名称搜索" />
+        </div>
       </div>
+      <Shopinfo :item="item" :hidegap="true" v-show="item.imgUrl" />
     </div>
-    <Shopinfo :item="item" :hidegap="true" v-show="item.imgUrl" />
     <Content />
     <Cart />
   </div>
@@ -19,8 +21,8 @@ import { ref } from "@vue/reactivity";
 import { useRoute, useRouter } from "vue-router";
 import { get } from "../../util/request";
 import Shopinfo from "../../components/Shopinfo.vue";
-import Content from './Content.vue';
-import Cart from './Cart.vue';
+import Content from "./Content.vue";
+import Cart from "./Cart.vue";
 
 // 取店铺信息
 const useShopInfoEffect = () => {
@@ -48,7 +50,7 @@ const toBackEffect = () => {
 };
 export default {
   name: "Shop",
-  components: { Shopinfo, Content,Cart },
+  components: { Shopinfo, Content, Cart },
   setup() {
     const { getShop, item } = useShopInfoEffect();
     const toBack = toBackEffect();
@@ -60,7 +62,7 @@ export default {
 
 <style lang="scss" scoped>
 $content-inputcolor: #333;
-.wrapper {
+.handed {
   margin-left: 0.18rem;
 }
 .search {

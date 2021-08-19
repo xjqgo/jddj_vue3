@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .wrapper {
   position: absolute;
   overflow-y: auto; //解决底部选项卡错误
