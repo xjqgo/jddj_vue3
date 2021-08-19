@@ -12,7 +12,7 @@ export default createStore({
           sales: 10,
           _id: "1",
           count: 1,
-          check:true
+          check: true
         }
       }
 
@@ -20,14 +20,30 @@ export default createStore({
   },
   mutations: {
     setCartList(state, playLoad) {
-      const { shopId, goodsObj,num } = playLoad
-      const goodsId=goodsObj._id
-      let shopInfo=state.cartList[shopId]
+      const { shopId, goodsObj, num } = playLoad
+      const goodsId = goodsObj._id
+      let shopInfo = state.cartList[shopId]
       let product = state.cartList[shopId]?.[goodsId]
-      if(!shopInfo)shopInfo={}
+
+      if (goodsId == 'allCheck') {
+        for (const key in state.cartList[shopId]) {
+          if (Object.hasOwnProperty.call(state.cartList[shopId], key)) {
+            if (num) state.cartList[shopId][key].check = false
+            else state.cartList[shopId][key].check = true
+
+          }
+        }
+        return
+      }
+      if (goodsId == 'clear') {
+        state.cartList[shopId] = {}
+        return
+      }
+
+      if (!shopInfo) shopInfo = {}
       if (!product) {
         product = goodsObj
-        product.count=0
+        product.count = 0
       }
       console.log(num);
       product.count += num
@@ -36,10 +52,9 @@ export default createStore({
         console.log('del', state.cartList[shopId]);
         return
       }
-      else if (num>=1) product.check=true
+      else if (num >= 1) product.check = true
       shopInfo[goodsId] = product
       state.cartList[shopId] = shopInfo
-      console.log('qq',state.cartList[shopId]);
     }
   },
   actions: {

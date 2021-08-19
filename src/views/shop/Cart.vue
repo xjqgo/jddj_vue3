@@ -1,13 +1,18 @@
 <template>
   <div class="cart">
     <div class="cart__products">
-    <div class="cart__allop">
-      <div class="cart__all-check">
-        <span class="iconfont">{{  true ? "&#xe70f;" : "&#xe66c;" }}</span>
-        <span>全选</span>
+      <div class="cart__allop">
+        <div class="cart__all-check" @click="changeCartItem(shopId, { _id: 'allCheck' }, allCheck)">
+          <span class="iconfont">{{ allCheck ? "&#xe70f;" : "&#xe66c;" }}</span>
+          <span>全选</span>
+        </div>
+        <div
+          class="cart__clear"
+          @click="changeCartItem(shopId, { _id: 'clear' }, -1)"
+        >
+          清空购物车
+        </div>
       </div>
-      <div class="cart__clear">清空购物车</div>
-    </div>
       <div class="item" v-for="item in contentLiat" :key="item._id">
         <span
           class="cart__products__check iconfont"
@@ -104,15 +109,30 @@ const useCartEffects = () => {
     return cartList.value[shopId] || {};
   });
 
-  return { total, price, contentLiat, changeCartItem, shopId };
+  const allCheck = computed(() => {
+    let curren = true;
+    const list = cartList.value[shopId];
+    for (const key in list) {
+      if (Object.hasOwnProperty.call(list, key)) {
+        const element = list[key];
+        if (!element.check) {
+          curren = false;
+          return curren;
+        }
+      }
+    }
+    return curren;
+  });
+
+  return { total, price, contentLiat, changeCartItem, shopId, allCheck };
 };
 
 export default {
   name: "Cart",
   setup() {
-    const { total, price, shopId, contentLiat, changeCartItem } =
+    let { total, price, shopId, contentLiat, changeCartItem, allCheck } =
       useCartEffects();
-    return { total, price, contentLiat, changeCartItem, shopId };
+    return { total, price, contentLiat, changeCartItem, shopId, allCheck };
   },
 };
 </script>
@@ -134,7 +154,7 @@ export default {
   &__products {
     min-height: 1rem;
     width: 100%;
-    background: blanchedalmond;
+    background: $bgColor-white;
     position: absolute;
     bottom: 0.5rem;
     .item {
@@ -253,24 +273,24 @@ export default {
 }
 
 //购物车全选/清空
-.cart__allop{
+.cart__allop {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: .14rem;
+  font-size: 0.14rem;
   padding: 0.18rem;
   margin-bottom: 0.16rem;
-  border-bottom:1px solid #F1F1F1;
-  .cart__all-check{
+  border-bottom: 1px solid #f1f1f1;
+  .cart__all-check {
     display: flex;
     align-items: center;
   }
-  .iconfont{
-    font-size: .19rem;
+  .iconfont {
+    font-size: 0.19rem;
     position: relative;
     top: 00.01rem;
     margin-right: 0.08rem;
-    color: #0091F1;
+    color: #0091f1;
   }
 }
 </style>
