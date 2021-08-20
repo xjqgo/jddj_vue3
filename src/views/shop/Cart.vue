@@ -60,7 +60,7 @@
         class="cart__img"
         src="http://www.dell-lee.com/imgs/vue3/basket.png"
       />
-      <div class="cart__icon">{{ total }}</div>
+      <div class="cart__icon" v-show="total">{{ total }}</div>
       <span v-show="total">
         <span class="cart__text">合计：</span>
         <span class="cart__price">￥{{ price }}</span>
