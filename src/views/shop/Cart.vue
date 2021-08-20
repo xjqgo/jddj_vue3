@@ -12,7 +12,12 @@
         </div>
         <div
           class="cart__clear"
-          @click="()=>{changeCartItem(shopId, { _id: 'clear' }, -1);showCart = !showCart;}"
+          @click="
+            () => {
+              changeCartItem(shopId, { _id: 'clear' }, -1);
+              showCart = !showCart;
+            }
+          "
         >
           清空购物车
         </div>
@@ -62,7 +67,9 @@
       </span>
       <span class="cart__text" v-show="!total">购物车是空的</span>
     </div>
-    <div class="cart__jiesuan">去结算</div>
+    <router-link :to="{name:'Home'}">
+      <div class="cart__jiesuan">去结算</div>
+    </router-link>
   </div>
 </template>
 
@@ -291,6 +298,10 @@ export default {
     color: $textColor-lightRed;
     position: relative;
     top: -0.05rem;
+  }
+  a{
+    
+    text-decoration: none;
   }
   &__jiesuan {
     width: 0.98rem;
