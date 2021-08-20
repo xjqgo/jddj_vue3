@@ -1,6 +1,7 @@
 <template>
+<div class="mask" v-show="showCart" @click="showCart=!showCart"></div>
   <div class="cart">
-    <div class="cart__products">
+    <div class="cart__products" v-show="showCart">
       <div class="cart__allop">
         <div class="cart__all-check" @click="changeCartItem(shopId, { _id: 'allCheck' }, allCheck)">
           <span class="iconfont">{{ allCheck ? "&#xe70f;" : "&#xe66c;" }}</span>
@@ -48,7 +49,7 @@
     <!-- 结算 -->
     <div class="cart__settlement">
       <img
-        class="cart__img"
+        class="cart__img" @click="showCart=!showCart"
         src="http://www.dell-lee.com/imgs/vue3/basket.png"
       />
       <div class="cart__icon">{{ total }}</div>
@@ -61,7 +62,7 @@
 </template>
 
 <script>
-import { toRefs } from "@vue/reactivity";
+import { ref, toRefs } from "@vue/reactivity";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { computed } from "@vue/runtime-core";
@@ -130,9 +131,10 @@ const useCartEffects = () => {
 export default {
   name: "Cart",
   setup() {
-    let { total, price, shopId, contentLiat, changeCartItem, allCheck } =
+    const showCart = ref(true);
+    const { total, price, shopId, contentLiat, changeCartItem, allCheck } =
       useCartEffects();
-    return { total, price, contentLiat, changeCartItem, shopId, allCheck };
+    return { total, price, contentLiat, changeCartItem, shopId, allCheck,showCart };
   },
 };
 </script>
@@ -140,6 +142,16 @@ export default {
 <style lang="scss" scoped>
 @import "./style/vrirables.scss";
 @import "./style/mixins.scss";
+
+.mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .5);
+}
+
 .cart {
   display: flex;
   position: relative;
@@ -151,6 +163,7 @@ export default {
   bottom: 0;
   height: 0.49rem;
   border-top: 0.01rem solid #f1f1f1;
+  background: $textColor-white;
   &__products {
     min-height: 1rem;
     width: 100%;
