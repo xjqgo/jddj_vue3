@@ -1,15 +1,18 @@
 <template>
-<div class="mask" v-show="showCart" @click="showCart=!showCart"></div>
+  <div class="mask" v-show="showCart" @click="showCart = !showCart"></div>
   <div class="cart">
     <div class="cart__products" v-show="showCart">
       <div class="cart__allop">
-        <div class="cart__all-check" @click="changeCartItem(shopId, { _id: 'allCheck' }, allCheck)">
-          <span class="iconfont">{{ allCheck ? "&#xe70f;" : "&#xe66c;" }}</span>
+        <div
+          class="cart__all-check"
+          @click="changeCartItem(shopId, { _id: 'allCheck' }, allCheck)"
+        >
+          <span class="iconfont">{{ allCheck ? "&#xe70f;" : "&#xe667;" }}</span>
           <span>全选</span>
         </div>
         <div
           class="cart__clear"
-          @click="changeCartItem(shopId, { _id: 'clear' }, -1)"
+          @click="()=>{changeCartItem(shopId, { _id: 'clear' }, -1);showCart = !showCart;}"
         >
           清空购物车
         </div>
@@ -18,7 +21,7 @@
         <span
           class="cart__products__check iconfont"
           @click="item.check = !item.check"
-          >{{ item.check === true ? "&#xe70f;" : "&#xe66c;" }}</span
+          >{{ item.check === true ? "&#xe70f;" : "&#xe667;" }}</span
         >
         <img class="cart__products__img" :src="item.imgUrl" />
         <div class="cart__products__info">
@@ -47,15 +50,17 @@
       </div>
     </div>
     <!-- 结算 -->
-    <div class="cart__settlement">
+    <div class="cart__settlement" @click="showCart = !showCart">
       <img
-        class="cart__img" @click="showCart=!showCart"
+        class="cart__img"
         src="http://www.dell-lee.com/imgs/vue3/basket.png"
       />
       <div class="cart__icon">{{ total }}</div>
-      <!-- <span class="cart__text">购物车是空的</span> -->
-      <span class="cart__text">合计：</span>
-      <span class="cart__price">￥{{ price }}</span>
+      <span v-show="total">
+        <span class="cart__text">合计：</span>
+        <span class="cart__price">￥{{ price }}</span>
+      </span>
+      <span class="cart__text" v-show="!total">购物车是空的</span>
     </div>
     <div class="cart__jiesuan">去结算</div>
   </div>
@@ -134,7 +139,15 @@ export default {
     const showCart = ref(true);
     const { total, price, shopId, contentLiat, changeCartItem, allCheck } =
       useCartEffects();
-    return { total, price, contentLiat, changeCartItem, shopId, allCheck,showCart };
+    return {
+      total,
+      price,
+      contentLiat,
+      changeCartItem,
+      shopId,
+      allCheck,
+      showCart,
+    };
   },
 };
 </script>
@@ -143,13 +156,13 @@ export default {
 @import "./style/vrirables.scss";
 @import "./style/mixins.scss";
 
-.mask{
+.mask {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, .5);
+  background: rgba($blank-fontcolor, 0.5);
 }
 
 .cart {
@@ -162,7 +175,7 @@ export default {
   right: 0;
   bottom: 0;
   height: 0.49rem;
-  border-top: 0.01rem solid #f1f1f1;
+  border-top: 0.01rem solid $content-bgColor;
   background: $textColor-white;
   &__products {
     min-height: 1rem;
@@ -175,7 +188,7 @@ export default {
     }
     &__check {
       font-size: 0.19rem;
-      color: #0091ff;
+      color: $bgColor-lightBlue;
       margin: 0.16rem 0 0 0.18rem;
     }
     &__img {
@@ -186,7 +199,7 @@ export default {
     &__info {
       flex: 1;
       overflow: hidden;
-      border-bottom: 1px solid #f1f1f1;
+      border-bottom: 1px solid $content-bgColor;
       margin-right: 0.18rem;
       margin-bottom: 0.12rem;
       .title {
@@ -204,6 +217,10 @@ export default {
         justify-content: space-between; /* 横向中间自动空间 */
         // align-content: space-between;  /* 竖向中间自动空间 */
         margin-top: 00.06rem;
+        .number {
+          position: relative;
+          bottom: 0.18rem;
+        }
         .jianshu {
           margin: 0 0.1rem;
         }
@@ -216,12 +233,12 @@ export default {
           height: 0.2rem;
           width: 0.2rem;
           border-radius: 50%;
-          border: 1px solid #000;
+          border: 1px solid $blank-fontcolor;
         }
         .changeCartItem {
           color: $textColor-white;
-          background: #0091ff;
-          border: 1px solid #0091ff;
+          background: $bgColor-lightBlue;
+          border: 1px solid $bgColor-lightBlue;
         }
       }
       .price {
@@ -278,7 +295,7 @@ export default {
   &__jiesuan {
     width: 0.98rem;
     line-height: 0.49rem;
-    background: #4fb0f9;
+    background: rgba($color: $bgColor-lightBlue, $alpha: 0.7);
     color: $textColor-white;
     text-align: center;
     font-size: 0.14rem;
@@ -293,17 +310,18 @@ export default {
   font-size: 0.14rem;
   padding: 0.18rem;
   margin-bottom: 0.16rem;
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid $content-bgColor;
   .cart__all-check {
     display: flex;
     align-items: center;
+    // vertical-align: top;
   }
   .iconfont {
     font-size: 0.19rem;
     position: relative;
     top: 00.01rem;
     margin-right: 0.08rem;
-    color: #0091f1;
+    color: $bgColor-lightBlue;
   }
 }
 </style>
