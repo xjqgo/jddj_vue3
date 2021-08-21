@@ -97,7 +97,7 @@ const useCartEffects = () => {
 
   const total = computed(() => {
     let count = 0;
-    const productList = cartList.value[shopId];
+    const productList = cartList.value[shopId]?.productList;
     for (const key in productList) {
       if (Object.hasOwnProperty.call(productList, key)) {
         count += productList[key].count;
@@ -108,7 +108,7 @@ const useCartEffects = () => {
 
   const price = computed(() => {
     let count = 0;
-    const productList = cartList.value[shopId];
+    const productList = cartList.value[shopId]?.productList;
     for (const key in productList) {
       if (Object.hasOwnProperty.call(productList, key)) {
         if (productList[key].check)
@@ -119,12 +119,12 @@ const useCartEffects = () => {
   });
 
   const contentLiat = computed(() => {
-    return cartList.value[shopId] || {};
+    return cartList.value[shopId]?.productList || {};
   });
 
   const allCheck = computed(() => {
     let curren = true;
-    const list = cartList.value[shopId];
+    const list = cartList.value[shopId]?.productList;
     for (const key in list) {
       if (Object.hasOwnProperty.call(list, key)) {
         const element = list[key];
@@ -143,7 +143,7 @@ const useCartEffects = () => {
 export default {
   name: "Cart",
   setup() {
-    const showCart = ref(true);
+    const showCart = ref(false);
     const { total, price, shopId, contentLiat, changeCartItem, allCheck } =
       useCartEffects();
     return {

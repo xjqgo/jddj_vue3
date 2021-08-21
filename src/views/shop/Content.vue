@@ -27,12 +27,12 @@
             </div>
             <div class="number">
               <!-- 件数为0不显示 -->
-              <span v-show="cartList[shopId]?.[item._id]?.count">
+              <span v-show="cartList[shopId]?.productList?.[item._id]?.count">
                 <span class="minus" @click="changeCartItem(shopId, item, -1)"
                   >-</span
                 >
                 <span class="jianshu">{{
-                  cartList[shopId]?.[item._id]?.count ?? 0
+                  cartList[shopId]?.productList?.[item._id]?.count ?? 0
                 }}</span>
               </span>
               <span
