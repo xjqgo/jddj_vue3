@@ -1,13 +1,13 @@
 <template>
-  <div class="mask" v-show="showCart" @click="showCart = !showCart"></div>
+  <div class="mask" v-show="showCart && calculations.total" @click="showCart = !showCart"></div>
   <div class="cart">
-    <div class="cart__products" v-show="showCart">
+    <div class="cart__products" v-show="showCart && calculations.total">
       <div class="cart__allop">
         <div
           class="cart__all-check"
-          @click="changeCartItem(shopId, { _id: 'allCheck' }, allCheck)"
+          @click="changeCartItem(shopId, { _id: 'allCheck' }, calculations.allCheck)"
         >
-          <span class="iconfont">{{ allCheck ? "&#xe70f;" : "&#xe667;" }}</span>
+          <span class="iconfont">{{ calculations.allCheck ? "&#xe70f;" : "&#xe667;" }}</span>
           <span>全选</span>
         </div>
         <div
@@ -60,12 +60,12 @@
         class="cart__img"
         src="http://www.dell-lee.com/imgs/vue3/basket.png"
       />
-      <div class="cart__icon" v-show="total">{{ total }}</div>
-      <span v-show="total">
+      <div class="cart__icon" v-show="calculations.total">{{ calculations.total }}</div>
+      <span v-show="calculations.total">
         <span class="cart__text">合计：</span>
-        <span class="cart__price">￥{{ price }}</span>
+        <span class="cart__price">￥{{ calculations.price }}</span>
       </span>
-      <span class="cart__text" v-show="!total">购物车是空的</span>
+      <span class="cart__text" v-show="!calculations.total">购物车是空的</span>
     </div>
     <router-link :to="{name:'Home'}">
       <div class="cart__jiesuan">去结算</div>
@@ -74,8 +74,7 @@
 </template>
 
 <script>
-import { ref, toRefs } from "@vue/reactivity";
-import { useStore } from "vuex";
+import { ref } from "@vue/reactivity";
 import { useRoute } from "vue-router";
 import { computed } from "@vue/runtime-core";
 import { useCartEffect } from "./useCartEffect";
@@ -90,69 +89,47 @@ import { useCartEffect } from "./useCartEffect";
 // };
 const useCartEffects = () => {
   const route = useRoute();
-  const store = useStore();
   const shopId = route.params.id;
-  const { cartList } = toRefs(store.state);
-  const { changeCartItem } = useCartEffect();
+  const { changeCartItem,cartList } = useCartEffect();
 
-  const total = computed(() => {
-    let count = 0;
+  const calculations = computed(() => {
+    let total = 0;
+    let price = 0;
+    let allCheck = true;
     const productList = cartList.value[shopId]?.productList;
     for (const key in productList) {
       if (Object.hasOwnProperty.call(productList, key)) {
-        count += productList[key].count;
-      }
-    }
-    return count;
-  });
-
-  const price = computed(() => {
-    let count = 0;
-    const productList = cartList.value[shopId]?.productList;
-    for (const key in productList) {
-      if (Object.hasOwnProperty.call(productList, key)) {
+        total += productList[key].count;
         if (productList[key].check)
-          count += productList[key].count * productList[key].price;
+          price += productList[key].count * productList[key].price;
+        if (!productList[key].check) {
+          allCheck = false;
+          break
+        }
       }
     }
-    return count.toFixed(2);
+    return {total,price:price.toFixed(2),allCheck};
   });
+
 
   const contentLiat = computed(() => {
     return cartList.value[shopId]?.productList || {};
   });
 
-  const allCheck = computed(() => {
-    let curren = true;
-    const list = cartList.value[shopId]?.productList;
-    for (const key in list) {
-      if (Object.hasOwnProperty.call(list, key)) {
-        const element = list[key];
-        if (!element.check) {
-          curren = false;
-          return curren;
-        }
-      }
-    }
-    return curren;
-  });
 
-  return { total, price, contentLiat, changeCartItem, shopId, allCheck };
+  return { calculations, contentLiat, changeCartItem, shopId };
 };
 
 export default {
   name: "Cart",
   setup() {
     const showCart = ref(false);
-    const { total, price, shopId, contentLiat, changeCartItem, allCheck } =
+    const {  shopId, contentLiat, changeCartItem,calculations } =
       useCartEffects();
     return {
-      total,
-      price,
       contentLiat,
       changeCartItem,
-      shopId,
-      allCheck,
+      shopId,calculations,
       showCart,
     };
   },
