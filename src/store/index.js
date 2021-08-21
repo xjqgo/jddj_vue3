@@ -22,13 +22,23 @@ export default createStore({
     }
   },
   mutations: {
+    setShopName(state, playLoad) {
+      const { shopId, shopName } = playLoad
+      console.log(shopId, shopName);
+      const shopInfo = state.cartList[shopId] || {}
+      if (!shopInfo.shopName) {
+        shopInfo.shopName = shopName+'-'+shopId
+        shopInfo.productList = {}
+      }
+      state.cartList[shopId] = shopInfo
+    },
     setCartList(state, playLoad) {
       const { shopId, goodsObj, num } = playLoad
       const goodsId = goodsObj._id
       let shopInfo = state.cartList[shopId]
       let product = state.cartList[shopId]?.productList?.[goodsId]
-      
-      console.log('a',state.cartList);
+
+      console.log('a', state.cartList);
       if (goodsId == 'allCheck') {
         for (const key in shopInfo.productList) {
           if (Object.hasOwnProperty.call(shopInfo.productList, key)) {
@@ -43,10 +53,6 @@ export default createStore({
         return
       }
 
-      if (!shopInfo) {
-        shopInfo = {}
-        shopInfo.productList = {}
-      }
       if (!product) {
         product = goodsObj
         product.count = 0
@@ -61,7 +67,8 @@ export default createStore({
       shopInfo.productList[goodsId] = product
       state.cartList[shopId] = shopInfo
       console.log('qq', state.cartList[shopId]);
-    }
+    },
+
   },
   actions: {
   },

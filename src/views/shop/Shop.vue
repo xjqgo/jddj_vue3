@@ -23,16 +23,19 @@ import { get } from "../../util/request";
 import Shopinfo from "../../components/Shopinfo.vue";
 import Content from "./Content.vue";
 import Cart from "./Cart.vue";
+import { useStore } from 'vuex';
 
 // 取店铺信息
 const useShopInfoEffect = () => {
   const route = useRoute();
+  const state = useStore();
   let item = ref({});
   const getShop = async () => {
     const result = await get(`/api/shop/${route.params.id}`);
     console.log("返回结果", result);
     if (result?.errno === 0 && result?.data) {
       item.value = result.data;
+      state.commit('setShopName',{shopId:route.params.id,shopName:result.data.name})
     }
   };
 
