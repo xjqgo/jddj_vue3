@@ -1,13 +1,21 @@
 <template>
-  <div class="mask" v-show="showCart && calculations.total" @click="showCart = !showCart"></div>
+  <div
+    class="mask"
+    v-show="showCart && calculations.total"
+    @click="showCart = !showCart"
+  ></div>
   <div class="cart">
     <div class="cart__products" v-show="showCart && calculations.total">
       <div class="cart__allop">
         <div
           class="cart__all-check"
-          @click="changeCartItem(shopId, { _id: 'allCheck' }, calculations.allCheck)"
+          @click="
+            changeCartItem(shopId, { _id: 'allCheck' }, calculations.allCheck)
+          "
         >
-          <span class="iconfont">{{ calculations.allCheck ? "&#xe70f;" : "&#xe667;" }}</span>
+          <span class="iconfont">{{
+            calculations.allCheck ? "&#xe70f;" : "&#xe667;"
+          }}</span>
           <span>全选</span>
         </div>
         <div
@@ -60,14 +68,16 @@
         class="cart__img"
         src="http://www.dell-lee.com/imgs/vue3/basket.png"
       />
-      <div class="cart__icon" v-show="calculations.total">{{ calculations.total }}</div>
+      <div class="cart__icon" v-show="calculations.total">
+        {{ calculations.total }}
+      </div>
       <span v-show="calculations.total">
         <span class="cart__text">合计：</span>
         <span class="cart__price">￥{{ calculations.price }}</span>
       </span>
       <span class="cart__text" v-show="!calculations.total">购物车是空的</span>
     </div>
-    <router-link :to="{name:'Home'}">
+    <router-link :to="{ name: 'Home' }">
       <div class="cart__jiesuan">去结算</div>
     </router-link>
   </div>
@@ -79,43 +89,34 @@ import { useRoute } from "vue-router";
 import { computed } from "@vue/runtime-core";
 import { useCartEffect } from "./useCartEffect";
 
-// 商品列表相关
-// const shopListEffect = () => {
-//   const contentLiat = computed(() => {
-
-//   })
-
-//   return { contentLiat };
-// };
 const useCartEffects = () => {
   const route = useRoute();
   const shopId = route.params.id;
-  const { changeCartItem,cartList } = useCartEffect();
+  const { changeCartItem, cartList } = useCartEffect();
 
   const calculations = computed(() => {
-    let total = 0;
-    let price = 0;
-    let allCheck = true;
+    const result = { total: 0, price: 0, allCheck: true };
     const productList = cartList.value[shopId]?.productList;
     for (const key in productList) {
       if (Object.hasOwnProperty.call(productList, key)) {
-        total += productList[key].count;
+        result.total += productList[key].count;
         if (productList[key].check)
-          price += productList[key].count * productList[key].price;
+          result.price +=
+            productList[key].count * productList[key].price.toFixed(2);
         if (!productList[key].check) {
-          allCheck = false;
-          break
+          result.allCheck = false;
+          break;
         }
       }
     }
-    return {total,price:price.toFixed(2),allCheck};
-  });
 
+    result.price = result.price.toFixed(2);
+    return result;
+  });
 
   const contentLiat = computed(() => {
     return cartList.value[shopId]?.productList || {};
   });
-
 
   return { calculations, contentLiat, changeCartItem, shopId };
 };
@@ -124,12 +125,13 @@ export default {
   name: "Cart",
   setup() {
     const showCart = ref(false);
-    const {  shopId, contentLiat, changeCartItem,calculations } =
+    const { shopId, contentLiat, changeCartItem, calculations } =
       useCartEffects();
     return {
       contentLiat,
       changeCartItem,
-      shopId,calculations,
+      shopId,
+      calculations,
       showCart,
     };
   },
@@ -276,8 +278,7 @@ export default {
     position: relative;
     top: -0.05rem;
   }
-  a{
-    
+  a {
     text-decoration: none;
   }
   &__jiesuan {
