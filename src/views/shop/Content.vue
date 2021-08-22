@@ -27,13 +27,11 @@
             </div>
             <div class="number">
               <!-- 件数为0不显示 -->
-              <span v-show="cartList[shopId]?.productList?.[item._id]?.count">
+              <span v-show="getCartProductCount(shopId,item._id)">
                 <span class="minus" @click="changeCartItem(shopId, item, -1)"
                   >-</span
                 >
-                <span class="jianshu">{{
-                  cartList[shopId]?.productList?.[item._id]?.count ?? 0
-                }}</span>
+                <span class="jianshu">{{getCartProductCount(shopId,item._id)}}</span>
               </span>
               <span
                 class="changeCartItem"
@@ -97,7 +95,7 @@ export default {
     const shopId = route.params.id;
     const { tabList, tabClick, currentTab } = tabEffect();
     const { contentLiat } = shopListEffect(currentTab, shopId);
-    const { changeCartItem,cartList} = useCartEffect();
+    const { changeCartItem,cartList, getCartProductCount} = useCartEffect();
     return {
       tabList,
       tabClick,
@@ -105,7 +103,7 @@ export default {
       contentLiat,
       cartList,
       changeCartItem,
-      shopId,
+      shopId, getCartProductCount
     };
   },
 };

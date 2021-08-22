@@ -96,7 +96,7 @@ const useCartEffects = () => {
 
   const calculations = computed(() => {
     const result = { total: 0, price: 0, allCheck: true };
-    const productList = cartList.value[shopId]?.productList;
+    const productList = cartList[shopId]?.productList;
     for (const key in productList) {
       if (Object.hasOwnProperty.call(productList, key)) {
         result.total += productList[key].count;
@@ -115,7 +115,7 @@ const useCartEffects = () => {
   });
 
   const contentLiat = computed(() => {
-    return cartList.value[shopId]?.productList || {};
+    return cartList[shopId]?.productList || {};
   });
 
   return { calculations, contentLiat, changeCartItem, shopId };
