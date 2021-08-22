@@ -1,7 +1,7 @@
 <template>
   <div
     class="mask"
-    v-show="showCart && calculations.total"
+    v-show="showCart && calculations.total || (showCart=false)"
     @click="showCart = !showCart"
   ></div>
   <div class="cart">

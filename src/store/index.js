@@ -24,7 +24,6 @@ export default createStore({
   mutations: {
     setShopName(state, playLoad) {
       const { shopId, shopName } = playLoad
-      console.log(shopId, shopName);
       const shopInfo = state.cartList[shopId] || {}
       if (!shopInfo.shopName) {
         shopInfo.shopName = shopName+'-'+shopId
@@ -38,7 +37,6 @@ export default createStore({
       let shopInfo = state.cartList[shopId]
       let product = state.cartList[shopId]?.productList?.[goodsId]
 
-      console.log('a', state.cartList);
       if (goodsId == 'allCheck') {
         for (const key in shopInfo.productList) {
           if (Object.hasOwnProperty.call(shopInfo.productList, key)) {
@@ -57,7 +55,6 @@ export default createStore({
         product = goodsObj
         product.count = 0
       }
-      console.log(num);
       product.count += num
       if (product.count === 0) {
         delete state.cartList[shopId]?.productList?.[goodsId];
