@@ -1,20 +1,20 @@
 <template>
   <div class="shop">
-    <div class="shop__title">沃尔玛</div>
+    <div class="shop__title">{{item.shopName}}</div>
     <div class="shop__product">
-      <div class="shop__product__item">
+      <div class="shop__product__item" v-for="item in item.productList" :key="item._id">
         <img
           class="shop__product__img"
-          src="http://www.dell-lee.com/imgs/vue3/tomato.png"
+          :src="item.imgUrl"
         />
         <div class="shop__product__info">
-          <div class="shop__product__title">番茄250g/份</div>
+          <div class="shop__product__title">{{item.name}}</div>
           <div class="shop__product__tags">
             <span class="shop__product__count"
-              ><span class="shop__rmb-icon">￥</span>33.6 x 3</span
+              ><span class="shop__rmb-icon">￥</span>{{item.price}} x {{item.count}}</span
             >
             <span class="shop__product__price"
-              ><span class="shop__rmb-icon">￥</span>99.9</span
+              ><span class="shop__rmb-icon">￥</span>{{item.price * item.count}}</span
             >
           </div>
         </div>
@@ -27,7 +27,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props:['item']
+};
 </script>
 
 <style lang="scss" scoped>

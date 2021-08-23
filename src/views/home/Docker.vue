@@ -39,13 +39,14 @@ export default {
 .docker {
   display: flex;
   box-sizing: border-box;
-  position: absolute;
+  position: fixed;
   padding: 0 0.18rem;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 0.49rem;
   border-top: 0.01rem solid $content-bgColor;
+  background: $bgColor-white;
 }
 .docker__item {
   flex: 1;
