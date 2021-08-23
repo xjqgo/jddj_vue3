@@ -1,32 +1,25 @@
 import { createStore } from 'vuex'
 
+const setLocalCartList = (state) => {
+  const { cartList } = state;
+  localStorage.cartList = JSON.stringify(cartList)
+}
+const getLocalCartList = () => {
+  return JSON.parse(localStorage.cartList || '{}')// 参数必须为字符数
+}
+
 export default createStore({
   // state里面的object和array类型会自动包裹成proxy
+  // cartList{shopId:{shopName,productList:{id:{}}}}
   state: {
-    cartList: {
-      1: {
-        shopName: '沃尔玛',
-        productList: {
-          1: {
-            imgUrl: "http://www.dell-lee.com/imgs/vue3/tomato.png",
-            name: "番茄 250g / 份",
-            oldPrice: 39.6,
-            price: 33.6,
-            sales: 10,
-            _id: "1",
-            count: 1,
-            check: true
-          }
-        }
-      }
-    }
+    cartList: getLocalCartList()
   },
   mutations: {
     setShopName(state, playLoad) {
       const { shopId, shopName } = playLoad
       const shopInfo = state.cartList[shopId] || {}
       if (!shopInfo.shopName) {
-        shopInfo.shopName = shopName+'-'+shopId
+        shopInfo.shopName = shopName + '-' + shopId
         shopInfo.productList = {}
       }
       state.cartList[shopId] = shopInfo
@@ -44,10 +37,12 @@ export default createStore({
             else state.cartList[shopId].productList[key].check = true
           }
         }
+        setLocalCartList(state)
         return
       }
       if (goodsId == 'clear') {
         state.cartList[shopId].productList = {}
+        setLocalCartList(state)
         return
       }
 
@@ -58,11 +53,13 @@ export default createStore({
       product.count += num
       if (product.count === 0) {
         delete state.cartList[shopId]?.productList?.[goodsId];
+        setLocalCartList(state)
         return
       }
       else if (num >= 1) product.check = true
       shopInfo.productList[goodsId] = product
       state.cartList[shopId] = shopInfo
+      setLocalCartList(state)
       console.log('qq', state.cartList[shopId]);
     },
 
