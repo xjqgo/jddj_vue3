@@ -2,7 +2,6 @@
   <div class="wrapper">
     <Position />
     <Nearby />
-    <Nearby />
   </div>
     <Docker />
 </template>

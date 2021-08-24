@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <div class="wrapper__hander">我的全部购物车（2）</div>
-    <Shop v-for="item in cartList" :key="item" :item="item" />
+    <div class="wrapper__hander">我的全部购物车<span v-if="total>1">（{{total}}）</span></div>
+    <Shop v-for="item in cartList" :key="item" :item="item" :total="total" />
     <Docker />
   </div>
 </template>
@@ -10,12 +10,23 @@
 import Shop from "./Shop.vue";
 import Docker from "../home/Docker.vue";
 import { useCartEffect } from "../shop/useCartEffect";
+import { computed } from '@vue/runtime-core';
 
 export default {
   components: { Shop, Docker },
   setup() {
     const { cartList } = useCartEffect();
-    return { cartList };
+    const total = computed(() => {
+      let result=0
+      for (const key in cartList) {
+        if (Object.hasOwnProperty.call(cartList, key)) {
+          const element = cartList[key];
+          result+=Object.keys(element.productList).length
+        }
+      }
+      return result
+    });
+    return { cartList,total };
   },
 };
 </script>

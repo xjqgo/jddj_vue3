@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="shop__tishi">
-      共计3件/1.4kg<span class="iconfont">&#xe603;</span>
+      共计{{Object.keys(item.productList).length}}件/1.4kg<span class="iconfont">&#xe603;</span>
     </div>
   </div>
 </template>
