@@ -1,7 +1,10 @@
 <template>
   <div class="wrapper">
-    <div class="wrapper__hander">我的全部购物车<span v-if="total>1">（{{total}}）</span></div>
-    <Shop v-for="item in cartList" :key="item" :item="item" :total="total" />
+    <div class="wrapper__hander">我的全部购物车<span v-if="total">（{{total}}）</span></div>
+    <div class="cart-null" v-if="!total">
+      购物车一无所有，快去点点吧
+    </div>
+    <Shop v-for="item in cartList" :key="item" :item="item" />
     <Docker />
   </div>
 </template>
@@ -41,6 +44,14 @@ export default {
     padding: 0.68rem 0 .5rem;
   overflow-y: auto;
   background: #f8f8f8;
+  .cart-null{
+    font-size: .18rem;
+    color: #666;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
   &__hander {
     font-size: 0.16rem;
     text-align: center;

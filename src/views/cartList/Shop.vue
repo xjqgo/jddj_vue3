@@ -1,5 +1,5 @@
 <template>
-  <div class="shop">
+  <div class="shop" v-if="Object.keys(item.productList).length>0">
     <div class="shop__title">{{item.shopName}}</div>
     <div class="shop__product">
       <div class="shop__product__item" v-for="item in item.productList" :key="item._id">
