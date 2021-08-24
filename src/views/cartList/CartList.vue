@@ -1,9 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="wrapper__hander">我的全部购物车（2）</div>
-    <div class="wrapper__content">
-      <Shop v-for="item in cartList" :key="item" :item="item" />
-    </div>
+    <Shop v-for="item in cartList" :key="item" :item="item" />
     <Docker />
   </div>
 </template>
@@ -15,12 +13,6 @@ import { useCartEffect } from "../shop/useCartEffect";
 
 export default {
   components: { Shop, Docker },
-  beforeCreate() {
-    document.body.style.backgroundColor = "#f8f8f8";
-  },
-  beforeUnmount() {
-    document.body.style.backgroundColor = "";
-  },
   setup() {
     const { cartList } = useCartEffect();
     return { cartList };
@@ -30,6 +22,14 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0.5rem;
+    padding: 0.68rem 0 .5rem;
+  overflow-y: auto;
+  background: #f8f8f8;
   &__hander {
     font-size: 0.16rem;
     text-align: center;
@@ -43,7 +43,6 @@ export default {
     z-index: 1;
   }
   &__content {
-    padding: 0.68rem 0;
     overflow-y: scroll;
   }
 }
