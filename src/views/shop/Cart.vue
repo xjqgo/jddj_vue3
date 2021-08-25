@@ -77,7 +77,7 @@
       </span>
       <span class="cart__text" v-show="!calculations.total">购物车是空的</span>
     </div>
-    <router-link :to="{ name: 'Home' }">
+    <router-link :to="{ path: `/settlement/${shopId}` }">
       <div class="cart__jiesuan">去结算</div>
     </router-link>
   </div>
