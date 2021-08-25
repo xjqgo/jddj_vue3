@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="top">
       <div class="top__hander">
-        <div class="iconfont top__hander__back">&#xe64c;</div>
+        <div @click="toBack" class="iconfont top__hander__back">&#xe64c;</div>
         确认订单
       </div>
       <div class="top__receiver">
@@ -17,11 +17,32 @@
         <div class="iconfont top__receiver__icon">&#xe64c;</div>
       </div>
     </div>
+    <Shop v-for="item in cartList" :key="item" :item="item" />
   </div>
 </template>
 
 <script>
-export default {};
+import Shop from "../cartList/Shop.vue";
+import { useCartEffect } from "../shop/useCartEffect";
+import { useRoute, useRouter } from "vue-router";
+
+const toBackEffect = () => {
+  const router = useRouter();
+  const toBack = () => {
+    router.back();
+  };
+
+  return toBack;
+};
+export default {
+  components: { Shop },
+  setup() {
+    const { cartList } = useCartEffect();
+    const route = useRoute();
+    const toBack = toBackEffect();
+    return {cartList:{info:cartList[route.params.id]},toBack}
+  }
+};
 </script>
 
 <style lang="scss" scoped>
