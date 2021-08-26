@@ -1,7 +1,7 @@
 <template>
   <div
     class="mask"
-    v-show="showCart && calculations.total || (showCart=false)"
+    v-show="(showCart && calculations.total) || (showCart = false)"
     @click="showCart = !showCart"
   ></div>
   <div class="cart">
@@ -77,8 +77,17 @@
       </span>
       <span class="cart__text" v-show="!calculations.total">购物车是空的</span>
     </div>
-    <router-link :to="{ path: `/settlement/${shopId}` }">
-      <div class="cart__jiesuan">去结算</div>
+    <router-link
+      :to="{ path: calculations.total ? `/settlement/${shopId}` : '' }"
+    >
+      <div
+        :class="{
+          cart__jiesuan: true,
+          'cart__jiesuan--null': !calculations.total,
+        }"
+      >
+        去结算
+      </div>
     </router-link>
   </div>
 </template>
@@ -288,6 +297,9 @@ export default {
     color: $textColor-white;
     text-align: center;
     font-size: 0.14rem;
+  }
+  &__jiesuan--null {
+    background: rgba($color: $light-fontcolor, $alpha: 0.7);
   }
 }
 
