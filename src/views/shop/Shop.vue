@@ -18,12 +18,13 @@
 
 <script>
 import { ref } from "@vue/reactivity";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { get } from "../../util/request";
 import Shopinfo from "../../components/Shopinfo.vue";
 import Content from "./Content.vue";
 import Cart from "./Cart.vue";
 import { useStore } from 'vuex';
+import {publicEffect} from '../../util/publicEffect'
 
 // 取店铺信息
 const useShopInfoEffect = () => {
@@ -41,22 +42,13 @@ const useShopInfoEffect = () => {
 
   return { getShop, item };
 };
-
-// 路由返回
-const toBackEffect = () => {
-  const router = useRouter();
-  const toBack = () => {
-    router.back();
-  };
-
-  return toBack;
-};
+ 
 export default {
   name: "Shop",
   components: { Shopinfo, Content, Cart },
   setup() {
     const { getShop, item } = useShopInfoEffect();
-    const toBack = toBackEffect();
+    const {toBack} = publicEffect();
     getShop();
     return { item, toBack };
   },

@@ -31,25 +31,17 @@
 <script>
 import Shop from "../cartList/Shop.vue";
 import { useCartEffect } from "../shop/useCartEffect";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { computed } from "@vue/runtime-core";
+import {publicEffect} from '../../util/publicEffect'
 
-const toBackEffect = () => {
-  const router = useRouter();
-  const toBack = () => {
-    router.back();
-  };
-
-  return toBack;
-};
 export default {
   components: { Shop },
   setup() {
-    const toBack = toBackEffect();
+    const {toBack} = publicEffect();
     let { cartList } = useCartEffect();
     const route = useRoute();
     cartList = {info:cartList[route.params.id]};
-    console.log(cartList);
     const total = computed(() => {
       let price=0
       for (const key in cartList.info.productList) {
