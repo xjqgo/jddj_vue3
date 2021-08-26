@@ -18,6 +18,13 @@
       </div>
     </div>
     <Shop v-for="item in cartList" :key="item" :item="item" />
+    <div class="settlement">
+      <div class="settlement__total">
+        <span class="settlement__total__title">付款金额</span>
+        <span class="settlement__total__price"> ￥{{ total }}</span>
+      </div>
+      <div class="settlement__btn">提交订单</div>
+    </div>
   </div>
 </template>
 
@@ -25,6 +32,7 @@
 import Shop from "../cartList/Shop.vue";
 import { useCartEffect } from "../shop/useCartEffect";
 import { useRoute, useRouter } from "vue-router";
+import { computed } from "@vue/runtime-core";
 
 const toBackEffect = () => {
   const router = useRouter();
@@ -37,11 +45,22 @@ const toBackEffect = () => {
 export default {
   components: { Shop },
   setup() {
-    const { cartList } = useCartEffect();
-    const route = useRoute();
     const toBack = toBackEffect();
-    return {cartList:{info:cartList[route.params.id]},toBack}
-  }
+    let { cartList } = useCartEffect();
+    const route = useRoute();
+    cartList = {info:cartList[route.params.id]};
+    console.log(cartList);
+    const total = computed(() => {
+      let price=0
+      for (const key in cartList.info.productList) {
+          const element = cartList.info.productList[key];
+          price+=element.count * element.price
+      }
+      return price;
+    });
+
+    return { cartList, toBack, total };
+  },
 };
 </script>
 
@@ -52,7 +71,7 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0.5rem;
 }
 .top {
   height: 1.9rem;
@@ -93,10 +112,38 @@ export default {
     &__icon {
       transform: rotate(180deg);
       position: absolute;
-      right: .16rem;
-      top: .5rem;
-      font-size: .16rem;
+      right: 0.16rem;
+      top: 0.5rem;
+      font-size: 0.16rem;
     }
+  }
+}
+
+.settlement {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  line-height: 0.5rem;
+  background: #ffffff;
+  &__total {
+    margin-left: 0.24rem;
+    font-size: 0.14rem;
+    color: #333;
+    &__price {
+      font-size: 0.16rem;
+      color: #151515;
+      font-weight: 600;
+    }
+  }
+  &__btn {
+    width: 0.98rem;
+    text-align: center;
+    color: #fff;
+    font-size: 0.14rem;
+    background: #4fb0f9;
   }
 }
 </style>
