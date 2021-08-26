@@ -56,7 +56,7 @@ export default {
           const element = cartList.info.productList[key];
           price+=element.count * element.price
       }
-      return price;
+      return price.toFixed(2);
     });
 
     return { cartList, toBack, total };

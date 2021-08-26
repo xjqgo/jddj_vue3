@@ -14,7 +14,7 @@
               ><span class="shop__rmb-icon">￥</span>{{item.price}} x {{item.count}}</span
             >
             <span class="shop__product__price"
-              ><span class="shop__rmb-icon">￥</span>{{item.price * item.count}}</span
+              ><span class="shop__rmb-icon">￥</span>{{(item.price * item.count).toFixed(2)}}</span
             >
           </div>
         </div>
