@@ -72,9 +72,18 @@ export default {
   left: 0;
   right: 0;
   bottom: 0.5rem;
+  padding-top:1.9rem ;
+  padding-bottom: .3rem;
+  overflow-y: auto;
 }
 .top {
-  height: 1.9rem;
+  height: 1.7rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 11;
+  background: #f8f8f8;
   background-size: 100% 1.59rem;
   background-image: linear-gradient(0deg, rgba(0, 145, 255, 0) 4%, #0091ff 50%);
   background-repeat: no-repeat;
