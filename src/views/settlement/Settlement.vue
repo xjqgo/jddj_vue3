@@ -1,5 +1,15 @@
 <template>
   <div class="wrapper">
+    <div class="mask">
+      <div class="msgbox">
+        <div class="msgbox__title">确认要离开收银台？</div>
+        <div class="msgbox__text">请尽快完成支付，否则将被取消</div>
+        <div class="msgbox__button">
+          <span class="msgbox__button__no">取消订单</span>
+          <span class="msgbox__button__yes">确认支付</span>
+        </div>
+      </div>
+    </div>
     <Top />
     <Shop v-for="item in cartList" :key="item" :item="item" />
     <Bottom-order />
@@ -14,7 +24,7 @@ import Top from "./topArea.vue";
 import BottomOrder from "./bottomOrder.vue";
 
 export default {
-  components: { Shop, Top,BottomOrder },
+  components: { Shop, Top, BottomOrder },
   setup() {
     let { cartList } = useCartEffect();
     const route = useRoute();
@@ -37,5 +47,58 @@ export default {
   padding-top: 1.9rem;
   padding-bottom: 0.3rem;
   overflow-y: auto;
+}
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($color: #000000, $alpha: 0.5);
+  z-index: 111;
+}
+.msgbox {
+  width: 3rem;
+  height: 1.57rem;
+  // padding: .24rem 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  &__title {
+    line-height: 0.25rem;
+    font-weight: 600;
+    font-size: 18px;
+    color: #333333;
+  }
+  &__text {
+    font-size: 0.14rem;
+    color: #666;
+    line-height: 0.2rem;
+    margin: 0.08rem 0 0.3rem;
+  }
+  &__button {
+    span {
+      border: 1px solid #4fb0f9;
+      border-radius: 16px;
+      font-size: 0.14rem;
+      text-align: center;
+      width: .78rem;
+      line-height: .3rem;
+      display: inline-block;
+    }
+    &__no{
+      margin-right: .24rem;color: #0091FF;
+    }
+    &__yes{
+      background: #4FB0F9;
+      color: #fff;
+    }
+  }
 }
 </style>
