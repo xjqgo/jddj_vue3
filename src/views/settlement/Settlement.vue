@@ -26,8 +26,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./style/vrirables.scss";
 .wrapper {
-  background: #f8f8f8;
+  background: $bgColor;
   position: absolute;
   top: 0;
   left: 0;

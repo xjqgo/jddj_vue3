@@ -28,6 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./style/vrirables.scss";
 .top {
   height: 1.7rem;
   position: fixed;
@@ -35,15 +36,15 @@ export default {
   left: 0;
   right: 0;
   z-index: 11;
-  background: #f8f8f8;
+  background: $bgColor;
   background-size: 100% 1.59rem;
-  background-image: linear-gradient(0deg, rgba(0, 145, 255, 0) 4%, #0091ff 50%);
+  background-image: linear-gradient(0deg, rgba(0, 145, 255, 0) 4%, $bgColor-lightBlue 50%);
   background-repeat: no-repeat;
   padding: 0.26rem 0.18rem 0 0.18rem;
   &__hander {
     font-size: 0.16rem;
     text-align: center;
-    color: #ffffff;
+    color: $textColor-white;
     line-height: 0.22rem;
     &__back {
       position: absolute;
@@ -54,7 +55,7 @@ export default {
     position: relative;
     margin-top: 0.22rem;
     padding: 0.16rem;
-    background: #ffffff;
+    background: $bgColor-white;
     &__title {
       font-size: 0.16rem;
       font-weight: 700;
@@ -64,11 +65,11 @@ export default {
       margin: 0.14rem 0 0.06rem;
       font-size: 0.14rem;
       line-height: 0.2rem;
-      color: #333;
+      color: $content-fontcolor;
     }
     &__info {
       line-height: 0.17rem;
-      color: #666;
+      color: $mediun-fontcolor;
     }
     &__icon {
       transform: rotate(180deg);

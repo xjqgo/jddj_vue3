@@ -32,6 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./style/vrirables.scss";
 .settlement {
   position: fixed;
   left: 0;
@@ -40,23 +41,22 @@ export default {
   display: flex;
   justify-content: space-between;
   line-height: 0.5rem;
-  background: #ffffff;
+  background: $textColor-white;
   &__total {
     margin-left: 0.24rem;
     font-size: 0.14rem;
-    color: #333;
+    color: $content-fontcolor;
     &__price {
       font-size: 0.16rem;
-      color: #151515;
       font-weight: 600;
     }
   }
   &__btn {
     width: 0.98rem;
     text-align: center;
-    color: #fff;
+    color: $textColor-white;
     font-size: 0.14rem;
-    background: #4fb0f9;
+    background: rgba($color: $bgColor-lightBlue, $alpha: 0.7);
   }
 }
 
