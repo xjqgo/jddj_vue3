@@ -13,6 +13,7 @@
     <Top />
     <Shop v-for="item in { cartShop }" :key="item" :item="item" />
     <Bottom-order />
+    <Toast v-show="toastData.showToast" :msg="toastData.msg" />
   </div>
 </template>
 
@@ -23,28 +24,17 @@ import { useRoute } from "vue-router";
 import Top from "./topArea.vue";
 import BottomOrder from "./bottomOrder.vue";
 import { post } from "../../util/request";
+import Toast, { showToastEffect } from "../../components/Toast.vue";
 
-// 按钮事件
-// const buttonEffect = () => {
-//    //
-//    const btnYes = () => {
-//       console.log('yes');
-//    }
-//    //
-//    const btnNo = () => {
-//       console.log('no');
-//    }
-
-//    return {btnNo,btnYes}
-// }
 
 export default {
-  components: { Shop, Top, BottomOrder },
+  components: { Shop, Top, BottomOrder,Toast },
   setup() {
     // const {btnNo,btnYes} = buttonEffect();
     const route = useRoute();
     const shopId = parseInt(route.params.id);
     const { cartShop } = cartEffect(shopId);
+    const { toastData, showToast } = showToastEffect();
 
     //提交订单
     const btnRquest = async (isCanceled) => {
@@ -66,15 +56,15 @@ export default {
         });
         console.log("返回结果", result);
         if (result.errno === 0) {
-          console.log("登陆成功");
+          showToast("登陆成功");
         } else {
-          console.log("登陆失败");
+          showToast("登陆失败");
         }
       } catch (e) {
-        console.log("请求失败");
+        showToast("请求失败");
       }
     };
-    return { cartShop,btnRquest };
+    return { toastData,cartShop,btnRquest };
   },
 };
 </script>

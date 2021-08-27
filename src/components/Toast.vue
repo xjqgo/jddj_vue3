@@ -35,5 +35,6 @@ export const showToastEffect=()=>{
     padding: 0.1rem;
     background: rgba(0, 0, 0, .35);
     color: $textColor-white;
+    z-index: 999;
 }
 </style>
