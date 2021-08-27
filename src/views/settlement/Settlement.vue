@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="mask">
+    <div class="mask" v-show="1">
       <div class="msgbox">
         <div class="msgbox__title">确认要离开收银台？</div>
         <div class="msgbox__text">请尽快完成支付，否则将被取消</div>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <Top />
-    <Shop v-for="item in cartList" :key="item" :item="item" />
+    <Shop v-for="item in { cartShop }" :key="item" :item="item" />
     <Bottom-order />
   </div>
 </template>
@@ -42,20 +42,27 @@ export default {
   components: { Shop, Top, BottomOrder },
   setup() {
     // const {btnNo,btnYes} = buttonEffect();
-    let { cartList } = cartEffect();
     const route = useRoute();
-    cartList = { info: cartList[route.params.id] };
+    const shopId = parseInt(route.params.id);
+    const { cartShop } = cartEffect(shopId);
 
-    //
+    //确认提交订单
     const btnYes = async () => {
       console.log("yes");
+      const products = [];
+      for (const i in cartShop.productList) {
+        if (Object.hasOwnProperty.call(cartShop.productList, i)) {
+          const element = cartShop.productList[i];
+          products.push({id:parseInt(element._id),num:element.count})
+        }
+      }
       try {
         const result = await post("/api/order", {
           addressId: 1,
-          shopId: 1,
-          shopName: "l7",
+          shopId,
+          shopName: cartShop.shopName,
           isCanceled: false,
-          products: {},
+          products,
         });
         console.log("返回结果", result);
         if (result.errno === 0) {
@@ -71,7 +78,7 @@ export default {
     const btnNo = () => {
       console.log("no");
     };
-    return { cartList, btnNo, btnYes };
+    return { cartShop, btnNo, btnYes };
   },
 };
 </script>
