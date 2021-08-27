@@ -18,7 +18,7 @@
 
 <script>
 import Shop from "../cartList/Shop.vue";
-import { useCartEffect } from "../../effects/cartEffect";
+import { cartEffect } from "../../effects/cartEffect";
 import { useRoute } from "vue-router";
 import Top from "./topArea.vue";
 import BottomOrder from "./bottomOrder.vue";
@@ -42,7 +42,7 @@ export default {
   components: { Shop, Top, BottomOrder },
   setup() {
     // const {btnNo,btnYes} = buttonEffect();
-    let { cartList } = useCartEffect();
+    let { cartList } = cartEffect();
     const route = useRoute();
     cartList = { info: cartList[route.params.id] };
 
@@ -51,11 +51,11 @@ export default {
       console.log("yes");
       try {
         const result = await post("/api/order", {
-          addressId:1,
-          shopId:1,
-          shopName:'l7',
-          isCanceled:false,
-          products:{}
+          addressId: 1,
+          shopId: 1,
+          shopName: "l7",
+          isCanceled: false,
+          products: {},
         });
         console.log("返回结果", result);
         if (result.errno === 0) {

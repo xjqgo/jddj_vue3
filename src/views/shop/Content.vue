@@ -27,11 +27,13 @@
             </div>
             <div class="number">
               <!-- 件数为0不显示 -->
-              <span v-show="getCartProductCount(shopId,item._id)">
+              <span v-show="getCartProductCount(shopId, item._id)">
                 <span class="minus" @click="changeCartItem(shopId, item, -1)"
                   >-</span
                 >
-                <span class="jianshu">{{getCartProductCount(shopId,item._id)}}</span>
+                <span class="jianshu">{{
+                  getCartProductCount(shopId, item._id)
+                }}</span>
               </span>
               <span
                 class="changeCartItem"
@@ -51,7 +53,7 @@ import { ref } from "@vue/reactivity";
 import { get } from "../../util/request";
 import { useRoute } from "vue-router";
 import { watchEffect } from "@vue/runtime-core";
-import { useCartEffect } from "../../effects/cartEffect";
+import { cartEffect } from "../../effects/cartEffect";
 
 // tab相关处理
 const tabEffect = () => {
@@ -88,14 +90,13 @@ const shopListEffect = (currentTab, id) => {
   return { contentLiat };
 };
 
-
 export default {
   setup() {
     const route = useRoute();
     const shopId = route.params.id;
     const { tabList, tabClick, currentTab } = tabEffect();
     const { contentLiat } = shopListEffect(currentTab, shopId);
-    const { changeCartItem,cartList, getCartProductCount} = useCartEffect();
+    const { changeCartItem, cartList, getCartProductCount } = cartEffect();
     return {
       tabList,
       tabClick,
@@ -103,7 +104,8 @@ export default {
       contentLiat,
       cartList,
       changeCartItem,
-      shopId, getCartProductCount
+      shopId,
+      getCartProductCount,
     };
   },
 };

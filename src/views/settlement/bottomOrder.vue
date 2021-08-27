@@ -1,20 +1,20 @@
 <template>
-    <div class="settlement">
-      <div class="settlement__total">
-        <span class="settlement__total__title">付款金额</span>
-        <span class="settlement__total__price"> ￥{{ total }}</span>
-      </div>
-      <div class="settlement__btn">提交订单</div>
+  <div class="settlement">
+    <div class="settlement__total">
+      <span class="settlement__total__title">付款金额</span>
+      <span class="settlement__total__price"> ￥{{ total }}</span>
     </div>
+    <div class="settlement__btn">提交订单</div>
+  </div>
 </template>
 
 <script>
-import { useCartEffect } from "../../effects/cartEffect";
+import { cartEffect } from "../../effects/cartEffect";
 import { useRoute } from "vue-router";
 import { computed } from "@vue/runtime-core";
 export default {
-    setup(){
-    let { cartList } = useCartEffect();
+  setup() {
+    let { cartList } = cartEffect();
     const route = useRoute();
     cartList = { info: cartList[route.params.id] };
     const total = computed(() => {
@@ -27,8 +27,8 @@ export default {
     });
 
     return { cartList, total };
-    }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -59,5 +59,4 @@ export default {
     background: rgba($color: $bgColor-lightBlue, $alpha: 0.7);
   }
 }
-
 </style>

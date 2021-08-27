@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper">
-    <div class="wrapper__hander">我的全部购物车<span v-if="total">（{{total}}）</span></div>
-    <div class="cart-null" v-if="!total">
-      购物车一无所有，快去点点吧
+    <div class="wrapper__hander">
+      我的全部购物车<span v-if="total">（{{ total }}）</span>
     </div>
+    <div class="cart-null" v-if="!total">购物车一无所有，快去点点吧</div>
     <Shop v-for="item in cartList" :key="item" :item="item" />
     <Docker />
   </div>
@@ -12,24 +12,24 @@
 <script>
 import Shop from "./Shop.vue";
 import Docker from "../home/Docker.vue";
-import { useCartEffect } from "../../effects/cartEffect";
-import { computed } from '@vue/runtime-core';
+import { cartEffect } from "../../effects/cartEffect";
+import { computed } from "@vue/runtime-core";
 
 export default {
   components: { Shop, Docker },
   setup() {
-    const { cartList } = useCartEffect();
+    const { cartList } = cartEffect();
     const total = computed(() => {
-      let result=0
+      let result = 0;
       for (const key in cartList) {
         if (Object.hasOwnProperty.call(cartList, key)) {
           const element = cartList[key];
-          result+=Object.keys(element.productList).length
+          result += Object.keys(element.productList).length;
         }
       }
-      return result
+      return result;
     });
-    return { cartList,total };
+    return { cartList, total };
   },
 };
 </script>
@@ -41,11 +41,11 @@ export default {
   left: 0;
   right: 0;
   bottom: 0.5rem;
-    padding: 0.68rem 0 .5rem;
+  padding: 0.68rem 0 0.5rem;
   overflow-y: auto;
   background: #f8f8f8;
-  .cart-null{
-    font-size: .18rem;
+  .cart-null {
+    font-size: 0.18rem;
     color: #666;
     text-align: center;
     position: relative;

@@ -3,7 +3,7 @@ import { useStore } from "vuex";
 
 
 // 购物车相关操作
-export const useCartEffect = () => {
+export const cartEffect = () => {
     const store = useStore();
     const { cartList } = reactive(store.state);
     const changeCartItem = (shopId, goodsObj, num) => {

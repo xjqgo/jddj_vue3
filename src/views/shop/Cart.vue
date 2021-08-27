@@ -96,12 +96,12 @@
 import { ref } from "@vue/reactivity";
 import { useRoute } from "vue-router";
 import { computed } from "@vue/runtime-core";
-import { useCartEffect } from "../../effects/cartEffect";
+import { cartEffect } from "../../effects/cartEffect";
 
-const useCartEffects = () => {
+const cartEffects = () => {
   const route = useRoute();
   const shopId = route.params.id;
-  const { changeCartItem, cartList } = useCartEffect();
+  const { changeCartItem, cartList } = cartEffect();
 
   const calculations = computed(() => {
     const result = { total: 0, price: 0, allCheck: true };
@@ -134,8 +134,7 @@ export default {
   name: "Cart",
   setup() {
     const showCart = ref(false);
-    const { shopId, contentLiat, changeCartItem, calculations } =
-      useCartEffects();
+    const { shopId, contentLiat, changeCartItem, calculations } = cartEffects();
     return {
       contentLiat,
       changeCartItem,
