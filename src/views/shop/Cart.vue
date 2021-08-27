@@ -96,7 +96,7 @@
 import { ref } from "@vue/reactivity";
 import { useRoute } from "vue-router";
 import { computed } from "@vue/runtime-core";
-import { useCartEffect } from "./useCartEffect";
+import { useCartEffect } from "../../effects/cartEffect";
 
 const useCartEffects = () => {
   const route = useRoute();

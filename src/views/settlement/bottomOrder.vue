@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { useCartEffect } from "../shop/useCartEffect";
+import { useCartEffect } from "../../effects/cartEffect";
 import { useRoute } from "vue-router";
 import { computed } from "@vue/runtime-core";
 export default {

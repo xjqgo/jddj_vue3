@@ -12,7 +12,7 @@
 <script>
 import Shop from "./Shop.vue";
 import Docker from "../home/Docker.vue";
-import { useCartEffect } from "../shop/useCartEffect";
+import { useCartEffect } from "../../effects/cartEffect";
 import { computed } from '@vue/runtime-core';
 
 export default {

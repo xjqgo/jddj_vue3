@@ -18,7 +18,7 @@
 
 <script>
 import Shop from "../cartList/Shop.vue";
-import { useCartEffect } from "../shop/useCartEffect";
+import { useCartEffect } from "../../effects/cartEffect";
 import { useRoute } from "vue-router";
 import Top from "./topArea.vue";
 import BottomOrder from "./bottomOrder.vue";

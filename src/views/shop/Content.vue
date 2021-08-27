@@ -51,7 +51,7 @@ import { ref } from "@vue/reactivity";
 import { get } from "../../util/request";
 import { useRoute } from "vue-router";
 import { watchEffect } from "@vue/runtime-core";
-import { useCartEffect } from "./useCartEffect";
+import { useCartEffect } from "../../effects/cartEffect";
 
 // tab相关处理
 const tabEffect = () => {
