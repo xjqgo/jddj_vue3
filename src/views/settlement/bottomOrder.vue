@@ -46,12 +46,8 @@ const orderEffect = () => {
 
 // 
 const maskEffect = () => {
-   
-    const route = useRoute();
-    const shopId = parseInt(route.params.id);
-    const { cartShop } = cartEffect(shopId);
+    const { cartShop, shopId } = cartEffect();
     const { toastData, showToast } = showToastEffect();
-console.log(123,cartShop);
     //提交订单
     const btnRquest = async (isCanceled) => {
       console.log("yes");
