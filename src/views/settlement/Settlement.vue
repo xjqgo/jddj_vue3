@@ -5,8 +5,8 @@
         <div class="msgbox__title">确认要离开收银台？</div>
         <div class="msgbox__text">请尽快完成支付，否则将被取消</div>
         <div class="msgbox__button">
-          <span @click="btnNo" class="msgbox__button__no">取消订单</span>
-          <span @click="btnYes" class="msgbox__button__yes">确认支付</span>
+          <span @click="btnRquest(false)" class="msgbox__button__no">取消订单</span>
+          <span @click="btnRquest(true)" class="msgbox__button__yes">确认支付</span>
         </div>
       </div>
     </div>
@@ -46,8 +46,8 @@ export default {
     const shopId = parseInt(route.params.id);
     const { cartShop } = cartEffect(shopId);
 
-    //确认提交订单
-    const btnYes = async () => {
+    //提交订单
+    const btnRquest = async (isCanceled) => {
       console.log("yes");
       const products = [];
       for (const i in cartShop.productList) {
@@ -61,7 +61,7 @@ export default {
           addressId: 1,
           shopId,
           shopName: cartShop.shopName,
-          isCanceled: false,
+          isCanceled,
           products,
         });
         console.log("返回结果", result);
@@ -74,11 +74,7 @@ export default {
         console.log("请求失败");
       }
     };
-    //
-    const btnNo = () => {
-      console.log("no");
-    };
-    return { cartShop, btnNo, btnYes };
+    return { cartShop,btnRquest };
   },
 };
 </script>
