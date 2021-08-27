@@ -24,7 +24,7 @@ import Shopinfo from "../../components/Shopinfo.vue";
 import Content from "./Content.vue";
 import Cart from "./Cart.vue";
 import { useStore } from 'vuex';
-import {publicEffect} from '../../util/publicEffect'
+import {publicEffect} from '../../effects/publicEffect'
 
 // 取店铺信息
 const useShopInfoEffect = () => {

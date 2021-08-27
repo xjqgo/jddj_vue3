@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { publicEffect } from "../../util/publicEffect";
+import { publicEffect } from "../../effects/publicEffect";
 export default {
   setup() {
     const { toBack } = publicEffect();

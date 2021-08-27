@@ -5,8 +5,8 @@
         <div class="msgbox__title">确认要离开收银台？</div>
         <div class="msgbox__text">请尽快完成支付，否则将被取消</div>
         <div class="msgbox__button">
-          <span class="msgbox__button__no">取消订单</span>
-          <span class="msgbox__button__yes">确认支付</span>
+          <span @click="btnNo" class="msgbox__button__no">取消订单</span>
+          <span @click="btnYes" class="msgbox__button__yes">确认支付</span>
         </div>
       </div>
     </div>
@@ -22,15 +22,56 @@ import { useCartEffect } from "../shop/useCartEffect";
 import { useRoute } from "vue-router";
 import Top from "./topArea.vue";
 import BottomOrder from "./bottomOrder.vue";
+import { post } from "../../util/request";
+
+// 按钮事件
+// const buttonEffect = () => {
+//    //
+//    const btnYes = () => {
+//       console.log('yes');
+//    }
+//    //
+//    const btnNo = () => {
+//       console.log('no');
+//    }
+
+//    return {btnNo,btnYes}
+// }
 
 export default {
   components: { Shop, Top, BottomOrder },
   setup() {
+    // const {btnNo,btnYes} = buttonEffect();
     let { cartList } = useCartEffect();
     const route = useRoute();
     cartList = { info: cartList[route.params.id] };
 
-    return { cartList };
+    //
+    const btnYes = async () => {
+      console.log("yes");
+      try {
+        const result = await post("/api/order", {
+          addressId:1,
+          shopId:1,
+          shopName:'l7',
+          isCanceled:false,
+          products:{}
+        });
+        console.log("返回结果", result);
+        if (result.errno === 0) {
+          console.log("登陆成功");
+        } else {
+          console.log("登陆失败");
+        }
+      } catch (e) {
+        console.log("请求失败");
+      }
+    };
+    //
+    const btnNo = () => {
+      console.log("no");
+    };
+    return { cartList, btnNo, btnYes };
   },
 };
 </script>
@@ -88,15 +129,16 @@ export default {
       border-radius: 16px;
       font-size: 0.14rem;
       text-align: center;
-      width: .78rem;
-      line-height: .3rem;
+      width: 0.78rem;
+      line-height: 0.3rem;
       display: inline-block;
     }
-    &__no{
-      margin-right: .24rem;color: #0091FF;
+    &__no {
+      margin-right: 0.24rem;
+      color: #0091ff;
     }
-    &__yes{
-      background: #4FB0F9;
+    &__yes {
+      background: #4fb0f9;
       color: #fff;
     }
   }
