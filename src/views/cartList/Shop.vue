@@ -1,34 +1,51 @@
 <template>
-  <div class="shop" v-if="Object.keys(item.productList).length>0">
-    <div class="shop__title">{{item.shopName}}</div>
+  <div class="shop" v-if="Object.keys(item.productList).length > 0">
+    <div class="shop__title">{{ item.shopName }}</div>
     <div class="shop__product">
-      <div class="shop__product__item" v-for="item in item.productList" :key="item._id">
-        <img
-          class="shop__product__img"
-          :src="item.imgUrl"
-        />
+      <div
+        class="shop__product__item"
+        v-for="item in item.productList"
+        :key="item._id"
+      >
+        <img class="shop__product__img" :src="item.imgUrl" />
         <div class="shop__product__info">
-          <div class="shop__product__title">{{item.name}}</div>
+          <div class="shop__product__title">{{ item.name }}</div>
           <div class="shop__product__tags">
             <span class="shop__product__count"
-              ><span class="shop__rmb-icon">￥</span>{{item.price}} x {{item.count}}</span
+              ><span class="shop__rmb-icon">￥</span>{{ item.price }} x
+              {{ item.count }}</span
             >
             <span class="shop__product__price"
-              ><span class="shop__rmb-icon">￥</span>{{(item.price * item.count).toFixed(2)}}</span
+              ><span class="shop__rmb-icon">￥</span
+              >{{ (item.price * item.count).toFixed(2) }}</span
             >
           </div>
         </div>
       </div>
     </div>
     <div class="shop__tishi">
-      共计{{Object.keys(item.productList).length}}件/1.4kg<span class="iconfont">&#xe603;</span>
+      共计{{ Object.keys(item.productList).length }}样{{ total }}件/{{
+        (total * 0.35).toFixed(2)
+      }}kg<span class="iconfont">&#xe603;</span>
     </div>
   </div>
 </template>
 
 <script>
+import { ref, toRefs } from "@vue/reactivity";
 export default {
-  props:['item']
+  props: ["item", "msg"],
+  setup(props) {
+    const { item } = toRefs(props);
+    const total = ref(0);
+    for (const key in item.value.productList) {
+      if (Object.hasOwnProperty.call(item.value.productList, key)) {
+        console.log(item.value.productList[key]);
+        total.value += item.value.productList[key].count;
+      }
+    }
+    return { total };
+  },
 };
 </script>
 

@@ -95,7 +95,6 @@ export default {
   setup() {
     const showMask = ref(false);
     const {  cartList, total  } = orderEffect();
-    console.log(1);
     const { toastData,cartShop,btnRquest } = maskEffect(showMask);
 
     return { cartList, total,showMask,toastData,cartShop,btnRquest};
