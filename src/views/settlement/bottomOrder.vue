@@ -21,7 +21,7 @@
 
 <script>
 import { cartEffect } from "../../effects/cartEffect";
-import { useRoute } from "vue-router";
+import { useRoute,useRouter } from "vue-router";
 import { computed, ref } from "@vue/runtime-core";
 import Toast, { showToastEffect } from "../../components/Toast.vue";
 import { post } from "../../util/request";
@@ -45,12 +45,13 @@ const orderEffect = () => {
 }
 
 // 
-const maskEffect = () => {
-    const { cartShop, shopId } = cartEffect();
+const maskEffect = (showMask) => {
+    const { cartShop, shopId,changeCartItem } = cartEffect();
     const { toastData, showToast } = showToastEffect();
+    const router = useRouter();
+
     //提交订单
     const btnRquest = async (isCanceled) => {
-      console.log("yes");
       const products = [];
       for (const i in cartShop.productList) {
         if (Object.hasOwnProperty.call(cartShop.productList, i)) {
@@ -58,6 +59,7 @@ const maskEffect = () => {
           products.push({id:parseInt(element._id),num:element.count})
         }
       }
+
       try {
         const result = await post("/api/order", {
           addressId: 1,
@@ -68,7 +70,16 @@ const maskEffect = () => {
         });
         console.log("返回结果", result);
         if (result.errno === 0) {
-          showToast("登陆成功");
+          if (isCanceled) {
+            showToast("订单提交成功");
+            setTimeout(() => {
+            changeCartItem(shopId, { _id: 'clear' }, -1)
+            router.push({ name: "Home" });
+            }, 2000);
+          }else{
+            showToast("已取消");
+          }
+          showMask.value=false
         } else {
           showToast("登陆失败");
         }
@@ -85,7 +96,7 @@ export default {
     const showMask = ref(false);
     const {  cartList, total  } = orderEffect();
     console.log(1);
-    const { toastData,cartShop,btnRquest } = maskEffect();
+    const { toastData,cartShop,btnRquest } = maskEffect(showMask);
 
     return { cartList, total,showMask,toastData,cartShop,btnRquest};
   },
