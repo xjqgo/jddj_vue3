@@ -5,7 +5,7 @@
       :key="item.icon"
       :class="{
         docker__item: true,
-        'docker__item docker__item--active': index === 0,
+        'docker__item docker__item--active': index === currentIndex,
       }"
     >
       <router-link :to="item.to">
@@ -19,6 +19,7 @@
 <script>
 export default {
   name: "Docker",
+  props:['currentIndex'],
   setup() {
     const list = [
       { title: "首页", icon: "&#xe6e2;", to: { name: "Home" } },

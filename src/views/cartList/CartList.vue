@@ -5,13 +5,13 @@
     </div>
     <div class="cart-null" v-if="!total">购物车一无所有，快去点点吧</div>
     <Shop v-for="item in cartList" :key="item" :item="item" />
-    <Docker />
+    <Docker :currentIndex="1" />
   </div>
 </template>
 
 <script>
 import Shop from "./Shop.vue";
-import Docker from "../home/Docker.vue";
+import Docker from "../../components/Docker.vue";
 import { cartEffect } from "../../effects/cartEffect";
 import { computed } from "@vue/runtime-core";
 

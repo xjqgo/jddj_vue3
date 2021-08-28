@@ -3,13 +3,13 @@
     <Position />
     <Nearby />
   </div>
-    <Docker />
+    <Docker :currentIndex="0" />
 </template>
 
 <script>
 import Position from './Position'
 import Nearby from './Nearby'
-import Docker from './Docker'
+import Docker from "../../components/Docker.vue";
 export default {
   name: 'Home',
   components: { Position, Docker, Nearby }
