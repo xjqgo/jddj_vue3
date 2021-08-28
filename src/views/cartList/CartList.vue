@@ -47,16 +47,7 @@ export default {
     transform: translateY(-50%);
   }
   &__hander {
-    font-size: 0.16rem;
-    text-align: center;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    padding: 0.11rem;
-    padding-top: 0.31rem;
-    background: $bgColor-white;
-    z-index: 1;
+  @include hander;
   }
   &__content {
     overflow-y: scroll;

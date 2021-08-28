@@ -2,12 +2,27 @@
 
 // @import "./style/mixins.scss";
 // @include ellipsis;
+// ----功能-------
 @mixin ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+@mixin center {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@mixin scale05 {
+    display: inline-block;
+    font-size: 0.2rem;
+    transform: scale(0.5);
+    transform-origin: top;
+    // transform-origin:center top;
+}
 
+// ----class-------
 @mixin wrapper {
   position: absolute;
   top: 0;
@@ -17,4 +32,16 @@
   padding: 0.68rem 0 0.5rem;
   overflow-y: auto;
   background: $bgColor;
+}
+@mixin hander {
+    font-size: 0.16rem;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 0.11rem;
+    padding-top: 0.31rem;
+    background: $bgColor-white;
+    z-index: 1;
 }

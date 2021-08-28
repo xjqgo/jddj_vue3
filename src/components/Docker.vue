@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./style/vrirables.scss";
+@import "./style/mixins.scss";
 
 // 底部选项卡
 .docker {
@@ -58,12 +58,7 @@ export default {
     font-size: 0.18rem;
   }
   &__title {
-    display: block;
-    font-size: 0.2rem;
-    // transform: scale(.5,.5);
-    // transform-origin: center top;
-    transform: scale(0.5);
-    transform-origin: top;
+    @include scale05;
   }
   a {
     text-decoration: none;

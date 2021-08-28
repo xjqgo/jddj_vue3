@@ -103,7 +103,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./style/vrirables.scss";
+@import "./style/mixins.scss";
 .settlement {
   position: fixed;
   left: 0;
@@ -148,10 +148,7 @@ export default {
   justify-content: center;
   align-items: center;
   background: #fff;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  @include center;
   &__title {
     line-height: 0.25rem;
     font-weight: 600;
