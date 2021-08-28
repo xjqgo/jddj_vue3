@@ -3,14 +3,17 @@
     <div class="wrapper__hander">
       我的订单
     </div>
+    <Shop />
+    <Shop />
     <Docker :currentIndex="2" />
   </div>
 </template>
 
 <script>
 import Docker from "../../components/Docker.vue";
+import Shop from './OrderShop.vue'
 export default {
-  components: { Docker },
+  components: { Docker,Shop },
 };
 </script>
 
