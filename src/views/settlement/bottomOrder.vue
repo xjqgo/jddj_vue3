@@ -74,7 +74,7 @@ const maskEffect = (showMask) => {
             showToast("订单提交成功");
             setTimeout(() => {
             changeCartItem(shopId, { _id: 'clear' }, -1)
-            router.push({ name: "Home" });
+            router.push({ name: "OrderList" });
             }, 2000);
           }else{
             showToast("已取消");

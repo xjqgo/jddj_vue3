@@ -23,7 +23,7 @@ export default {
     const list = [
       { title: "首页", icon: "&#xe6e2;", to: { name: "Home" } },
       { title: "购物车", icon: "&#xe6e6;", to: { name: "CartList" } },
-      { title: "订单", icon: "&#xe643;", to: { name: "Home" } },
+      { title: "订单", icon: "&#xe643;", to: { name: "OrderList" } },
       { title: "我的", icon: "&#xe782;", to: { name: "Home" } },
     ];
 
