@@ -112,7 +112,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./style/vrirables.scss";
 @import "./style/mixins.scss";
 .content {
   position: absolute;

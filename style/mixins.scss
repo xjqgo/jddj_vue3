@@ -1,6 +1,20 @@
+@import './vrirables.scss';
+
+// @import "./style/mixins.scss";
 // @include ellipsis;
 @mixin ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+@mixin wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0.5rem;
+  padding: 0.68rem 0 0.5rem;
+  overflow-y: auto;
+  background: $bgColor;
 }

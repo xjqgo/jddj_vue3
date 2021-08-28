@@ -35,18 +35,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./style/mixins.scss";
 .wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0.5rem;
-  padding: 0.68rem 0 0.5rem;
-  overflow-y: auto;
-  background: #f8f8f8;
+  @include wrapper;
   .cart-null {
     font-size: 0.18rem;
-    color: #666;
+    color: $mediun-fontcolor;
     text-align: center;
     position: relative;
     top: 50%;
@@ -61,7 +55,7 @@ export default {
     left: 0;
     padding: 0.11rem;
     padding-top: 0.31rem;
-    background: #fff;
+    background: $bgColor-white;
     z-index: 1;
   }
   &__content {

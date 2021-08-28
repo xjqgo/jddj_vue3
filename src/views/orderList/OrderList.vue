@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    orderlist
+    orderlist2222222222
     <Docker :currentIndex="2" />
   </div>
 </template>
@@ -13,4 +13,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./style/mixins.scss";
+
+.wrapper{
+  @include wrapper;
+}
 </style>
