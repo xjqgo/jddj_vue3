@@ -4,7 +4,6 @@
       我的订单
     </div>
     <Shop />
-    <Shop />
     <Docker :currentIndex="2" />
   </div>
 </template>
