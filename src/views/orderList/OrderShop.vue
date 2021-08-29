@@ -1,5 +1,5 @@
 <template>
-  <div class="order" v-for="item in data.list" :key="item.shopId">
+  <div class="order">
     <div class="order__hander">
       <span class="order__hander__sname">{{
         item.shopName + "-" + item.shopId
@@ -17,41 +17,16 @@
         />
       </div>
       <div class="order__info__tags">
-        <div class="order__info__price">¥{{item.totalPrice}}</div>
-        <div class="order__info__count">共 {{item.totalNumber}} 件</div>
+        <div class="order__info__price">¥{{ item.totalPrice }}</div>
+        <div class="order__info__count">共 {{ item.totalNumber }} 件</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive } from "@vue/reactivity";
-import { get } from "../../util/request";
 export default {
-  setup() {
-    const data = reactive({ list: {} });
-    const getShop = async () => {
-      const result = await get(`/api/order`);
-      console.log("返回结果order", result);
-      if (result?.errno === 0 && result?.data) {
-        result.data.forEach((order) => {
-          let totalNumber = 0;
-          let totalPrice = 0;
-          order.products.forEach((products) => {
-            totalNumber += products.orderSales;
-            totalPrice+=products.orderSales * products.product.price
-            console.log(products,totalNumber,totalPrice);
-          });
-        order.totalPrice=totalPrice.toFixed(2);
-        order.totalNumber=totalNumber;
-        });
-      }
-        data.list =result.data;
-    };
-    getShop();
-    console.log("data:", data);
-    return { data };
-  },
+  props:['item']
 };
 </script>
 
@@ -91,6 +66,7 @@ export default {
       font-size: 0.14rem;
       color: #e93b3b;
       margin-bottom: 0.04rem;
+      text-align: right;
     }
     &__count {
       font-size: 0.12rem;
