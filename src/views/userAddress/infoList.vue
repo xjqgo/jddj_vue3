@@ -19,7 +19,7 @@ export default {
 <style lang="scss" scoped>
 .info {
   margin: 0 0.18rem 0.16rem 0.18rem;
-  padding: 0.16rem;
+  padding: 0.18rem .16rem;
   background: #fff;
   border-radius: 4px;
   font-size: 14px;
@@ -35,11 +35,12 @@ export default {
   &__address {
     color: #333;
     margin-right: 0.63rem;
+    line-height: .2rem;
   }
   &__edit {
     position: absolute;
     right: .16rem;
-    top: .41rem;
+    top: .45rem;
     transform: rotate(180deg);
   }
 }
