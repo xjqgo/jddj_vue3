@@ -11,7 +11,7 @@
         <span class="top__receiver__info__name">瑶妹（女士）</span>
         <span class="top__receiver__info__name">18911024266</span>
       </div>
-      <div class="iconfont top__receiver__icon">&#xe64c;</div>
+      <div class="iconfont top__receiver__icon"><router-link to="/userAddress">&#xe64c;</router-link></div>
     </div>
   </div>
 </template>
@@ -77,6 +77,9 @@ export default {
       right: 0.16rem;
       top: 0.5rem;
       font-size: 0.16rem;
+      a{
+      text-decoration: none;
+      }
     }
   }
 }
