@@ -7,17 +7,41 @@
     </div>
     <div class="wrapper__address">
       <div class="wrapper__address__title">我的收货地址</div>
-      <Info />
+      <Info v-for="item in data" :key="item" :item="item" />
     </div>
   </div>
 </template>
 
 <script>
 import Info from "./infoList.vue";
+import { ref } from "@vue/reactivity";
+import { get } from "../../util/request";
+
+//
+const getAddressEffect = () => {
+  const data = ref([]);
+  const getRquest = async () => {
+  try{
+    const result = await get(`/api/user/address`);
+    console.log("返回结果address", result);
+    if (result?.errno === 0 && result?.data) {
+      data.value = result.data;
+    }
+  }catch(e){
+    alert('请求失败:'+e);
+  }
+  };
+    getRquest();
+  return { data };
+};
 
 export default {
   components: { Info },
-  setup() {},
+  setup() {
+    const { data } = getAddressEffect();
+
+    return { data };
+  },
 };
 </script>
 
@@ -27,16 +51,16 @@ export default {
 .wrapper {
   @include wrapper;
   bottom: 0;
-  padding: 0.76rem 0 .3rem;
+  padding: 0.76rem 0 0.3rem;
   &__hander {
     @include hander;
     display: flex;
     justify-content: space-between;
-    &__back{
-        color: #B6B6B6;
-        font-size: .2rem;
-        position: relative;
-        top: -.03rem;
+    &__back {
+      color: #b6b6b6;
+      font-size: 0.2rem;
+      position: relative;
+      top: -0.03rem;
     }
   }
   &__address {
@@ -44,7 +68,7 @@ export default {
       margin: 0 0.18rem 0.12rem;
       font-size: 14px;
       color: #333333;
-      line-height: .2rem;
+      line-height: 0.2rem;
     }
   }
 }

@@ -1,10 +1,10 @@
 <template>
   <div class="info">
     <div class="info__name">
-      小慕<span class="info__name__phome">18911023261</span>
+      {{item.name}}<span class="info__name__phone">{{item.phone}}</span>
     </div>
     <div class="info__address">
-      北京市海淀区西三环北路 2号院 北京理工大学 国防科技园2号楼 10层
+      {{item.city}} {{item.department}}-{{item.houseNumber}}
     </div>
     <div class="info__edit iconfont">&#xe64c;</div>
   </div>
@@ -28,7 +28,7 @@ export default {
     line-height: 0.2rem;
     margin-bottom: 0.08rem;
     color: #999999;
-    &__phome {
+    &__phone {
       margin-left: 0.66rem;
     }
   }
