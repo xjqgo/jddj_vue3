@@ -24,7 +24,11 @@
 @mixin rodate180 {
     transform: rotate(180deg);
 }
-
+@mixin bgExcessive {
+  background-size: 100% 1.59rem;
+  background-image: linear-gradient(0deg, rgba(0, 145, 255, 0) 4%, $bgColor-lightBlue 50%);
+  background-repeat: no-repeat;
+}
 // ----class-------
 @mixin wrapper {
   position: absolute;

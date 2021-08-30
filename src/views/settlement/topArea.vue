@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./style/vrirables.scss";
+@import "./style/mixins.scss";
 .top {
   height: 1.7rem;
   position: fixed;
@@ -37,9 +37,7 @@ export default {
   right: 0;
   z-index: 11;
   background: $bgColor;
-  background-size: 100% 1.59rem;
-  background-image: linear-gradient(0deg, rgba(0, 145, 255, 0) 4%, $bgColor-lightBlue 50%);
-  background-repeat: no-repeat;
+  @include bgExcessive;
   padding: 0.26rem 0.18rem 0 0.18rem;
   &__hander {
     font-size: 0.16rem;
