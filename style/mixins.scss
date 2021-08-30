@@ -21,6 +21,9 @@
     transform-origin: top;
     // transform-origin:center top;
 }
+@mixin rodate180 {
+    transform: rotate(180deg);
+}
 
 // ----class-------
 @mixin wrapper {
@@ -40,8 +43,7 @@
     top: 0;
     right: 0;
     left: 0;
-    padding: 0.11rem;
-    padding-top: 0.31rem;
+    padding: .31rem .18rem .11rem;
     background: $bgColor-white;
     z-index: 1;
 }
