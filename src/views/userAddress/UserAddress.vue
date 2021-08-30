@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="wrapper__hander">
-      <Back />
+      <Back cla="wrapper__hander__back" />
       <div class="wrapper__hander__title">管理收货地址</div>
       <div class="wrapper__hander__add">新增</div>
     </div>
@@ -16,27 +16,27 @@
 import Info from "./infoList.vue";
 import { ref } from "@vue/reactivity";
 import { get } from "../../util/request";
-import Back from '../../components/back.vue'
+import Back from "../../components/back.vue";
 //
 const getAddressEffect = () => {
   const data = ref([]);
   const getRquest = async () => {
-  try{
-    const result = await get(`/api/user/address`);
-    console.log("返回结果address", result);
-    if (result?.errno === 0 && result?.data) {
-      data.value = result.data;
+    try {
+      const result = await get(`/api/user/address`);
+      console.log("返回结果address", result);
+      if (result?.errno === 0 && result?.data) {
+        data.value = result.data;
+      }
+    } catch (e) {
+      alert("请求失败:" + e);
     }
-  }catch(e){
-    alert('请求失败:'+e);
-  }
   };
-    getRquest();
+  getRquest();
   return { data };
 };
 
 export default {
-  components: { Info,Back },
+  components: { Info, Back },
   setup() {
     const { data } = getAddressEffect();
 
@@ -56,6 +56,12 @@ export default {
     @include hander;
     display: flex;
     justify-content: space-between;
+    &__back {
+      color: #b6b6b6;
+      font-size: 0.2rem;
+      position: relative;
+      top: -0.03rem;
+    }
   }
   &__address {
     &__title {
