@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="wrapper__hander">
-      <div class="wrapper__hander__back iconfont">&#xe64c;</div>
+      <Back />
       <div class="wrapper__hander__title">管理收货地址</div>
       <div class="wrapper__hander__add">新增</div>
     </div>
@@ -16,7 +16,7 @@
 import Info from "./infoList.vue";
 import { ref } from "@vue/reactivity";
 import { get } from "../../util/request";
-
+import Back from '../../components/back.vue'
 //
 const getAddressEffect = () => {
   const data = ref([]);
@@ -36,7 +36,7 @@ const getAddressEffect = () => {
 };
 
 export default {
-  components: { Info },
+  components: { Info,Back },
   setup() {
     const { data } = getAddressEffect();
 
@@ -56,12 +56,6 @@ export default {
     @include hander;
     display: flex;
     justify-content: space-between;
-    &__back {
-      color: #b6b6b6;
-      font-size: 0.2rem;
-      position: relative;
-      top: -0.03rem;
-    }
   }
   &__address {
     &__title {
