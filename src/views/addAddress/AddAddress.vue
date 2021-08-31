@@ -34,7 +34,7 @@
         />
       </div>
     </div>
-    {{ requestData.city }}
+    <Toast v-show="toastData.showToast" :msg="toastData.msg" />
   </div>
 </template>
 
@@ -42,29 +42,36 @@
 import { reactive } from "@vue/reactivity";
 import { post } from "../../util/request";
 import Back from "../../components/back.vue";
+import { useRouter } from 'vue-router';
+import Toast, { showToastEffect } from "../../components/Toast.vue";
 //
 const getAddressEffect = () => {
+    const { toastData, showToast } = showToastEffect();
     const requestData = reactive({city: "", department: "", houseNumber: "", name: "", phone: ""});
+    const router = useRouter();
   const getRequest = async () => {
     try {
       const result = await post(`/api/user/address`,{data:requestData});
       console.log("返回结果address", result);
       if (result?.errno === 0 && result?.data) {
-          console.log('ok');
+            showToast("添加成功");
+            setTimeout(() => {
+            router.push({ name: "UserAddress" });
+            }, 2000);
       }
     } catch (e) {
       alert("请求失败:" + e);
     }
   };
-  return { requestData,getRequest };
+  return { requestData,getRequest,toastData };
 };
 
 export default {
-  components: { Back },
+  components: { Back,Toast },
   setup() {
-    const { requestData,getRequest } = getAddressEffect();
+    const { requestData,getRequest,toastData } = getAddressEffect();
 
-    return {  requestData,getRequest };
+    return {  requestData,getRequest,toastData };
   },
 };
 </script>
