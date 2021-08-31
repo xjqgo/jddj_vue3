@@ -13,4 +13,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.back {
+      color: #b6b6b6;
+      font-size: 0.2rem;
+      position: relative;
+      top: -0.03rem;
+    }
 </style>

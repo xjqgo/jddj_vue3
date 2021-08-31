@@ -41,6 +41,9 @@
   background: $bgColor;
 }
 @mixin hander {
+    display: flex;
+    justify-content: space-between;
+    color: $content-fontcolor;
     font-size: 0.16rem;
     text-align: center;
     position: fixed;
