@@ -10,19 +10,31 @@
         所在城市：<input v-model="rquestData.city" placeholder="如北京" />
       </div>
       <div class="wrapper__info__item">
-        小区/大厦/学校：<input v-model="rquestData.department" placeholder="如理工大学国防科技园" />
+        小区/大厦/学校：<input
+          v-model="rquestData.department"
+          placeholder="如理工大学国防科技园"
+        />
       </div>
       <div class="wrapper__info__item">
-        楼号-门牌号：<input v-model="rquestData.houseNumber" placeholder="如A号楼B层" />
+        楼号-门牌号：<input
+          v-model="rquestData.houseNumber"
+          placeholder="如A号楼B层"
+        />
       </div>
       <div class="wrapper__info__item">
-        收货人：<input v-model="rquestData.name" placeholder="请填写收货人的姓名" />
+        收货人：<input
+          v-model="rquestData.name"
+          placeholder="请填写收货人的姓名"
+        />
       </div>
-      <div class="wrapper__info__item">
-        联系电话：<input v-model="rquestData.phone" placeholder="请填写收货手机号" />
+      <div class="wrapper__info__item zh">
+        联系电话：<input
+          v-model="rquestData.phone"
+          placeholder="请填写收货手机号"
+        />
       </div>
     </div>
-        {{rquestData.city}}
+    {{ rquestData.city }}
   </div>
 </template>
 
@@ -54,7 +66,7 @@ export default {
     const { data } = getAddressEffect();
     const rquestData = reactive([]);
 
-    return { data,rquestData };
+    return { data, rquestData };
   },
 };
 </script>
@@ -87,6 +99,9 @@ export default {
       input::placeholder {
         color: #999;
       }
+    }
+    &__item:last-child {
+      border: none;
     }
   }
 }
