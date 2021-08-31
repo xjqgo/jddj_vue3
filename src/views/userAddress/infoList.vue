@@ -1,12 +1,14 @@
 <template>
   <div class="info">
     <div class="info__name">
-      {{item.name}}<span class="info__name__phone">{{item.phone}}</span>
+      {{ item.name }}<span class="info__name__phone">{{ item.phone }}</span>
     </div>
     <div class="info__address">
-      {{item.city}} {{item.department}}-{{item.houseNumber}}
+      {{ item.city }} {{ item.department }}-{{ item.houseNumber }}
     </div>
-    <div class="info__edit iconfont">&#xe64c;</div>
+    <router-link :to="`/addAddress/${item._id}`">
+      <div class="info__edit iconfont">&#xe64c;</div>
+    </router-link>
   </div>
 </template>
 
@@ -19,7 +21,7 @@ export default {
 <style lang="scss" scoped>
 .info {
   margin: 0 0.18rem 0.16rem 0.18rem;
-  padding: 0.18rem .16rem;
+  padding: 0.18rem 0.16rem;
   background: #fff;
   border-radius: 4px;
   font-size: 14px;
@@ -35,12 +37,12 @@ export default {
   &__address {
     color: #333;
     margin-right: 0.63rem;
-    line-height: .2rem;
+    line-height: 0.2rem;
   }
   &__edit {
     position: absolute;
-    right: .16rem;
-    top: .45rem;
+    right: 0.16rem;
+    top: 0.45rem;
     transform: rotate(180deg);
   }
 }

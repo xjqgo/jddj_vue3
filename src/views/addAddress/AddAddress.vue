@@ -2,7 +2,9 @@
   <div class="wrapper">
     <div class="wrapper__hander">
       <Back />
-      <div class="wrapper__hander__title">新建收货地址</div>
+      <div class="wrapper__hander__title">
+        {{ shopId ? "编辑" : "新建" }}收货地址
+      </div>
       <div class="wrapper__hander__add" @click="getRequest()">保存</div>
     </div>
     <div class="wrapper__info">
@@ -39,39 +41,56 @@
 </template>
 
 <script>
-import { reactive } from "@vue/reactivity";
-import { post } from "../../util/request";
+import { ref } from "@vue/reactivity";
+import { post, get } from "../../util/request";
 import Back from "../../components/back.vue";
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from "vue-router";
 import Toast, { showToastEffect } from "../../components/Toast.vue";
 //
 const getAddressEffect = () => {
-    const { toastData, showToast } = showToastEffect();
-    const requestData = reactive({city: "", department: "", houseNumber: "", name: "", phone: ""});
-    const router = useRouter();
-  const getRequest = async () => {
+  const { toastData, showToast } = showToastEffect();
+  const requestData = ref({
+    city: "",
+    department: "",
+    houseNumber: "",
+    name: "",
+    phone: "",
+  });
+  const router = useRouter();
+  const route = useRoute();
+  const shopId = parseInt(route.params.id);
+  const getRequest = async (loadOne) => {
     try {
-      const result = await post(`/api/user/address`,{data:requestData});
+      let result;
+      if (loadOne) result = await get(`/api/user/address/${shopId}`);
+      else result = await post(`/api/user/address${shopId?'/'+shopId:''}`, { data: requestData.value });
       console.log("返回结果address", result);
       if (result?.errno === 0 && result?.data) {
-            showToast("添加成功");
-            setTimeout(() => {
+        if (loadOne) {
+          requestData.value = result.data;
+        } else {
+          if (shopId) showToast("编辑成功");
+          else showToast("添加成功");
+          setTimeout(() => {
             router.push({ name: "UserAddress" });
-            }, 2000);
+          }, 2000);
+        }
       }
     } catch (e) {
       alert("请求失败:" + e);
     }
   };
-  return { requestData,getRequest,toastData };
+  if (shopId) getRequest(true);
+
+  return { requestData, getRequest, shopId, toastData };
 };
 
 export default {
-  components: { Back,Toast },
+  components: { Back, Toast },
   setup() {
-    const { requestData,getRequest,toastData } = getAddressEffect();
+    const { requestData, getRequest, shopId, toastData } = getAddressEffect();
 
-    return {  requestData,getRequest,toastData };
+    return { requestData, getRequest, shopId, toastData };
   },
 };
 </script>
