@@ -53,13 +53,13 @@ export default {
 .wrapper {
   @include wrapper;
   bottom: 0;
-  padding: 0.76rem 0 0.3rem;
+  padding: 0.65rem 0 0.3rem;
   &__hander {
     @include hander;
   }
   &__address {
     &__title {
-      margin: 0 0.18rem 0.12rem;
+      margin: .16rem 0.18rem 0.12rem;
       font-size: 14px;
       color: $content-fontcolor;
       line-height: 0.2rem;
