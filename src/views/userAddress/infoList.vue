@@ -19,23 +19,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./style/mixins.scss";
 .info {
   margin: 0 0.18rem 0.16rem 0.18rem;
   padding: 0.18rem 0.16rem;
-  background: #fff;
+  background: $bgColor-white;
   border-radius: 4px;
   font-size: 14px;
   position: relative;
   &__name {
     line-height: 0.2rem;
     margin-bottom: 0.08rem;
-    color: #999999;
+    color: $light-fontcolor;
     &__phone {
       margin-left: 0.66rem;
     }
   }
   &__address {
-    color: #333;
+    color: $content-fontcolor;
     margin-right: 0.63rem;
     line-height: 0.2rem;
   }

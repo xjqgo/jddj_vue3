@@ -107,13 +107,13 @@ export default {
   &__info {
     margin-top: 0.12rem;
     padding: 0 0.18rem;
-    background: #fff;
+    background: $bgColor-white;
     &__item {
       line-height: 0.2rem;
       font-size: 0.14rem;
       padding: 0.12rem 0;
-      color: #666;
-      border-bottom: 1px solid #f1f1f1;
+      color: $mediun-fontcolor;
+      border-bottom: 1px solid $content-bgColor;
       white-space: nowrap;
       input {
         width: 66%;
@@ -121,7 +121,7 @@ export default {
         outline: none;
       }
       input::placeholder {
-        color: #999;
+        color: $light-fontcolor;
       }
     }
     &__item:last-child {
