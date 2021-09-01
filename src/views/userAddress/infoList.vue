@@ -4,7 +4,9 @@
       {{ item.name }}<span class="info__name__phone">{{ item.phone }}</span>
     </div>
     <div class="info__address">
-      {{ item.city }} {{ item.department }}-{{ item.houseNumber }}
+      {{ item.city }} {{ item.department }}-{{
+        item.houseNumber
+      }}
     </div>
     <router-link :to="`/addAddress/${item._id}`">
       <div class="info__edit iconfont">&#xe64c;</div>
@@ -39,6 +41,7 @@ export default {
     color: $content-fontcolor;
     margin-right: 0.63rem;
     line-height: 0.2rem;
+    @include lines(2);
   }
   &__edit {
     position: absolute;

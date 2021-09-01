@@ -3,6 +3,12 @@
 // @import "./style/mixins.scss";
 // @include ellipsis;
 // ----功能-------
+@mixin lines($s:1) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $s;
+  overflow: hidden;
+}
 @mixin ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
