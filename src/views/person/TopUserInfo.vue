@@ -53,15 +53,15 @@ export default {
   padding-top: 1.08rem;
   &__icon {
     font-size: 0.2rem;
-    color: #fff;
+    color: $textColor-white;
     position: absolute;
     top: 0.4rem;
     right: 0.21rem;
   }
   &__user {
     margin: 0 0.18rem 0;
-    background: #ffffff;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.08);
+    background: $bgColor-white;
+    @include shadow;
     border-radius: 8px;
     padding-top: 0.5rem;
     display: flex;
@@ -79,13 +79,13 @@ export default {
       margin: 0.09rem 0 0.02rem;
       font-size: 24px;
       line-height: 0.36rem;
-      color: #262628;
+      color: $blanks-fontcolor;
       letter-spacing: 0.19px;
     }
     &__id {
       font-size: 0.14rem;
       line-height: 0.17rem;
-      color: #999;
+      color: $light-fontcolor;
     }
     &__icon {
       position: absolute;
@@ -96,25 +96,13 @@ export default {
       background-image: linear-gradient(180deg, #bee700 0%, #8aca00 100%);
       border-radius: 7.5px;
       &__star {
-        display: inline-block;
-        width: 0.25rem;
-        height: 0.25rem;
-        line-height: 0.25rem;
-        font-size: 0.14rem;
-        text-align: center;
-        color: #ffc700;
-        background: rgba($color: #000000, $alpha: 0.2);
-        border-radius: 50%;
-        transform: scale(0.45);
-        position: absolute;
-        top: -0.05rem;
-        left: -0.05rem;
+        @include star;
       }
       &__count {
         display: inline-block;
         font-size: 0.2rem;
         transform: scale(0.5);
-        color: #ffffff;
+        color: $textColor-white;
         letter-spacing: -0.36px;
         position: absolute;
         top: -0.11rem;
@@ -125,7 +113,7 @@ export default {
   &__discount {
     margin-top: 0.12rem;
     padding: 0.12rem 0 0.16rem;
-    border-top: 1px solid #f1f1f1;
+    border-top: 1px solid $content-bgColor;
     width: 100%;
     display: flex;
     &__item {
@@ -136,12 +124,12 @@ export default {
     }
     &__title {
       font-size: 0.12rem;
-      color: #c1c0c9;
+      color: $discount-title;
       line-height: 0.17rem;
     }
     &__count {
       font-size: 0.2rem;
-      color: #262628;
+      color: $blanks-fontcolor;
       line-height: 0.28rem;
       margin-top: 0.03rem;
     }

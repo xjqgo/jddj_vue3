@@ -25,25 +25,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./style/mixins.scss";
 .urlbox {
   margin: 0.16rem 0.18rem 0;
   padding: .04rem .16rem;
-  background: #ffffff;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.08);
+  background: $bgColor-white;
   border-radius: 8px;
+  @include shadow;
   &__item {
     position: relative;
     display: block;
     padding: .12rem 0;
     &__icon {
-        background: chocolate;
-        color: #fff;
-        border-radius: 8px;
-        display: inline-block;
-        line-height: .22rem;
-        text-align: center;
-        height: .22rem;
-        width: .22rem;
+      @include iconD
     }
     &__icon.i1{
       background: #ED4A47;
@@ -57,7 +51,7 @@ export default {
     &__title {
       margin-left: 0.12rem;
       font-size: 14px;
-      color: #262626;
+      color: $blanks-fontcolor;
       line-height: 0.2rem;
     }
     &__toicon {

@@ -30,10 +30,26 @@
 @mixin rodate180 {
     transform: rotate(180deg);
 }
-@mixin bgExcessive {
+@mixin bgGradientDown {
   background-size: 100% 1.59rem;
   background-repeat: no-repeat;
   background-image: linear-gradient(0deg, rgba(0, 145, 255, 0) 4%, $bgColor-lightBlue 50%);
+  // background-image: linear-gradient(239deg, #3a6ff3 0%, #50c7fb 100%);
+}
+// 边框影子
+@mixin shadow {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.08);
+}
+@mixin iconD($size:.22rem,$fsize:.16rem) {
+  background: chocolate;
+  color: $textColor-white;
+  font-size: $fsize;
+  border-radius: 8px;
+  display: inline-block;
+  line-height: $size;
+  text-align: center;
+  height: $size;
+  width: $size;
 }
 // ----class-------
 @mixin wrapper($pt:0.68rem,$pb:0.5rem) {
@@ -59,4 +75,19 @@
     padding: .31rem .18rem .11rem;
     background: $bgColor-white;
     z-index: 1;
+}
+@mixin star($scale:0.45) {
+        display: inline-block;
+        width: 0.25rem;
+        height: 0.25rem;
+        line-height: 0.25rem;
+        font-size: 0.14rem;
+        text-align: center;
+        color: #ffc700;
+        background: rgba($color: $blank-fontcolor, $alpha: 0.2);
+        border-radius: 50%;
+        transform: scale($scale);
+        position: absolute;
+        top: -0.05rem;
+        left: -0.05rem;
 }

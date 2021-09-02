@@ -37,7 +37,7 @@ export default {
   right: 0;
   z-index: 11;
   background: $bgColor;
-  @include bgExcessive;
+  @include bgGradientDown;
   padding: 0.26rem 0.18rem 0 0.18rem;
   &__hander {
     font-size: 0.16rem;
