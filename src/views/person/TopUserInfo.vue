@@ -6,9 +6,14 @@
         class="top__user__touxiang"
         src="http://www.dell-lee.com/imgs/avatar.jpg"
       />
-      <div class="top__user__name">热心市民李先生</div>
+      <div class="top__user__name">
+        热心市民李先生
+        <div class="top__user__icon">
+          <span class="top__user__icon__star iconfont">&#xe601;</span>
+          <span class="top__user__icon__count">16</span>
+        </div>
+      </div>
       <div class="top__user__id">ID: 1069643013</div>
-      <div class="top__user__icon"></div>
 
       <div class="top__discount">
         <div class="top__discount__item">
@@ -70,6 +75,7 @@ export default {
       border-radius: 50%;
     }
     &__name {
+      position: relative;
       margin: 0.09rem 0 0.02rem;
       font-size: 24px;
       line-height: 0.36rem;
@@ -81,30 +87,64 @@ export default {
       line-height: 0.17rem;
       color: #999;
     }
+    &__icon {
+      position: absolute;
+      top: 0.1rem;
+      right: -0.45rem;
+      height: 0.15rem;
+      width: 0.35rem;
+      background-image: linear-gradient(180deg, #bee700 0%, #8aca00 100%);
+      border-radius: 7.5px;
+      &__star {
+        display: inline-block;
+        width: 0.25rem;
+        height: 0.25rem;
+        line-height: 0.25rem;
+        font-size: 0.14rem;
+        text-align: center;
+        color: #ffc700;
+        background: rgba($color: #000000, $alpha: 0.2);
+        border-radius: 50%;
+        transform: scale(0.45);
+        position: absolute;
+        top: -0.05rem;
+        left: -0.05rem;
+      }
+      &__count {
+        display: inline-block;
+        font-size: 0.2rem;
+        transform: scale(0.5);
+        color: #ffffff;
+        letter-spacing: -0.36px;
+        position: absolute;
+        top: -0.11rem;
+        left: 0.11rem;
+      }
+    }
   }
-  &__discount{
-    margin-top: .12rem;
-    padding: .12rem 0 .16rem;
+  &__discount {
+    margin-top: 0.12rem;
+    padding: 0.12rem 0 0.16rem;
     border-top: 1px solid #f1f1f1;
     width: 100%;
     display: flex;
-    &__item{
+    &__item {
       flex: 1;
       display: flex;
       flex-flow: column;
       align-items: center;
     }
-      &__title{
-        font-size: .12rem;
-        color: #C1C0C9;
-        line-height: .17rem;
-      }
-      &__count{
-        font-size: .2rem;
-        color: #262628;
-        line-height: .28rem;
-        margin-top: .03rem;
-      }
+    &__title {
+      font-size: 0.12rem;
+      color: #c1c0c9;
+      line-height: 0.17rem;
+    }
+    &__count {
+      font-size: 0.2rem;
+      color: #262628;
+      line-height: 0.28rem;
+      margin-top: 0.03rem;
+    }
   }
 }
 </style>
