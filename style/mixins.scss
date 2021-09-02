@@ -32,17 +32,17 @@
 }
 @mixin bgExcessive {
   background-size: 100% 1.59rem;
-  background-image: linear-gradient(0deg, rgba(0, 145, 255, 0) 4%, $bgColor-lightBlue 50%);
   background-repeat: no-repeat;
+  background-image: linear-gradient(0deg, rgba(0, 145, 255, 0) 4%, $bgColor-lightBlue 50%);
 }
 // ----class-------
-@mixin wrapper {
+@mixin wrapper($pt:0.68rem,$pb:0.5rem) {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0.5rem;
-  padding: 0.68rem 0 0.5rem;
+  padding: $pt 0 $pb;
   overflow-y: auto;
   background: $bgColor;
 }
