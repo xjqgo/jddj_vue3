@@ -28,17 +28,17 @@
             <div class="number">
               <!-- 件数为0不显示 -->
               <span v-show="getCartProductCount(shopId, item._id)">
-                <span class="minus" @click="changeCartItem(shopId, item, -1)"
-                  >-</span
+                <span class="minus iconfont" @click="changeCartItem(shopId, item, -1)"
+                  >&#xe6d0;</span
                 >
                 <span class="jianshu">{{
                   getCartProductCount(shopId, item._id)
                 }}</span>
               </span>
               <span
-                class="changeCartItem"
+                class="changeCartItem iconfont"
                 @click="changeCartItem(shopId, item, 1)"
-                >+</span
+                >&#xe615;</span
               >
             </div>
           </div>
@@ -144,18 +144,18 @@ export default {
     flex: 1;
     .item {
       display: flex;
+      border-bottom: 1px solid $content-bgColor;
+      padding-bottom: .12rem;
+      margin:0 .18rem .12rem .16rem;
     }
     &__img {
       width: 0.68rem;
       height: 0.68rem;
-      margin: 0 0.16rem 0.12rem 0.16rem;
+      margin: 0 0.16rem 0 0;
     }
     &__info {
       flex: 1;
       overflow: hidden;
-      border-bottom: 1px solid #f1f1f1;
-      margin-right: 0.18rem;
-      margin-bottom: 0.12rem;
       .title {
         margin: 0;
         font-size: 00.14rem;
@@ -172,22 +172,18 @@ export default {
         // align-content: space-between;  /* 竖向中间自动空间 */
         .jianshu {
           margin: 0 0.1rem;
+         position: relative; 
+         top: -.02rem;
         }
         .minus,
         .changeCartItem {
           display: inline-block;
           font-size: 0.2rem;
-          text-align: center;
-          line-height: 0.16rem;
           height: 0.2rem;
           width: 0.2rem;
-          border-radius: 50%;
-          border: 1px solid #000;
         }
         .changeCartItem {
-          color: $textColor-white;
-          background: #0091ff;
-          border: 1px solid #0091ff;
+          color: #0091FF;
         }
       }
       .price {
