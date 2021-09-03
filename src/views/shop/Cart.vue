@@ -47,15 +47,15 @@
             </div>
             <div class="number">
               <span>
-                <span class="minus" @click="changeCartItem(shopId, item, -1)"
-                  >-</span
+                <span class="minus  iconfont" @click="changeCartItem(shopId, item, -1)"
+                  >&#xe6d0;</span
                 >
                 <span class="jianshu">{{ item.count }}</span>
               </span>
               <span
-                class="changeCartItem"
+                class="changeCartItem iconfont"
                 @click="changeCartItem(shopId, item, 1)"
-                >+</span
+                >&#xe615;</span
               >
             </div>
           </div>
@@ -217,22 +217,18 @@ export default {
         }
         .jianshu {
           margin: 0 0.1rem;
+         position: relative; 
+         top: -.02rem;
         }
         .minus,
         .changeCartItem {
           display: inline-block;
           font-size: 0.2rem;
-          text-align: center;
-          line-height: 0.16rem;
           height: 0.2rem;
           width: 0.2rem;
-          border-radius: 50%;
-          border: 1px solid $blank-fontcolor;
         }
         .changeCartItem {
-          color: $textColor-white;
-          background: $bgColor-lightBlue;
-          border: 1px solid $bgColor-lightBlue;
+          color: $bgColor-lightBlue;
         }
       }
       .price {

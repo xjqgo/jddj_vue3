@@ -183,7 +183,7 @@ export default {
           width: 0.2rem;
         }
         .changeCartItem {
-          color: #0091FF;
+          color: $bgColor-lightBlue;
         }
       }
       .price {
