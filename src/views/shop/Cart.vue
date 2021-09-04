@@ -109,12 +109,12 @@ const cartEffects = () => {
     for (const key in productList) {
       if (Object.hasOwnProperty.call(productList, key)) {
         result.total += productList[key].count;
-        if (productList[key].check)
+        if (productList[key].check){
           result.price +=
-            productList[key].count * productList[key].price.toFixed(2);
+            productList[key].count * productList[key].price;
+        }
         if (!productList[key].check) {
           result.allCheck = false;
-          break;
         }
       }
     }
