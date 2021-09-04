@@ -80,7 +80,7 @@ export default {
       font-size: .24rem;
       line-height: 0.36rem;
       color: $blanks-fontcolor;
-      letter-spacing: .19rem;
+      letter-spacing: -.019rem;
     }
     &__id {
       font-size: 0.14rem;
@@ -103,7 +103,7 @@ export default {
         font-size: 0.2rem;
         transform: scale(0.5);
         color: $textColor-white;
-        letter-spacing: -.36rem;
+        letter-spacing: -.036rem;
         position: absolute;
         top: -0.11rem;
         left: 0.11rem;
