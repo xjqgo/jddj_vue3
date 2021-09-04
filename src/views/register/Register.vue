@@ -132,8 +132,8 @@ export default {
       border: none;
       outline: none;
       background: none;
-      line-height: 0.48rem;
-      padding: 0;
+      line-height: 0.24rem;
+      padding: 0.12rem 0;
       color: $content-loginFontColor;
     }
     ::placeholder {
