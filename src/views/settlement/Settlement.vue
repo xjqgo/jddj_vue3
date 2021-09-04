@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <Top />
-    <Shop v-for="item in { cartShop }" :key="item" :item="item" />
+    <Shop v-for="item in { cartShop }" :key="item" :item="item" type="order" />
     <Bottom-order />
   </div>
 </template>

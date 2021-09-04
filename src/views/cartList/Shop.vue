@@ -5,7 +5,7 @@
       <div
         class="shop__product__item"
         v-for="item in item.productList"
-        :key="item._id"
+        :key="item._id" v-show="type=='order'?item.check:true"
       >
         <img class="shop__product__img" :src="item.imgUrl" />
         <div class="shop__product__info">
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="shop__tishi">
-      共计{{ Object.keys(item.productList).length }}样{{ total }}件/{{
+      共计{{ yangCount }}样{{ total }}件/{{
         (total * 0.35).toFixed(2)
       }}kg<span class="iconfont">&#xe603;</span>
     </div>
@@ -34,17 +34,18 @@
 <script>
 import { ref, toRefs } from "@vue/reactivity";
 export default {
-  props: ["item", "msg"],
+  props: ["item", "type"],
   setup(props) {
     const { item } = toRefs(props);
     const total = ref(0);
+    const yangCount = ref(0);
     for (const key in item.value.productList) {
-      if (Object.hasOwnProperty.call(item.value.productList, key)) {
-        console.log(item.value.productList[key]);
+      if (Object.hasOwnProperty.call(item.value.productList, key)&&item.value.productList[key].check) {
         total.value += item.value.productList[key].count;
+        yangCount.value++
       }
     }
-    return { total };
+    return { total,yangCount };
   },
 };
 </script>
