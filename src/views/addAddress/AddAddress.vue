@@ -113,7 +113,7 @@ export default {
       font-size: 0.14rem;
       padding: 0.12rem 0;
       color: $mediun-fontcolor;
-      border-bottom: 1px solid $content-bgColor;
+      border-bottom: .01rem solid $content-bgColor;
       white-space: nowrap;
       input {
         width: 66%;

@@ -74,8 +74,8 @@ $content-inputcolor: #333;
   &__content {
     display: flex;
     background: #f5f5f5;
-    border-radius: 16px;
-    border-radius: 16px;
+    border-radius: .16rem;
+    border-radius: .16rem;
     width: 100%;
     &__icon {
       color: #b7b7b7;
@@ -91,7 +91,7 @@ $content-inputcolor: #333;
       color: $content-inputcolor;
     }
     ::placeholder {
-      font-size: 14px;
+      font-size: .14rem;
       color: $content-inputcolor;
     }
   }

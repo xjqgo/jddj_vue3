@@ -35,7 +35,7 @@ export default {
   margin: 0.16rem 0.18rem 0 0.18rem;
   padding: 0.16rem;
   background: #fff;
-  border-radius: 4px;
+  border-radius: .04rem;
   &__hander {
     display: flex;
     justify-content: space-between;

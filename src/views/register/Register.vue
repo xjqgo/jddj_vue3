@@ -118,9 +118,9 @@ export default {
   }
   &__input {
     background: #f9f9f9;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 6px;
-    border-radius: 6px;
+    border: .01rem solid rgba(0, 0, 0, 0.1);
+    border-radius: .06rem;
+    border-radius: .06rem;
     height: 0.48rem;
     margin-bottom: 0.16rem;
     padding: 0 0.16rem;
@@ -148,8 +148,8 @@ export default {
     background: #0091ff;
     color: $textColor-white;
     font-size: 0.16rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 145, 255, 0.32);
-    border-radius: 4px;
+    box-shadow: 0 .04rem .08rem 0 rgba(0, 145, 255, 0.32);
+    border-radius: .04rem;
     border: none;
   }
   &__tags {

@@ -62,7 +62,7 @@ export default {
     margin: 0 0.18rem 0;
     background: $bgColor-white;
     @include shadow;
-    border-radius: 8px;
+    border-radius: .08rem;
     padding-top: 0.5rem;
     display: flex;
     flex-flow: column;
@@ -77,10 +77,10 @@ export default {
     &__name {
       position: relative;
       margin: 0.09rem 0 0.02rem;
-      font-size: 24px;
+      font-size: .24rem;
       line-height: 0.36rem;
       color: $blanks-fontcolor;
-      letter-spacing: 0.19px;
+      letter-spacing: .19rem;
     }
     &__id {
       font-size: 0.14rem;
@@ -94,7 +94,7 @@ export default {
       height: 0.15rem;
       width: 0.35rem;
       background-image: linear-gradient(180deg, #bee700 0%, #8aca00 100%);
-      border-radius: 7.5px;
+      border-radius: .075rem;
       &__star {
         @include star;
       }
@@ -103,7 +103,7 @@ export default {
         font-size: 0.2rem;
         transform: scale(0.5);
         color: $textColor-white;
-        letter-spacing: -0.36px;
+        letter-spacing: -.36rem;
         position: absolute;
         top: -0.11rem;
         left: 0.11rem;
@@ -113,7 +113,7 @@ export default {
   &__discount {
     margin-top: 0.12rem;
     padding: 0.12rem 0 0.16rem;
-    border-top: 1px solid $content-bgColor;
+    border-top: .01rem solid $content-bgColor;
     width: 100%;
     display: flex;
     &__item {

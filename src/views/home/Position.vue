@@ -76,11 +76,11 @@ export default {
 .search {
   line-height: 0.32rem;
   background: #f5f5f5;
-  border-radius: 16px;
+  border-radius: .16rem;
   color: #b7b7b7;
   font-size: 0.14rem;
   &__icon {
-    padding: 0 0.05rem 0 0.16rem;
+    padding: 0 0.05rem 0 .16rem;
   }
   input {
     width: 83%;

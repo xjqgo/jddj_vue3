@@ -193,7 +193,7 @@ export default {
     &__info {
       flex: 1;
       overflow: hidden;
-      border-bottom: 1px solid $content-bgColor;
+      border-bottom: .01rem solid $content-bgColor;
       margin-right: 0.18rem;
       margin-bottom: 0.12rem;
       .title {
@@ -306,7 +306,7 @@ export default {
   font-size: 0.14rem;
   padding: 0.18rem;
   margin-bottom: 0.16rem;
-  border-bottom: 1px solid $content-bgColor;
+  border-bottom: .01rem solid $content-bgColor;
   .cart__all-check {
     display: flex;
     align-items: center;

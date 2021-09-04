@@ -135,7 +135,7 @@ export default {
         font-size: 0.14rem;
         color: $content-fontcolor;
         background: $bgColor-white;
-        border-radius: 2px;
+        border-radius: .02rem;
       }
     }
   }
@@ -144,7 +144,7 @@ export default {
     flex: 1;
     .item {
       display: flex;
-      border-bottom: 1px solid $content-bgColor;
+      border-bottom: .01rem solid $content-bgColor;
       padding-bottom: .12rem;
       margin:0 .18rem .12rem .16rem;
     }

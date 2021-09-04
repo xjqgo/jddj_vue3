@@ -60,7 +60,7 @@ export default {
   &__address {
     &__title {
       margin: .16rem 0.18rem 0.12rem;
-      font-size: 14px;
+      font-size: .14rem;
       color: $content-fontcolor;
       line-height: 0.2rem;
     }

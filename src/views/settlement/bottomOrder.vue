@@ -152,7 +152,7 @@ export default {
   &__title {
     line-height: 0.25rem;
     font-weight: 600;
-    font-size: 18px;
+    font-size: .18rem;
     color: #333333;
   }
   &__text {
@@ -163,8 +163,8 @@ export default {
   }
   &__button {
     span {
-      border: 1px solid #4fb0f9;
-      border-radius: 16px;
+      border: .01rem solid #4fb0f9;
+      border-radius: .16rem;
       font-size: 0.14rem;
       text-align: center;
       width: 0.78rem;

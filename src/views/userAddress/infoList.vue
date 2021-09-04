@@ -26,8 +26,8 @@ export default {
   margin: 0 0.18rem 0.16rem 0.18rem;
   padding: 0.18rem 0.16rem;
   background: $bgColor-white;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: .04rem;
+  font-size: .14rem;
   position: relative;
   &__name {
     line-height: 0.2rem;

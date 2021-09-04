@@ -30,7 +30,7 @@ export default {
   margin: 0.16rem 0.18rem 0;
   padding: .04rem .16rem;
   background: $bgColor-white;
-  border-radius: 8px;
+  border-radius: .08rem;
   @include shadow;
   &__item {
     position: relative;
@@ -50,7 +50,7 @@ export default {
     }
     &__title {
       margin-left: 0.12rem;
-      font-size: 14px;
+      font-size: .14rem;
       color: $blanks-fontcolor;
       line-height: 0.2rem;
     }
