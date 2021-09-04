@@ -78,12 +78,12 @@
       <span class="cart__text" v-show="!calculations.total">购物车是空的</span>
     </div>
     <router-link
-      :to="{ path: calculations.total ? `/settlement/${shopId}` : '' }"
+      :to="{ path: calculations.price>0.1 ? `/settlement/${shopId}` : '' }"
     >
       <div
         :class="{
           cart__jiesuan: true,
-          'cart__jiesuan--null': !calculations.total,
+          'cart__jiesuan--null': !(calculations.price>0.1),
         }"
       >
         去结算
