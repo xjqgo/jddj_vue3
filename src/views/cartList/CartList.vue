@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Shop from "./Shop.vue";
+import Shop from "../../components/ShopProductList.vue";
 import Docker from "../../components/Docker.vue";
 import { cartEffect } from "../../effects/cartEffect";
 import { computed } from "@vue/runtime-core";

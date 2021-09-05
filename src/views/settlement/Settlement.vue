@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Shop from "../cartList/Shop.vue";
+import Shop from "../../components/ShopProductList.vue";
 import Top from "./topArea.vue";
 import BottomOrder from "./bottomOrder.vue";
 import { cartEffect } from "../../effects/cartEffect";
