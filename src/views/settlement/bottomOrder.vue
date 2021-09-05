@@ -136,7 +136,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba($color: #000000, $alpha: 0.5);
+  background: rgba($color: $blank-fontcolor, $alpha: 0.5);
   z-index: 111;
 }
 .msgbox {
@@ -147,23 +147,23 @@ export default {
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background: $bgColor-white;
   @include center;
   &__title {
     line-height: 0.25rem;
     font-weight: 600;
     font-size: .18rem;
-    color: #333333;
+    color: $content-fontcolor;
   }
   &__text {
     font-size: 0.14rem;
-    color: #666;
+    color: $mediun-fontcolor;
     line-height: 0.2rem;
     margin: 0.08rem 0 0.3rem;
   }
   &__button {
     span {
-      border: .01rem solid #4fb0f9;
+      border: .01rem solid $dorder-button;
       border-radius: .16rem;
       font-size: 0.14rem;
       text-align: center;
@@ -173,11 +173,11 @@ export default {
     }
     &__no {
       margin-right: 0.24rem;
-      color: #0091ff;
+      color: $bgColor-lightBlue;
     }
     &__yes {
-      background: #4fb0f9;
-      color: #fff;
+      background: $dorder-button;
+      color: $textColor-white;
     }
   }
 }

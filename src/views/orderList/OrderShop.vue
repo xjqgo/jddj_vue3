@@ -31,10 +31,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./style/mixins.scss";
 .order {
   margin: 0.16rem 0.18rem 0 0.18rem;
   padding: 0.16rem;
-  background: #fff;
+  background: $bgColor-white;
   border-radius: .04rem;
   &__hander {
     display: flex;
@@ -42,13 +43,13 @@ export default {
     &__sname {
       font-size: 0.16rem;
       line-height: 0.22rem;
-      color: #333333;
+      color: $content-fontcolor;
       font-weight: 600;
     }
     &__state {
       font-size: 0.14rem;
       height: 0.2rem;
-      color: #999999;
+      color: $light-fontcolor;
     }
   }
   &__info {
@@ -64,13 +65,13 @@ export default {
     }
     &__price {
       font-size: 0.14rem;
-      color: #e93b3b;
+      color: $price-fontcolor;
       margin-bottom: 0.04rem;
       text-align: right;
     }
     &__count {
       font-size: 0.12rem;
-      color: #333333;
+      color: $content-fontcolor;
       line-height: 0.14rem;
       text-align: right;
     }
