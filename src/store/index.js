@@ -40,8 +40,17 @@ export default createStore({
         setLocalCartList(state)
         return
       }
-      if (goodsId == 'clear') {
+      else if (goodsId == 'clear') {
         state.cartList[shopId].productList = {}
+        setLocalCartList(state)
+        return
+      }
+      else if (goodsId == 'clearOrder') {
+        for (const key in shopInfo.productList) {
+          if (Object.hasOwnProperty.call(shopInfo.productList, key)) {
+            if (state.cartList[shopId].productList[key].check) delete state.cartList[shopId].productList[key]
+          }
+        }
         setLocalCartList(state)
         return
       }
@@ -60,7 +69,6 @@ export default createStore({
       shopInfo.productList[goodsId] = product
       state.cartList[shopId] = shopInfo
       setLocalCartList(state)
-      console.log('qq', state.cartList[shopId]);
     },
 
   },

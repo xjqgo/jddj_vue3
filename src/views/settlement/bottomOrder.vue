@@ -12,7 +12,7 @@
   <div class="settlement">
     <div class="settlement__total">
       <span class="settlement__total__title">付款金额</span>
-      <span class="settlement__total__price"> ￥{{ total }}</span>
+      <span class="settlement__total__price"> ￥{{ orderPrice }}</span>
     </div>
     <div @click="showMask=true" class="settlement__btn">提交订单</div>
   </div>
@@ -32,19 +32,19 @@ const orderEffect = () => {
     let { cartList } = cartEffect();
     const route = useRoute();
     cartList = { info: cartList[route.params.id] };
-    const total = computed(() => {
+    const orderPrice = computed(() => {
       let price = 0;
       for (const key in cartList.info.productList) {
         const element = cartList.info.productList[key];
-        price += element.count * element.price;
+        if(element.check)price += element.count * element.price;
       }
       return price.toFixed(2);
     });
 
-    return { cartList, total };
+    return { cartList, orderPrice };
 }
 
-// 
+// 蒙层
 const maskEffect = (showMask) => {
     const { cartShop, shopId,changeCartItem } = cartEffect();
     const { toastData, showToast } = showToastEffect();
@@ -73,7 +73,7 @@ const maskEffect = (showMask) => {
           if (isCanceled) {
             showToast("订单提交成功");
             setTimeout(() => {
-            changeCartItem(shopId, { _id: 'clear' }, -1)
+            changeCartItem(shopId, { _id: 'clearOrder' })
             router.push({ name: "OrderList" });
             }, 2000);
           }else{
@@ -94,10 +94,10 @@ export default {
   components:{Toast},
   setup() {
     const showMask = ref(false);
-    const {  cartList, total  } = orderEffect();
+    const {  cartList, orderPrice  } = orderEffect();
     const { toastData,cartShop,btnRquest } = maskEffect(showMask);
 
-    return { cartList, total,showMask,toastData,cartShop,btnRquest};
+    return { cartList, orderPrice,showMask,toastData,cartShop,btnRquest};
   },
 };
 </script>

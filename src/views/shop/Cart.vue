@@ -22,7 +22,7 @@
           class="cart__clear"
           @click="
             () => {
-              changeCartItem(shopId, { _id: 'clear' }, -1);
+              changeCartItem(shopId, { _id: 'clear' });
               showCart = !showCart;
             }
           "
