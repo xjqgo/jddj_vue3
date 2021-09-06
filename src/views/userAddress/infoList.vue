@@ -1,13 +1,24 @@
 <template>
   <div class="info">
-    <div class="info__name">
-      {{ item.name }}<span class="info__name__phone">{{ item.phone }}</span>
-    </div>
-    <div class="info__address">
-      {{ item.city }} {{ item.department }}-{{
-        item.houseNumber
-      }}
-    </div>
+    <router-link
+      :to="{
+        name: 'Settlement',
+        //path: '/',
+        params: {
+          id: $route.query.orderid,
+          name: item.name,
+          phone: item.phone,
+          address: item.city+item.department,
+        },
+      }"
+    >
+      <div class="info__name">
+        {{ item.name }}<span class="info__name__phone">{{ item.phone }}</span>
+      </div>
+      <div class="info__address">
+        {{ item.city }} {{ item.department }}-{{ item.houseNumber }}
+      </div>
+    </router-link>
     <router-link :to="`/addAddress/${item._id}`">
       <div class="info__edit iconfont">&#xe64c;</div>
     </router-link>
@@ -26,8 +37,8 @@ export default {
   margin: 0 0.18rem 0.16rem 0.18rem;
   padding: 0.18rem 0.16rem;
   background: $bgColor-white;
-  border-radius: .04rem;
-  font-size: .14rem;
+  border-radius: 0.04rem;
+  font-size: 0.14rem;
   position: relative;
   &__name {
     line-height: 0.2rem;

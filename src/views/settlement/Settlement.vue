@@ -11,12 +11,15 @@ import Shop from "../../components/ShopProductList.vue";
 import Top from "./topArea.vue";
 import BottomOrder from "./bottomOrder.vue";
 import { cartEffect } from "../../effects/cartEffect";
+import { useRoute } from 'vue-router';
 
 
 export default {
   components: { Shop, Top, BottomOrder },
   setup() {
     const { cartShop } = cartEffect();
+    const route = useRoute();
+    console.log(route);
 
     return {cartShop}
   },

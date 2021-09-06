@@ -6,23 +6,31 @@
     </div>
     <div class="top__receiver">
       <div class="top__receiver__title">收货地址</div>
-      <div class="top__receiver__address">北京理工大学国防科技园2号楼10层</div>
+      <div class="top__receiver__address">{{addressInfo.address}}</div>
       <div class="top__receiver__info">
-        <span class="top__receiver__info__name">瑶妹（女士）</span>
-        <span class="top__receiver__info__name">18911024266</span>
+        <span class="top__receiver__info__name">{{addressInfo.name}}</span>
+        <span class="top__receiver__info__phone">{{addressInfo.phone}}</span>
       </div>
-      <div class="iconfont top__receiver__icon"><router-link to="/userAddress">&#xe64c;</router-link></div>
+      <div class="iconfont top__receiver__icon"><router-link :to="{path:`/userAddress`,query:{orderid:$route.params.id}}">&#xe64c;</router-link></div>
     </div>
   </div>
 </template>
 
 <script>
+import { ref } from '@vue/reactivity';
 import { publicEffect } from "../../effects/publicEffect";
+import { useRoute } from 'vue-router';
 export default {
   setup() {
     const { toBack } = publicEffect();
-
-    return { toBack };
+    const route = useRoute();
+    const addressInfo = ref({
+          name: '瑶妹',
+          phone: '18911024266',
+          address: '北京理工大学国防科技园2号楼10层北京理工大学国防科技园2号楼10层北京理工大学国防科技园2号楼10层',
+        });
+    if(route.params.address)addressInfo.value=route.params    
+    return { toBack,addressInfo };
   },
 };
 </script>
@@ -64,16 +72,24 @@ export default {
       font-size: 0.14rem;
       line-height: 0.2rem;
       color: $content-fontcolor;
+      padding-right: .2rem;
+      @include lines(2)
     }
     &__info {
       line-height: 0.17rem;
       color: $mediun-fontcolor;
+      &__phone{
+        margin-left: .06rem;
+      }
     }
     &__icon {
-      transform: rotate(180deg);
       position: absolute;
       right: 0.16rem;
-      top: 0.5rem;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      transform: rotate(180deg);
       font-size: 0.16rem;
       a{
       text-decoration: none;
