@@ -41,10 +41,7 @@ export default {
   .cart-null {
     font-size: 0.18rem;
     color: $mediun-fontcolor;
-    text-align: center;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    @include center-transform;
   }
   &__hander {
   @include hander;
