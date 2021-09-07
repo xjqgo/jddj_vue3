@@ -43,9 +43,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "addAddress-id" */ '../views/addAddress/AddAddress'),
   },
   {
-    path: '/settlement/:id',
-    name: 'Settlement',
-    component: () => import(/* webpackChunkName: "settlement" */ '../views/settlement/Settlement'),
+    path: '/order/:id',
+    name: 'Order',
+    component: () => import(/* webpackChunkName: "order" */ '../views/order/Order'),
   },
   {
     path: '/register',

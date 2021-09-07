@@ -47,7 +47,9 @@
             </div>
             <div class="number">
               <span>
-                <span class="minus  iconfont" @click="changeCartItem(shopId, item, -1)"
+                <span
+                  class="minus iconfont"
+                  @click="changeCartItem(shopId, item, -1)"
                   >&#xe6d0;</span
                 >
                 <span class="jianshu">{{ item.count }}</span>
@@ -63,7 +65,7 @@
       </div>
     </div>
     <!-- 结算 -->
-    <div class="cart__settlement" @click="showCart = !showCart">
+    <div class="cart__order" @click="showCart = !showCart">
       <img
         class="cart__img"
         src="http://www.dell-lee.com/imgs/vue3/basket.png"
@@ -78,12 +80,12 @@
       <span class="cart__text" v-show="!calculations.total">购物车是空的</span>
     </div>
     <router-link
-      :to="{ path: calculations.price>0.1 ? `/settlement/${shopId}` : '' }"
+      :to="{ path: calculations.price > 0.1 ? `/order/${shopId}` : '' }"
     >
       <div
         :class="{
           cart__jiesuan: true,
-          'cart__jiesuan--null': !(calculations.price>0.1),
+          'cart__jiesuan--null': !(calculations.price > 0.1),
         }"
       >
         去结算
@@ -109,9 +111,8 @@ const cartEffects = () => {
     for (const key in productList) {
       if (Object.hasOwnProperty.call(productList, key)) {
         result.total += productList[key].count;
-        if (productList[key].check){
-          result.price +=
-            productList[key].count * productList[key].price;
+        if (productList[key].check) {
+          result.price += productList[key].count * productList[key].price;
         }
         if (!productList[key].check) {
           result.allCheck = false;
@@ -193,7 +194,7 @@ export default {
     &__info {
       flex: 1;
       overflow: hidden;
-      border-bottom: .01rem solid $content-bgColor;
+      border-bottom: 0.01rem solid $content-bgColor;
       margin-right: 0.18rem;
       margin-bottom: 0.12rem;
       .title {
@@ -217,8 +218,8 @@ export default {
         }
         .jianshu {
           margin: 0 0.1rem;
-         position: relative; 
-         top: -.02rem;
+          position: relative;
+          top: -0.02rem;
         }
         .minus,
         .changeCartItem {
@@ -306,7 +307,7 @@ export default {
   font-size: 0.14rem;
   padding: 0.18rem;
   margin-bottom: 0.16rem;
-  border-bottom: .01rem solid $content-bgColor;
+  border-bottom: 0.01rem solid $content-bgColor;
   .cart__all-check {
     display: flex;
     align-items: center;

@@ -2,7 +2,7 @@
   <div class="info">
     <router-link
       :to="{
-        name: 'Settlement',
+        name: 'Order',
         //path: '/',
         params: {
           id: $route.query.orderid,
