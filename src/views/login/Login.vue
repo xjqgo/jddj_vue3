@@ -8,7 +8,7 @@
       <input
         class="wrapper__input__content"
         v-model="data.username"
-        placeholder="请输入用户名"
+        placeholder="用户名:测试可随意输入"
       />
     </div>
     <div class="wrapper__input">
@@ -16,7 +16,7 @@
         class="wrapper__input__content"
         v-model="data.password"
         autocomplete="new-password"
-        placeholder="请输入密码"
+        placeholder="密码:测试可随意输入"
         type="password"
       />
     </div>
@@ -31,7 +31,6 @@
 
 <script>
 import { reactive } from "vue";
-// import * as info from 'vue-router'
 import { useRouter } from "vue-router";
 import { post } from "../../util/request";
 import Toast, { showToastEffect } from "../../components/Toast.vue";
