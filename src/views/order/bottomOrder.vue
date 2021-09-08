@@ -101,7 +101,7 @@ const maskEffect = (showMask, msgboxNum) => {
 export default {
   components: { Toast },
   setup() {
-    const showMask = ref(true);
+    const showMask = ref(false);
     const msgboxNum = ref(1);
     const { cartList, orderPrice } = orderEffect();
     const { toastData, cartShop, btnRquest } = maskEffect(showMask, msgboxNum);
@@ -177,7 +177,7 @@ export default {
     font-size: 0.14rem;
     color: $mediun-fontcolor;
     line-height: 0.2rem;
-    margin: 0.08rem 0 0.3rem;
+    margin: .08rem 0 .3rem;
   }
   &__button {
     span {
@@ -200,30 +200,29 @@ export default {
   }
 }
 .success {
-  background: #fff;
+  background: $bgColor-white;
   margin: 0 0.37rem;
   padding: 0.12rem;
   position: relative;
   display: flex;
   flex-flow: column;
   align-items: center;
+    color: $content-fontcolor;
   &__icon-cancel {
     font-size: 0.13rem;
     text-align: right;
     align-self: flex-end;
-    color: #666666;
+    color: $mediun-fontcolor;
   }
   &__icon-yes {
     font-size: 0.28rem;
     transform: scaleX(1.5);
     font-weight: 1000;
-    color: #333;
     margin-top: 0.16rem;
   }
   &__title {
     font-size: 0.18rem;
     font-weight: 600;
-    color: #333;
     line-height: 0.25rem;
     margin: 0.24rem 0 0.2rem;
   }
