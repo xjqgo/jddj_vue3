@@ -53,6 +53,7 @@ export default {
   padding-top: 1.08rem;
   &__icon {
     font-size: 0.2rem;
+    transform: scaleX(1.3);
     color: $textColor-white;
     position: absolute;
     top: 0.4rem;
