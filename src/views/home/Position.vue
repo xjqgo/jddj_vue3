@@ -4,11 +4,10 @@
     北京理工大学国防科技园2号楼10层北京理工大学国防科技园2号楼10层
     <span class="iconfont position__notive">&#xe628;</span>
   </div>
-  <div class="search">
+  <router-link to="/search" class="search">
     <span class="iconfont search__icon">&#xe60c;</span>
     <input type="text" placeholder="山姆会员商店优惠商品" />
-  </div>
-
+  </router-link>
   <div class="banner">
     <img
       class="banner__img"
@@ -74,6 +73,7 @@ export default {
   }
 }
 .search {
+  display: block;
   line-height: 0.32rem;
   background: #f5f5f5;
   border-radius: .16rem;
@@ -98,6 +98,7 @@ export default {
   // 图片防抖动
   height: 0;
   overflow: hidden;
+  margin-top: .12rem;
   padding-bottom: 25.4%;
   &__img {
     width: 100%;

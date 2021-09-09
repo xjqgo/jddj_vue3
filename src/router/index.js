@@ -13,6 +13,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "orderList" */ '../views/orderList/OrderList'),
   },
   {
+    path: '/search',
+    name: 'Search',
+    component: () => import(/* webpackChunkName: "search" */ '../views/search/Search'),
+  },
+  {
+    path: '/searchRes',
+    name: 'SearchRes',
+    component: () => import(/* webpackChunkName: "searchRes" */ '../views/searchRes/SearchRes'),
+  },
+  {
     path: '/cartList',
     name: 'CartList',
     component: () => import(/* webpackChunkName: "cartList" */ '../views/cartList/CartList'),
