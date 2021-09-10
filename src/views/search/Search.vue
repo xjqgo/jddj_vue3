@@ -5,9 +5,8 @@
         <span class="iconfont search__input__icon">&#xe60c;</span>
         <input class="search__input__text" placeholder="尖椒肉丝" />
       </div>
-      <router-link to>
         <div class="iconfont search__cancel" @click="$router.back()">取消</div>
-      </router-link>
+        
     </div>
     <Keys name="搜索历史" :arr="keysHistory" :clear="true" />
     <Keys name="热门搜索" :arr="keysHot" />
