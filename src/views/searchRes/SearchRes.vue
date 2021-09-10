@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        res
+        key:{{$route.query.key}}
     </div>
 </template>
 

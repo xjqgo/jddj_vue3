@@ -3,10 +3,14 @@
     <div class="search">
       <div to="/search" class="search__input">
         <span class="iconfont search__input__icon">&#xe60c;</span>
-        <input class="search__input__text" placeholder="尖椒肉丝" />
+        <input
+          class="search__input__text"
+          placeholder="尖椒肉丝"
+          v-model="keysInput"
+          @keyup.enter="handlerEnter"
+        />
       </div>
-        <div class="iconfont search__cancel" @click="$router.back()">取消</div>
-        
+      <div class="iconfont search__cancel" @click="$router.back()">取消</div>
     </div>
     <Keys name="搜索历史" :arr="keysHistory" :clear="true" />
     <Keys name="热门搜索" :arr="keysHot" />
@@ -16,9 +20,11 @@
 <script>
 import { ref } from "@vue/reactivity";
 import Keys from "./Keys.vue";
+import { useRouter } from 'vue-router';
 export default {
   components: { Keys },
   setup() {
+    const router = useRouter();
     const keysHistory = ref([
       "尖椒肉丝",
       "鲜花",
@@ -39,8 +45,12 @@ export default {
       "酸奶",
       "牛奶",
     ]);
+    const keysInput = ref("");
 
-    return { keysHistory, keysHot };
+    const handlerEnter = () => {
+      router.push(`searchRes?key=${keysInput.value}`)
+    };
+    return { keysHistory, keysHot, handlerEnter,keysInput };
   },
 };
 </script>
