@@ -6,7 +6,7 @@
 
         <div class="search__content">
           <div class="search__content__icon iconfont">&#xe60c;</div>
-          <input placeholder="请输入商品名称搜索" />
+          <input placeholder="请输入商品名称搜索" @click="$router.push('/search')"/>
         </div>
       </div>
       <Shopinfo :item="item" :hidegap="true" v-show="item.imgUrl" />
