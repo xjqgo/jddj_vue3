@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$content-inputcolor: #333;
+@import "./style/mixins.scss";
 .handed {
   margin-left: 0.18rem;
 }
@@ -68,17 +68,17 @@ $content-inputcolor: #333;
   line-height: 0.32rem;
   &__back {
     font-size: 0.24rem;
-    color: #b6b6b6;
+    color: $light-backColor;
     margin: 0 0.1rem 0 -0.16rem;
   }
   &__content {
     display: flex;
-    background: #f5f5f5;
+    background: $content-bgColor5;
     border-radius: .16rem;
     border-radius: .16rem;
     width: 100%;
     &__icon {
-      color: #b7b7b7;
+      color: $search-iconColor;
       margin: 0 0.08rem;
     }
     input {
@@ -88,11 +88,11 @@ $content-inputcolor: #333;
       line-height: 0.32rem;
       width: 100%;
       padding-right: 0.2rem;
-      color: $content-inputcolor;
+      color: $content-fontcolor;
     }
     ::placeholder {
       font-size: .14rem;
-      color: $content-inputcolor;
+      color: $content-fontcolor;
     }
   }
 }
