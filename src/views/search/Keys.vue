@@ -53,7 +53,7 @@ export default {
   }
   &__list {
     background: #fff;
-    margin-right: -0.1rem;
+    margin-right: -0.13rem;
     &__item {
       display: inline-block;
       font-size: 0.14rem;
