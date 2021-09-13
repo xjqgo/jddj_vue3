@@ -1,7 +1,7 @@
 <template>
   <div class="position">
     <span class="iconfont position__icon">&#xe60e;</span>
-    北京理工大学国防科技园2号楼10层北京理工大学国防科技园2号楼10层
+    贵州省 贵阳市
     <span class="iconfont position__notive">&#xe628;</span>
   </div>
   <router-link to="/search" class="search">
