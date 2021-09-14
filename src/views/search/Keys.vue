@@ -38,7 +38,7 @@ export default {
 
 .keys {
   margin-top: 0.24rem;
-  color: #333;
+  color: $content-fontcolor;
   &__hander {
     display: flex;
     justify-content: space-between;
@@ -52,16 +52,17 @@ export default {
     }
   }
   &__list {
-    background: #fff;
-    margin-right: -0.13rem;
+    background: $bgColor-white;
+    width: calc(100% + .13rem);
+    // margin-right: -0.13rem;
     &__item {
       display: inline-block;
       font-size: 0.14rem;
       line-height: 0.16rem;
-      color: #666;
+      color: $mediun-fontcolor;
       padding: 0.08rem 0.1rem;
-      margin: 0 0.1rem 0.12rem 0;
-      background: #f5f5f5;
+      margin: 0 .1rem .12rem 0;
+      background: $content-bgColor5;
       border-radius: 0.02rem;
     }
   }
