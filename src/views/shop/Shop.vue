@@ -1,9 +1,8 @@
 <template>
   <div class="wrapper">
-    <div class="handed">
-      <Search />
-       <!-- v-show="item.imgUrl" 防抖 -->
-      <Shopinfo :item="item" :hidegap="true" v-show="item.imgUrl" />
+    <Search placeholder="请输入商品名称搜索" />
+    <div class="shop">
+      <Shopinfo :item="item" :hidegap="true" />
     </div>
     <Content />
     <Cart />
@@ -36,16 +35,16 @@ const useShopInfoEffect = () => {
       });
     }
   };
-
-  return { getShop, item };
+  getShop();
+  
+  return {  item };
 };
 
 export default {
   name: "Shop",
   components: { Shopinfo, Content, Cart, Search },
   setup() {
-    const { getShop, item } = useShopInfoEffect();
-    getShop();
+    const {  item } = useShopInfoEffect();
     return { item };
   },
 };
@@ -53,7 +52,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "./style/mixins.scss";
-.handed {
+.shop {
   margin-left: 0.18rem;
 }
 </style>

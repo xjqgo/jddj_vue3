@@ -4,13 +4,14 @@
 
         <div class="search__content">
           <div class="search__content__icon iconfont">&#xe60c;</div>
-          <input placeholder="请输入商品名称搜索" @click="$router.push('/search')"/>
+          <input :placeholder="placeholder??'请输入搜索内容'" @click="$router.push('/search')"/>
         </div>
       </div>
 </template>
 
 <script>
 export default {
+  props:['placeholder']
     
 }
 </script>
@@ -18,7 +19,7 @@ export default {
 <style lang="scss" scoped>
 @import "./style/mixins.scss";
 .search {
-  margin: 0.16rem 0.18rem 0.16rem 0;
+  margin: 0.16rem 0.18rem 0.16rem 0.18rem;
   height: 0.32rem;
   display: flex;
   font-size: 0.16rem;
