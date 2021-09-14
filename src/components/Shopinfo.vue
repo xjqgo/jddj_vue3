@@ -11,7 +11,7 @@
       </div>
       <p>{{ item.slogan }}</p>
       <div class="product" v-if="product">
-        <div class="product__item" v-for="i in 3" :key="i">
+        <div class="product__item" @click="$router.push('/shop/'+item._id)" v-for="i in 3" :key="i">
           <img
             class="product__item__img"
             src="http://www.dell-lee.com/imgs/vue3/tomato.png"
