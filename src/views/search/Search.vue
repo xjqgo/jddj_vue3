@@ -8,22 +8,26 @@
           placeholder="尖椒肉丝"
           v-model="keysInput"
           @keyup.enter="handlerEnter"
+          ref="input"
         />
       </div>
-      <div class="iconfont search__cancel" @click="$router.back()">取消</div>
+      <div class="iconfont search__cancel" @click="handlerCancel($refs)">
+        取消
+      </div>
     </div>
     <Keys name="搜索历史" :arr="keysHistory" :clear="true" />
-    <Keys name="热门搜索" :arr="keysHot" />
+    <Keys name="热门搜索" :arr="keysHot" ref="hot" />
   </div>
 </template>
 
 <script>
 import { ref } from "@vue/reactivity";
 import Keys from "./Keys.vue";
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from "vue-router";
 export default {
   components: { Keys },
   setup() {
+    const route = useRoute();
     const router = useRouter();
     const keysHistory = ref([
       "尖椒肉丝",
@@ -46,11 +50,26 @@ export default {
       "牛奶",
     ]);
     const keysInput = ref("");
-
     const handlerEnter = () => {
-      router.push(`searchRes?key=${keysInput.value}`)
+      router.push(`searchRes?key=${keysInput.value}`);
     };
-    return { keysHistory, keysHot, handlerEnter,keysInput };
+    const handlerCancel = (e) => {
+      console.log("route", route);
+      console.log("router", router);
+      console.log("this", e);
+
+      if (keysInput.value != "") {
+        keysInput.value = "";
+        e.input.focus();
+      } else router.back();
+    };
+    return {
+      keysHistory,
+      keysHot,
+      handlerEnter,
+      keysInput,
+      handlerCancel,
+    };
   },
 };
 </script>
