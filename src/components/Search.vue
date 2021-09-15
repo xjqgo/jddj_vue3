@@ -4,14 +4,23 @@
 
         <div class="search__content">
           <div class="search__content__icon iconfont">&#xe60c;</div>
-          <input :placeholder="placeholder??'请输入搜索内容'" @click="$router.push('/search')"/>
+          <input :placeholder="placeholder??'请输入搜索内容'" @click="handlerCancel"/>
         </div>
       </div>
 </template>
 
 <script>
+import {  useRouter } from 'vue-router';
 export default {
-  props:['placeholder']
+  props:['placeholder'],
+  setup() {
+    const router = useRouter();
+    const handlerCancel = () => {
+      router.currentRoute.value.name=='SearchRes'?router.back():router.push('/search')
+    };
+
+    return {handlerCancel}
+  }
     
 }
 </script>
